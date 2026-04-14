@@ -456,7 +456,7 @@ function initSkillBars() {
 
       if (json.status === 'ok') {
         statusEl.className = 'p-4 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm';
-        statusEl.textContent = '送信しました！確認メールをお送りしましたのでご確認ください。通常1営業日以内にご返信いたします。';
+        statusEl.innerHTML = '送信しました！確認メールをお送りしましたのでご確認ください。通常1営業日以内にご返信いたします。<br><span class="text-xs text-green-600 mt-1 block">※ メールが届かない場合は、メールアドレスが正しいかご確認のうえ、迷惑メールフォルダもご確認ください。</span>';
         form.reset();
       } else {
         throw new Error(json.message || '送信エラー');
