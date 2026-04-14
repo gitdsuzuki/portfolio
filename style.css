@@ -1,0 +1,200 @@
+/* ======================== */
+/*  鈴猫Works - Custom CSS   */
+/* ======================== */
+
+/* === GLOBAL === */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.2);
+  color: #1a1a2e;
+}
+
+/* Hide scrollbar for aesthetic, keep functionality */
+body {
+  overflow-x: hidden;
+}
+
+/* === NAVBAR === */
+.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(226, 229, 239, 0.8);
+}
+
+/* Hamburger Animation */
+.hamburger-active .hamburger-line:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+.hamburger-active .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburger-active .hamburger-line:nth-child(3) {
+  width: 1.5rem;
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* === PARTICLE CANVAS === */
+#particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* === TYPING CURSOR === */
+.typing-cursor {
+  display: inline-block;
+  animation: cursor-blink 1s step-end infinite;
+  font-weight: 300;
+}
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* === SCROLL ANIMATIONS === */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Fade Up */
+.scroll-animate[data-animation="fade-up"] {
+  transform: translateY(40px);
+}
+
+/* Fade Left */
+.scroll-animate[data-animation="fade-left"] {
+  transform: translateX(-40px);
+}
+
+/* Fade Right */
+.scroll-animate[data-animation="fade-right"] {
+  transform: translateX(40px);
+}
+
+/* Visible state — must come after animation variants */
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+
+/* === HERO ANIMATIONS === */
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === 3D TILT CARD === */
+.tilt-card {
+  perspective: 1000px;
+}
+
+.tilt-card > div {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+/* === SKILL BAR === */
+.skill-bar {
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* === COUNTER === */
+.counter {
+  font-variant-numeric: tabular-nums;
+}
+
+/* === BACK TO TOP === */
+#back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* === FORM STYLES === */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #f8f9fc inset;
+  -webkit-text-fill-color: #1a1a2e;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* === GLOW EFFECTS === */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.3); }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .scroll-animate[data-animation="fade-left"],
+  .scroll-animate[data-animation="fade-right"] {
+    transform: translateY(30px);
+  }
+}
+
+/* === LOADING STATE === */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+  pointer-events: none;
+}
+
+body.loaded::before {
+  opacity: 0;
+}

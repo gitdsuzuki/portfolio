@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>鈴猫Works — Webアプリ開発・LP制作・技術コンサルティング</title>
+  <meta name="description" content="鈴猫Worksは、Webアプリ開発・LP制作・技術コンサルティングを提供する個人開発事務所です。モダンな技術で、あなたのビジネスをデジタルで加速させます。" />
+
+  <!-- Tailwind CSS v4 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Tailwind Theme Config -->
+  <style type="text/tailwindcss">
+    @theme {
+      --color-light-base: #ffffff;
+      --color-light-alt: #f8f9fc;
+      --color-light-card: #ffffff;
+      --color-light-border: #e2e5ef;
+      --color-text-main: #1a1a2e;
+      --color-text-sub: #64748b;
+      --color-accent: #6366f1;
+      --color-accent-light: #8b5cf6;
+      --color-accent-cyan: #0ea5e9;
+      --font-sans: 'Inter', 'Noto Sans JP', sans-serif;
+    }
+  </style>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-light-base text-text-main font-sans antialiased">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-2 group">
+        <span class="text-2xl">🐱</span>
+        <span class="text-xl lg:text-2xl font-bold bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent group-hover:from-accent-light group-hover:to-accent-cyan transition-all duration-300">鈴猫Works</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="hidden lg:flex items-center gap-8">
+        <li><a href="#services" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">サービス</a></li>
+        <li><a href="#portfolio" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">実績</a></li>
+        <li><a href="#skills" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">スキル</a></li>
+        <li><a href="#profile" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">プロフィール</a></li>
+        <li><a href="#blog" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">ブログ</a></li>
+        <li><a href="#contact" class="px-5 py-2 rounded-full bg-gradient-to-r from-accent to-accent-light text-white text-sm font-semibold hover:shadow-lg hover:shadow-accent/25 transition-all duration-300 hover:-translate-y-0.5">お問い合わせ</a></li>
+      </ul>
+
+      <!-- Mobile Hamburger -->
+      <button id="mobile-menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2 group" aria-label="メニューを開く">
+        <span class="hamburger-line w-6 h-0.5 bg-text-main transition-all duration-300 origin-center"></span>
+        <span class="hamburger-line w-6 h-0.5 bg-text-main transition-all duration-300"></span>
+        <span class="hamburger-line w-4 h-0.5 bg-text-main transition-all duration-300 origin-center group-hover:w-6"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden fixed inset-0 top-16 bg-light-base/95 backdrop-blur-xl z-40">
+      <ul class="flex flex-col items-center justify-center gap-8 h-full text-lg">
+        <li><a href="#services" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">サービス</a></li>
+        <li><a href="#portfolio" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">実績</a></li>
+        <li><a href="#skills" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">スキル</a></li>
+        <li><a href="#profile" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">プロフィール</a></li>
+        <li><a href="#blog" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">ブログ</a></li>
+        <li><a href="#contact" class="px-8 py-3 rounded-full bg-gradient-to-r from-accent to-accent-light text-white font-semibold">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Particle Canvas Background -->
+    <canvas id="particle-canvas" class="absolute inset-0 w-full h-full"></canvas>
+
+    <!-- Gradient Overlays -->
+    <div class="absolute inset-0 bg-gradient-to-b from-light-base/60 via-transparent to-light-base pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-light-base to-transparent pointer-events-none"></div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <p class="text-accent text-sm lg:text-base font-medium tracking-widest uppercase mb-4 animate-fade-in-down">個人開発事務所</p>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-tight mb-6 animate-fade-in">
+        <span class="bg-gradient-to-r from-text-main via-text-main to-text-sub bg-clip-text text-transparent">あなたのビジネスを</span>
+        <br />
+        <span class="bg-gradient-to-r from-accent via-accent-light to-accent-cyan bg-clip-text text-transparent">デジタルで加速する</span>
+      </h1>
+
+      <div class="text-lg lg:text-2xl text-text-sub mb-8 h-10 animate-fade-in-up">
+        <span class="text-text-main font-semibold" id="typing-text"></span>
+        <span class="typing-cursor text-accent">|</span>
+      </div>
+
+      <p class="text-text-sub text-sm lg:text-base max-w-2xl mx-auto mb-10 animate-fade-in-up animation-delay-200">
+        モダンな技術スタックを活用し、ビジネスの成長に貢献するWebソリューションを提供します。<br class="hidden sm:block" />
+        設計から開発、運用まで一貫してサポートいたします。
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
+        <a href="#contact" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-accent to-accent-light text-white font-semibold hover:shadow-xl hover:shadow-accent/30 transition-all duration-300 hover:-translate-y-1">
+          <i class="fa-solid fa-paper-plane mr-2"></i>お問い合わせ
+        </a>
+        <a href="#portfolio" class="px-8 py-3.5 rounded-full border border-light-border text-text-main font-semibold hover:border-accent hover:text-accent transition-all duration-300 hover:-translate-y-1">
+          <i class="fa-solid fa-briefcase mr-2"></i>実績を見る
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll Down Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <a href="#services" class="text-text-sub hover:text-accent transition-colors">
+        <i class="fa-solid fa-chevron-down text-xl"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section id="services" class="py-24 lg:py-32 bg-light-alt">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
+        <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Services</p>
+        <h2 class="text-3xl lg:text-5xl font-bold mb-4">提供サービス</h2>
+        <p class="text-text-sub max-w-2xl mx-auto">お客様のニーズに合わせた最適なソリューションをご提案します</p>
+      </div>
+
+      <!-- Service Cards -->
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Card 1: Webアプリ開発 -->
+        <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="0">
+          <div class="h-full p-8 rounded-2xl bg-light-card border border-light-border hover:border-accent/50 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent to-accent-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-code text-white text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 group-hover:text-accent transition-colors">Webアプリ開発</h3>
+            <p class="text-text-sub text-sm leading-relaxed mb-4">React / Next.js / Vue.js などモダンなフレームワークを用いたフルスタック開発。要件定義から設計・実装・テスト・デプロイまで一貫して対応します。</p>
+            <ul class="space-y-2 text-xs text-text-sub">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>SPA / SSR / SSG 対応</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>REST API / GraphQL設計</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>DB設計・クラウドインフラ構築</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 2: LP・サイト制作 -->
+        <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="100">
+          <div class="h-full p-8 rounded-2xl bg-light-card border border-light-border hover:border-accent/50 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-light to-accent-cyan flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-palette text-white text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 group-hover:text-accent-light transition-colors">LP・コーポレートサイト制作</h3>
+            <p class="text-text-sub text-sm leading-relaxed mb-4">コンバージョン率の高いランディングページや、ブランドイメージに合ったコーポレートサイトをデザイン・実装します。</p>
+            <ul class="space-y-2 text-xs text-text-sub">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>レスポンシブ対応</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>SEO最適化</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>アニメーション・インタラクション</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 3: 技術コンサルティング -->
+        <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="200">
+          <div class="h-full p-8 rounded-2xl bg-light-card border border-light-border hover:border-accent/50 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-cyan to-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <i class="fa-solid fa-lightbulb text-white text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">技術コンサルティング</h3>
+            <p class="text-text-sub text-sm leading-relaxed mb-4">技術選定、アーキテクチャ設計、コードレビュー、パフォーマンス改善など、技術面での課題解決をサポートします。</p>
+            <ul class="space-y-2 text-xs text-text-sub">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>技術スタック選定・移行支援</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>パフォーマンス最適化</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>セキュリティ診断・改善</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PORTFOLIO ===================== -->
+  <section id="portfolio" class="py-24 lg:py-32 bg-light-base">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
+        <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Portfolio</p>
+        <h2 class="text-3xl lg:text-5xl font-bold mb-4">実績・ポートフォリオ</h2>
+        <p class="text-text-sub max-w-2xl mx-auto">これまでに手がけたプロジェクトの一部をご紹介します</p>
+      </div>
+
+      <!-- Stats Counter -->
+      <div class="grid grid-cols-3 gap-6 max-w-3xl mx-auto mb-16 scroll-animate" data-animation="fade-up">
+        <div class="text-center p-6 rounded-2xl bg-light-alt border border-light-border">
+          <p class="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent">
+            <span class="counter" data-target="50">0</span><span class="text-accent">+</span>
+          </p>
+          <p class="text-text-sub text-xs mt-1">制作実績</p>
+        </div>
+        <div class="text-center p-6 rounded-2xl bg-light-alt border border-light-border">
+          <p class="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-accent-light to-accent-cyan bg-clip-text text-transparent">
+            <span class="counter" data-target="98">0</span><span class="text-accent-light">%</span>
+          </p>
+          <p class="text-text-sub text-xs mt-1">顧客満足度</p>
+        </div>
+        <div class="text-center p-6 rounded-2xl bg-light-alt border border-light-border">
+          <p class="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-accent-cyan to-accent bg-clip-text text-transparent">
+            <span class="counter" data-target="30">0</span><span class="text-accent-cyan">+</span>
+          </p>
+          <p class="text-text-sub text-xs mt-1">リピート案件</p>
+        </div>
+      </div>
+
+      <!-- Project Cards -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Project 1 -->
+        <div class="tilt-card scroll-animate" data-animation="fade-left" data-delay="0">
+          <div class="rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
+            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent/10 to-accent-light/10 flex items-center justify-center overflow-hidden">
+              <div class="text-6xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500">🛒</div>
+              <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold mb-2 group-hover:text-accent transition-colors">ECサイト フルリニューアル</h3>
+              <p class="text-text-sub text-sm mb-4">大手アパレルブランドのECサイトをNext.js + Stripeで全面リニューアル。ページ速度を60%改善し、CVRを25%向上。</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">Next.js</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">TypeScript</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">Stripe</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="tilt-card scroll-animate" data-animation="fade-right" data-delay="100">
+          <div class="rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-light/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
+            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent-light/10 to-accent-cyan/10 flex items-center justify-center overflow-hidden">
+              <div class="text-6xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500">📊</div>
+              <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-light transition-colors">SaaS ダッシュボード開発</h3>
+              <p class="text-text-sub text-sm mb-4">リアルタイムデータ可視化ダッシュボードをReact + D3.jsで構築。WebSocket によるライブアップデート機能を実装。</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/10 text-accent-light border border-accent-light/20">React</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/10 text-accent-light border border-accent-light/20">D3.js</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/10 text-accent-light border border-accent-light/20">Node.js</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/10 text-accent-light border border-accent-light/20">WebSocket</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="tilt-card scroll-animate" data-animation="fade-left" data-delay="200">
+          <div class="rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-cyan/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
+            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent-cyan/10 to-accent/10 flex items-center justify-center overflow-hidden">
+              <div class="text-6xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500">🏥</div>
+              <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-cyan transition-colors">予約管理システム</h3>
+              <p class="text-text-sub text-sm mb-4">クリニック向け予約管理システムをVue.js + Firebaseで開発。LINE連携によるリマインダー通知機能も実装。</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">Vue.js</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">Firebase</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">LINE API</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">Cloud Functions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="tilt-card scroll-animate" data-animation="fade-right" data-delay="300">
+          <div class="rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
+            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent/10 to-accent-light/10 flex items-center justify-center overflow-hidden">
+              <div class="text-6xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500">🏢</div>
+              <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold mb-2 group-hover:text-accent transition-colors">コーポレートサイト制作</h3>
+              <p class="text-text-sub text-sm mb-4">IT企業のコーポレートサイトをAstro + Tailwind CSSで制作。Lighthouse スコア全項目95以上を達成。</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">Astro</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">Tailwind CSS</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">microCMS</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">Cloudflare</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills" class="py-24 lg:py-32 bg-light-alt">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
+        <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Skills</p>
+        <h2 class="text-3xl lg:text-5xl font-bold mb-4">技術スタック</h2>
+        <p class="text-text-sub max-w-2xl mx-auto">幅広い技術を活用し、最適なソリューションを提供します</p>
+      </div>
+
+      <!-- Skills Grid -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Frontend -->
+        <div class="scroll-animate p-6 rounded-2xl bg-light-card border border-light-border" data-animation="fade-left">
+          <h3 class="text-lg font-bold mb-6 flex items-center gap-3">
+            <span class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center"><i class="fa-solid fa-display text-accent"></i></span>
+            Frontend
+          </h3>
+          <div class="space-y-4">
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">React / Next.js</span><span class="text-xs text-text-sub">95%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="95"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">Vue.js / Nuxt</span><span class="text-xs text-text-sub">90%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="90"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">TypeScript</span><span class="text-xs text-text-sub">92%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="92"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">Tailwind CSS / CSS</span><span class="text-xs text-text-sub">95%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="95"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="scroll-animate p-6 rounded-2xl bg-light-card border border-light-border" data-animation="fade-right">
+          <h3 class="text-lg font-bold mb-6 flex items-center gap-3">
+            <span class="w-10 h-10 rounded-lg bg-accent-light/10 flex items-center justify-center"><i class="fa-solid fa-server text-accent-light"></i></span>
+            Backend
+          </h3>
+          <div class="space-y-4">
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">Node.js / Express</span><span class="text-xs text-text-sub">90%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-light to-accent-cyan" data-width="90"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">Python / FastAPI</span><span class="text-xs text-text-sub">85%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-light to-accent-cyan" data-width="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">PostgreSQL / MySQL</span><span class="text-xs text-text-sub">88%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-light to-accent-cyan" data-width="88"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">GraphQL / REST API</span><span class="text-xs text-text-sub">90%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-light to-accent-cyan" data-width="90"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Infrastructure -->
+        <div class="scroll-animate p-6 rounded-2xl bg-light-card border border-light-border" data-animation="fade-left" data-delay="100">
+          <h3 class="text-lg font-bold mb-6 flex items-center gap-3">
+            <span class="w-10 h-10 rounded-lg bg-accent-cyan/10 flex items-center justify-center"><i class="fa-solid fa-cloud text-accent-cyan"></i></span>
+            Infrastructure
+          </h3>
+          <div class="space-y-4">
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">AWS / GCP</span><span class="text-xs text-text-sub">85%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-cyan to-accent" data-width="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">Docker / Kubernetes</span><span class="text-xs text-text-sub">80%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-cyan to-accent" data-width="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">CI/CD (GitHub Actions)</span><span class="text-xs text-text-sub">88%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-cyan to-accent" data-width="88"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">Vercel / Cloudflare</span><span class="text-xs text-text-sub">92%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-cyan to-accent" data-width="92"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="scroll-animate p-6 rounded-2xl bg-light-card border border-light-border" data-animation="fade-right" data-delay="100">
+          <h3 class="text-lg font-bold mb-6 flex items-center gap-3">
+            <span class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center"><i class="fa-solid fa-wrench text-accent"></i></span>
+            Tools & Others
+          </h3>
+          <div class="space-y-4">
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">Git / GitHub</span><span class="text-xs text-text-sub">95%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="95"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">Figma / Adobe XD</span><span class="text-xs text-text-sub">75%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="75"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">Firebase / Supabase</span><span class="text-xs text-text-sub">85%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="flex justify-between mb-1"><span class="text-sm">Testing (Jest / Vitest)</span><span class="text-xs text-text-sub">82%</span></div>
+              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="82"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROFILE ===================== -->
+  <section id="profile" class="py-24 lg:py-32 bg-light-base">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
+        <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Profile</p>
+        <h2 class="text-3xl lg:text-5xl font-bold mb-4">プロフィール</h2>
+      </div>
+
+      <div class="max-w-4xl mx-auto scroll-animate" data-animation="fade-up">
+        <div class="flex flex-col md:flex-row items-center gap-10 p-8 lg:p-12 rounded-3xl bg-light-alt border border-light-border">
+          <!-- Avatar -->
+          <div class="flex-shrink-0">
+            <div class="w-40 h-40 rounded-full bg-gradient-to-br from-accent via-accent-light to-accent-cyan p-1">
+              <div class="w-full h-full rounded-full bg-light-base flex items-center justify-center">
+                <span class="text-6xl">🐱</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Info -->
+          <div class="text-center md:text-left">
+            <h3 class="text-2xl font-bold mb-1">鈴猫Works</h3>
+            <p class="text-accent text-sm font-medium mb-4">フルスタックエンジニア / 個人事業主</p>
+            <p class="text-text-sub text-sm leading-relaxed mb-6">
+              Web系エンジニアとして10年以上の経験を持ち、
+              フロントエンドからバックエンド、インフラまで幅広く対応。
+              お客様のビジネス課題を技術の力で解決することをモットーに、
+              個人事業主として活動しています。
+              高品質なコードと丁寧なコミュニケーションで、
+              長期的な信頼関係を大切にしています。
+            </p>
+            <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+              <span class="px-4 py-2 text-xs rounded-full bg-accent/10 text-accent border border-accent/20"><i class="fa-solid fa-map-marker-alt mr-1"></i>東京</span>
+              <span class="px-4 py-2 text-xs rounded-full bg-accent/10 text-accent border border-accent/20"><i class="fa-solid fa-laptop-code mr-1"></i>フルリモート対応</span>
+              <span class="px-4 py-2 text-xs rounded-full bg-accent/10 text-accent border border-accent/20"><i class="fa-solid fa-clock mr-1"></i>柔軟な稼働</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BLOG ===================== -->
+  <section id="blog" class="py-24 lg:py-32 bg-light-alt">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
+        <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Blog</p>
+        <h2 class="text-3xl lg:text-5xl font-bold mb-4">ブログ・技術記事</h2>
+        <p class="text-text-sub max-w-2xl mx-auto">技術的な知見やTipsを発信しています</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Blog Card 1 -->
+        <a href="https://zenn.dev/" target="_blank" rel="noopener noreferrer" class="scroll-animate group" data-animation="fade-up" data-delay="0">
+          <div class="h-full p-6 rounded-2xl bg-light-card border border-light-border hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 transition-all duration-500 hover:-translate-y-2">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-xl">📝</span>
+              <span class="text-xs text-text-sub bg-light-border px-2 py-0.5 rounded-full">Zenn</span>
+            </div>
+            <h3 class="text-sm font-bold mb-2 group-hover:text-accent transition-colors">Next.js App Router で実現するモダンなWebアプリ設計パターン</h3>
+            <p class="text-text-sub text-xs leading-relaxed">App Routerのベストプラクティスと、実務で使えるServer Components活用術を解説...</p>
+            <p class="text-accent text-xs mt-4 group-hover:translate-x-1 transition-transform">Read more →</p>
+          </div>
+        </a>
+
+        <!-- Blog Card 2 -->
+        <a href="https://qiita.com/" target="_blank" rel="noopener noreferrer" class="scroll-animate group" data-animation="fade-up" data-delay="100">
+          <div class="h-full p-6 rounded-2xl bg-light-card border border-light-border hover:border-accent-light/50 hover:shadow-lg hover:shadow-accent/5 transition-all duration-500 hover:-translate-y-2">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-xl">📝</span>
+              <span class="text-xs text-text-sub bg-light-border px-2 py-0.5 rounded-full">Qiita</span>
+            </div>
+            <h3 class="text-sm font-bold mb-2 group-hover:text-accent-light transition-colors">個人開発で使える CI/CD パイプライン構築ガイド</h3>
+            <p class="text-text-sub text-xs leading-relaxed">GitHub Actions を使った自動テスト・デプロイ環境を無料で構築する方法を紹介...</p>
+            <p class="text-accent-light text-xs mt-4 group-hover:translate-x-1 transition-transform">Read more →</p>
+          </div>
+        </a>
+
+        <!-- Blog Card 3 -->
+        <a href="https://zenn.dev/" target="_blank" rel="noopener noreferrer" class="scroll-animate group" data-animation="fade-up" data-delay="200">
+          <div class="h-full p-6 rounded-2xl bg-light-card border border-light-border hover:border-accent-cyan/50 hover:shadow-lg hover:shadow-accent/5 transition-all duration-500 hover:-translate-y-2">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-xl">📝</span>
+              <span class="text-xs text-text-sub bg-light-border px-2 py-0.5 rounded-full">Zenn</span>
+            </div>
+            <h3 class="text-sm font-bold mb-2 group-hover:text-accent-cyan transition-colors">Tailwind CSS v4 の新機能と移行ガイド</h3>
+            <p class="text-text-sub text-xs leading-relaxed">v3からv4へのスムーズな移行方法と、新テーマシステムの活用方法を解説...</p>
+            <p class="text-accent-cyan text-xs mt-4 group-hover:translate-x-1 transition-transform">Read more →</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="py-24 lg:py-32 bg-light-base">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
+        <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Contact</p>
+        <h2 class="text-3xl lg:text-5xl font-bold mb-4">お問い合わせ</h2>
+        <p class="text-text-sub max-w-2xl mx-auto">お気軽にご相談ください。通常1営業日以内にご返信いたします。</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto grid md:grid-cols-5 gap-10">
+        <!-- Contact Form -->
+        <div class="md:col-span-3 scroll-animate" data-animation="fade-left">
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-5" id="contact-form">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label for="name" class="block text-sm font-medium mb-2">お名前 <span class="text-red-400">*</span></label>
+                <input type="text" id="name" name="name" required
+                  class="w-full px-4 py-3 rounded-xl bg-light-alt border border-light-border text-text-main placeholder-text-sub/50 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors text-sm"
+                  placeholder="山田 太郎" />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium mb-2">メールアドレス <span class="text-red-400">*</span></label>
+                <input type="email" id="email" name="email" required
+                  class="w-full px-4 py-3 rounded-xl bg-light-alt border border-light-border text-text-main placeholder-text-sub/50 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors text-sm"
+                  placeholder="you@example.com" />
+              </div>
+            </div>
+            <div>
+              <label for="subject" class="block text-sm font-medium mb-2">件名</label>
+              <input type="text" id="subject" name="subject"
+                class="w-full px-4 py-3 rounded-xl bg-light-alt border border-light-border text-text-main placeholder-text-sub/50 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors text-sm"
+                placeholder="Webアプリ開発のご相談" />
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium mb-2">メッセージ <span class="text-red-400">*</span></label>
+              <textarea id="message" name="message" rows="5" required
+                class="w-full px-4 py-3 rounded-xl bg-light-alt border border-light-border text-text-main placeholder-text-sub/50 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors resize-none text-sm"
+                placeholder="ご相談内容をお書きください..."></textarea>
+            </div>
+            <button type="submit"
+              class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-accent to-accent-light text-white font-semibold hover:shadow-xl hover:shadow-accent/30 transition-all duration-300 hover:-translate-y-0.5">
+              <i class="fa-solid fa-paper-plane mr-2"></i>送信する
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Info & SNS -->
+        <div class="md:col-span-2 scroll-animate" data-animation="fade-right">
+          <div class="space-y-6">
+            <div class="p-6 rounded-2xl bg-light-alt border border-light-border">
+              <h3 class="font-bold mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-share-nodes text-accent"></i>SNS
+              </h3>
+              <div class="space-y-3">
+                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
+                  <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-github"></i></span>
+                  <span class="text-sm">GitHub</span>
+                </a>
+                <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
+                  <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-x-twitter"></i></span>
+                  <span class="text-sm">X (Twitter)</span>
+                </a>
+                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
+                  <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-linkedin-in"></i></span>
+                  <span class="text-sm">LinkedIn</span>
+                </a>
+                <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
+                  <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-facebook-f"></i></span>
+                  <span class="text-sm">Facebook</span>
+                </a>
+                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
+                  <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-instagram"></i></span>
+                  <span class="text-sm">Instagram</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-light-alt border border-light-border">
+              <h3 class="font-bold mb-2 flex items-center gap-2">
+                <i class="fa-solid fa-clock text-accent"></i>対応時間
+              </h3>
+              <p class="text-text-sub text-sm">平日 9:00 - 18:00</p>
+              <p class="text-text-sub text-xs mt-1">※ お急ぎの場合はご相談ください</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="py-10 bg-light-alt border-t border-light-border">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+          <span class="text-lg">🐱</span>
+          <span class="text-lg font-bold bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent">鈴猫Works</span>
+        </div>
+
+        <!-- SNS Icons -->
+        <div class="flex items-center gap-4">
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-github"></i></a>
+          <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-text-sub text-xs">&copy; 2026 鈴猫Works. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-accent/80 text-white flex items-center justify-center opacity-0 translate-y-4 pointer-events-none transition-all duration-300 hover:bg-accent hover:shadow-lg hover:shadow-accent/30 z-50" aria-label="トップへ戻る">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
