@@ -416,6 +416,7 @@ function initSkillBars() {
 /* =============================== */
 (function () {
   var GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzXtSUlLGOPS_rRAF9vD6ffvBR4D7z-tPLMZfiXEC0WAQtOQPis73Pvq4lG-VyP14mj/exec';
+  var RECAPTCHA_SITE_KEY = '6LdiObcsAAAAAOc2ZND68FfgRgDd2CHNwrod0RjC';
 
   var form      = document.getElementById('contact-form');
   var statusEl  = document.getElementById('form-status');
@@ -463,6 +464,9 @@ function initSkillBars() {
     }
 
     try {
+      // reCAPTCHA v3 トークンを取得してペイロードに含める
+      payload.recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact' });
+
       var res = await fetch(GAS_ENDPOINT, {
         method:   'POST',
         redirect: 'follow',
