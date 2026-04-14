@@ -445,6 +445,23 @@ function initSkillBars() {
       message: form.message.value.trim()
     };
 
+    // クライアント側バリデーション
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(payload.email)) {
+      statusEl.className = 'p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm';
+      statusEl.textContent = 'メールアドレスの形式が正しくありません。';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>送信する';
+      return;
+    }
+    if (payload.name.length > 100 || payload.subject.length > 200 || payload.message.length > 5000) {
+      statusEl.className = 'p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm';
+      statusEl.textContent = '入力内容が長すぎます。お名前100文字・件名200文字・メッセージ5000文字以内でご入力ください。';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>送信する';
+      return;
+    }
+
     try {
       var res = await fetch(GAS_ENDPOINT, {
         method:   'POST',
