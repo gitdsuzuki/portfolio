@@ -410,3 +410,63 @@ function initSkillBars() {
 
   bars.forEach(b => observer.observe(b));
 }
+
+/* =============================== */
+/*  CONTACT FORM HANDLER            */
+/* =============================== */
+(function () {
+  var GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycby7_lq9eTW5y_AGLwJDB6JbyXtVOJEHCYeLY8HMoO4gorxB3xqdWrA0E2b3uBi1wRypaw/exec';
+
+  var form      = document.getElementById('contact-form');
+  var statusEl  = document.getElementById('form-status');
+  var submitBtn = document.getElementById('form-submit-btn');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    // HTML5 バリデーション
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // 送信中 UI
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>送信中...';
+    statusEl.className = 'hidden';
+    statusEl.textContent = '';
+
+    var payload = {
+      name:    form.name.value.trim(),
+      email:   form.email.value.trim(),
+      subject: form.subject.value.trim(),
+      message: form.message.value.trim()
+    };
+
+    try {
+      var res = await fetch(GAS_ENDPOINT, {
+        method:   'POST',
+        redirect: 'follow',
+        body:     JSON.stringify(payload)
+      });
+
+      var json = await res.json();
+
+      if (json.status === 'ok') {
+        statusEl.className = 'p-4 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm';
+        statusEl.textContent = '送信しました！確認メールをお送りしましたのでご確認ください。通常1営業日以内にご返信いたします。';
+        form.reset();
+      } else {
+        throw new Error(json.message || '送信エラー');
+      }
+    } catch (err) {
+      statusEl.className = 'p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm';
+      statusEl.textContent = '送信に失敗しました。しばらく経ってから再度お試しください。';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>送信する';
+    }
+  });
+})();
