@@ -415,7 +415,7 @@ function initSkillBars() {
 /*  CONTACT FORM HANDLER            */
 /* =============================== */
 (function () {
-  var GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycby7_lq9eTW5y_AGLwJDB6JbyXtVOJEHCYeLY8HMoO4gorxB3xqdWrA0E2b3uBi1wRypaw/exec';
+  var GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzXtSUlLGOPS_rRAF9vD6ffvBR4D7z-tPLMZfiXEC0WAQtOQPis73Pvq4lG-VyP14mj/exec';
 
   var form      = document.getElementById('contact-form');
   var statusEl  = document.getElementById('form-status');
