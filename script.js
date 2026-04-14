@@ -484,7 +484,9 @@ function initSkillBars() {
       }
     } catch (err) {
       statusEl.className = 'p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm';
-      statusEl.textContent = '送信に失敗しました。しばらく経ってから再度お試しください。';
+      statusEl.textContent = err.message && err.message !== '送信エラー'
+        ? err.message
+        : '送信に失敗しました。しばらく経ってから再度お試しください。';
     } finally {
       submitBtn.disabled = false;
       submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>送信する';
