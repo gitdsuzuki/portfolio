@@ -224,18 +224,12 @@ function initNavbar() {
   const navbar = document.getElementById('navbar');
   if (!navbar) return;
 
-  let lastScroll = 0;
-
   window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-
-    if (currentScroll > 50) {
+    if (window.scrollY > 50) {
       navbar.classList.add('navbar-scrolled');
     } else {
       navbar.classList.remove('navbar-scrolled');
     }
-
-    lastScroll = currentScroll;
   }, { passive: true });
 }
 
@@ -440,10 +434,10 @@ function initSkillBars() {
     statusEl.textContent = '';
 
     var payload = {
-      name:    form.name.value.trim(),
-      email:   form.email.value.trim(),
-      subject: form.subject.value.trim(),
-      message: form.message.value.trim()
+      name:    form.elements['name'].value.trim(),
+      email:   form.elements['email'].value.trim(),
+      subject: form.elements['subject'].value.trim(),
+      message: form.elements['message'].value.trim()
     };
 
     // クライアント側バリデーション
