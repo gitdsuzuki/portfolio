@@ -209,7 +209,8 @@
       </div>
 
       <!-- Stats Counter -->
-      <div class="grid grid-cols-3 gap-6 max-w-3xl mx-auto mb-16 scroll-animate" data-animation="fade-up">
+      <!-- hidden -->
+      <div class="hidden grid grid-cols-3 gap-6 max-w-3xl mx-auto mb-16 scroll-animate" data-animation="fade-up">
         <div class="text-center p-6 rounded-2xl bg-light-alt border border-light-border">
           <p class="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent">
             <span class="counter" data-target="50">0</span><span class="text-accent">+</span>
@@ -233,7 +234,8 @@
       <!-- Project Cards -->
       <div class="grid md:grid-cols-2 gap-8">
         <!-- Project 1 -->
-        <div class="tilt-card scroll-animate" data-animation="fade-left" data-delay="0">
+        <!-- hidden -->
+        <div class="hidden tilt-card scroll-animate" data-animation="fade-left" data-delay="0">
           <div class="rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
             <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent/10 to-accent-light/10 flex items-center justify-center overflow-hidden">
               <div class="text-6xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500">🛒</div>
@@ -253,7 +255,8 @@
         </div>
 
         <!-- Project 2 -->
-        <div class="tilt-card scroll-animate" data-animation="fade-right" data-delay="100">
+        <!-- hidden -->
+        <div class="hidden tilt-card scroll-animate" data-animation="fade-right" data-delay="100">
           <div class="rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-light/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
             <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent-light/10 to-accent-cyan/10 flex items-center justify-center overflow-hidden">
               <div class="text-6xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500">📊</div>
@@ -280,23 +283,23 @@
               <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
             </div>
             <div class="p-6">
-              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-cyan transition-colors">予約管理システム</h3>
-              <p class="text-text-sub text-sm mb-4">クリニック向け予約管理システムをVue.js + Firebaseで開発。LINE連携によるリマインダー通知機能も実装。</p>
+              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-cyan transition-colors">サロン向け Web予約管理システム</h3>
+              <p class="text-text-sub text-sm mb-4">お客様がスマホからいつでも予約できる専用サイトです。お店側で予約枠を簡単に管理できる機能や、前日の自動リマインド機能を備えています。ITに詳しくない方でも使いやすい設計を心がけ、稼働後の手厚いサポートも行っています。</p>
               <div class="flex flex-wrap gap-2 mb-5">
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">Vue.js</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">Firebase</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">LINE API</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">Cloud Functions</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">Flask</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">PostgreSQL</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">Google Cloud</span>
               </div>
               <a href="demo/reservation/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/30 hover:bg-accent-cyan hover:text-white transition-all duration-300">
-                <i class="fa-solid fa-play text-[10px]"></i>UIデモを見る
+                <i class="fa-solid fa-play text-[10px]"></i>デモサイトを触ってみる
               </a>
             </div>
           </div>
         </div>
 
         <!-- Project 4 -->
-        <div class="tilt-card scroll-animate" data-animation="fade-right" data-delay="300">
+        <!-- hidden -->
+        <div class="hidden tilt-card scroll-animate" data-animation="fade-right" data-delay="300">
           <div class="rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
             <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent/10 to-accent-light/10 flex items-center justify-center overflow-hidden">
               <div class="text-6xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500">🏢</div>
