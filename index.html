@@ -61,7 +61,6 @@
       <ul class="hidden lg:flex items-center gap-8">
         <li><a href="#services" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">サービス</a></li>
         <li><a href="#portfolio" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">実績</a></li>
-        <li><a href="#skills" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">スキル</a></li>
         <li><a href="#profile" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">プロフィール</a></li>
         <li><a href="#blog" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">ブログ</a></li>
         <li><a href="#contact" class="px-5 py-2 rounded-full bg-gradient-to-r from-accent to-accent-light text-white text-sm font-semibold hover:shadow-lg hover:shadow-accent/25 transition-all duration-300 hover:-translate-y-0.5">お問い合わせ</a></li>
@@ -80,7 +79,6 @@
       <ul class="flex flex-col items-center justify-center gap-8 h-full text-lg">
         <li><a href="#services" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">サービス</a></li>
         <li><a href="#portfolio" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">実績</a></li>
-        <li><a href="#skills" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">スキル</a></li>
         <li><a href="#profile" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">プロフィール</a></li>
         <li><a href="#blog" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">ブログ</a></li>
         <li><a href="#contact" class="px-8 py-3 rounded-full bg-gradient-to-r from-accent to-accent-light text-white font-semibold">お問い合わせ</a></li>
@@ -277,7 +275,7 @@
 
         <!-- Project 3 -->
         <div class="tilt-card scroll-animate" data-animation="fade-left" data-delay="200">
-          <div class="rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-cyan/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
+          <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-cyan/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
             <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent-cyan/10 to-accent/10 flex items-center justify-center overflow-hidden">
               <div class="text-6xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500">🏥</div>
               <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
@@ -317,122 +315,17 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ===================== SKILLS ===================== -->
-  <section id="skills" class="py-24 lg:py-32 bg-light-alt">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <!-- Section Header -->
-      <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
-        <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Skills</p>
-        <h2 class="text-3xl lg:text-5xl font-bold mb-4">技術スタック</h2>
-        <p class="text-text-sub max-w-2xl mx-auto">幅広い技術を活用し、最適なソリューションを提供します</p>
-      </div>
-
-      <!-- Skills Grid -->
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Frontend -->
-        <div class="scroll-animate p-6 rounded-2xl bg-light-card border border-light-border" data-animation="fade-left">
-          <h3 class="text-lg font-bold mb-6 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center"><i class="fa-solid fa-display text-accent"></i></span>
-            Frontend
-          </h3>
-          <div class="space-y-4">
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">React / Next.js</span><span class="text-xs text-text-sub">95%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="95"></div></div>
+        <!-- Coming Soon -->
+        <div class="tilt-card scroll-animate" data-animation="fade-right" data-delay="300">
+          <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-dashed border-light-border hover:border-accent/30 transition-all duration-500 group flex flex-col">
+            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center overflow-hidden">
+              <div class="text-6xl opacity-30">🚀</div>
+              <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
             </div>
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">Vue.js / Nuxt</span><span class="text-xs text-text-sub">90%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="90"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">TypeScript</span><span class="text-xs text-text-sub">92%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="92"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">Tailwind CSS / CSS</span><span class="text-xs text-text-sub">95%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="95"></div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Backend -->
-        <div class="scroll-animate p-6 rounded-2xl bg-light-card border border-light-border" data-animation="fade-right">
-          <h3 class="text-lg font-bold mb-6 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-lg bg-accent-light/10 flex items-center justify-center"><i class="fa-solid fa-server text-accent-light"></i></span>
-            Backend
-          </h3>
-          <div class="space-y-4">
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">Node.js / Express</span><span class="text-xs text-text-sub">90%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-light to-accent-cyan" data-width="90"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">Python / FastAPI</span><span class="text-xs text-text-sub">85%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-light to-accent-cyan" data-width="85"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">PostgreSQL / MySQL</span><span class="text-xs text-text-sub">88%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-light to-accent-cyan" data-width="88"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">GraphQL / REST API</span><span class="text-xs text-text-sub">90%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-light to-accent-cyan" data-width="90"></div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Infrastructure -->
-        <div class="scroll-animate p-6 rounded-2xl bg-light-card border border-light-border" data-animation="fade-left" data-delay="100">
-          <h3 class="text-lg font-bold mb-6 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-lg bg-accent-cyan/10 flex items-center justify-center"><i class="fa-solid fa-cloud text-accent-cyan"></i></span>
-            Infrastructure
-          </h3>
-          <div class="space-y-4">
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">AWS / GCP</span><span class="text-xs text-text-sub">85%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-cyan to-accent" data-width="85"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">Docker / Kubernetes</span><span class="text-xs text-text-sub">80%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-cyan to-accent" data-width="80"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">CI/CD (GitHub Actions)</span><span class="text-xs text-text-sub">88%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-cyan to-accent" data-width="88"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">Vercel / Cloudflare</span><span class="text-xs text-text-sub">92%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent-cyan to-accent" data-width="92"></div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tools -->
-        <div class="scroll-animate p-6 rounded-2xl bg-light-card border border-light-border" data-animation="fade-right" data-delay="100">
-          <h3 class="text-lg font-bold mb-6 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center"><i class="fa-solid fa-wrench text-accent"></i></span>
-            Tools & Others
-          </h3>
-          <div class="space-y-4">
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">Git / GitHub</span><span class="text-xs text-text-sub">95%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="95"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">Figma / Adobe XD</span><span class="text-xs text-text-sub">75%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="75"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">Firebase / Supabase</span><span class="text-xs text-text-sub">85%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="85"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="flex justify-between mb-1"><span class="text-sm">Testing (Jest / Vitest)</span><span class="text-xs text-text-sub">82%</span></div>
-              <div class="h-2 rounded-full bg-light-border overflow-hidden"><div class="skill-bar h-full rounded-full bg-gradient-to-r from-accent to-accent-light" data-width="82"></div></div>
+            <div class="p-6 text-center flex-1 flex flex-col items-center justify-center">
+              <h3 class="text-lg font-bold mb-2 text-text-sub">準備中</h3>
+              <p class="text-text-sub text-sm">新しいプロジェクトを準備しています。<br>Coming Soon...</p>
             </div>
           </div>
         </div>
@@ -441,7 +334,7 @@
   </section>
 
   <!-- ===================== PROFILE ===================== -->
-  <section id="profile" class="py-24 lg:py-32 bg-light-base">
+  <section id="profile" class="py-24 lg:py-32 bg-light-alt">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
         <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Profile</p>
@@ -483,7 +376,7 @@
   </section>
 
   <!-- ===================== BLOG ===================== -->
-  <section id="blog" class="py-24 lg:py-32 bg-light-alt">
+  <section id="blog" class="py-24 lg:py-32 bg-light-base">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
         <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Blog</p>
@@ -507,7 +400,7 @@
   </section>
 
   <!-- ===================== CONTACT ===================== -->
-  <section id="contact" class="py-24 lg:py-32 bg-light-base">
+  <section id="contact" class="py-24 lg:py-32 bg-light-alt">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
         <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Contact</p>
@@ -605,7 +498,6 @@
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
         <!-- Logo -->
         <div class="flex items-center gap-2">
-          <span class="text-lg">🐱</span>
           <span class="text-lg font-bold bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent">鈴猫Works</span>
         </div>
 
