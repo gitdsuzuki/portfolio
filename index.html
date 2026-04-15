@@ -478,31 +478,33 @@
                   placeholder="you@example.com" />
               </div>
             </div>
-            <div>
-              <label for="subject" class="block text-sm font-medium mb-2">件名</label>
-              <select id="subject" name="subject"
-                class="w-full px-4 py-3 rounded-xl bg-light-alt border border-light-border text-text-main focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors text-sm">
-                <option value="" disabled selected>ご相談内容を選択してください</option>
-                <option value="業務効率化・システム開発について">業務効率化・システム開発について</option>
-                <option value="ホームページ・LP制作について">ホームページ・LP制作について</option>
-                <option value="保守・運用サポートについて">保守・運用サポートについて</option>
-                <option value="まずは無料で相談してみたい">まずは無料で相談してみたい</option>
-                <option value="その他">その他</option>
-              </select>
-            </div>
-            <div>
-              <label for="budget" class="block text-sm font-medium mb-2">ご予算</label>
-              <select id="budget" name="budget"
-                class="w-full px-4 py-3 rounded-xl bg-light-alt border border-light-border text-text-main focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors text-sm">
-                <option value="" disabled selected>ご予算を選択してください</option>
-                <option value="1万円〜5万円">1万円〜5万円</option>
-                <option value="5万円〜10万円">5万円〜10万円</option>
-                <option value="10万円〜30万円">10万円〜30万円</option>
-                <option value="30万円〜50万円">30万円〜50万円</option>
-                <option value="50万円〜100万円">50万円〜100万円</option>
-                <option value="100万円以上">100万円以上</option>
-                <option value="未定・相談して決めたい">未定・相談して決めたい</option>
-              </select>
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label for="subject" class="block text-sm font-medium mb-2">件名</label>
+                <select id="subject" name="subject"
+                  class="w-full px-4 py-3 rounded-xl bg-light-alt border border-light-border text-text-main focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors text-sm">
+                  <option value="" disabled selected>ご相談内容を選択してください</option>
+                  <option value="業務効率化・システム開発について">業務効率化・システム開発について</option>
+                  <option value="ホームページ・LP制作について">ホームページ・LP制作について</option>
+                  <option value="保守・運用サポートについて">保守・運用サポートについて</option>
+                  <option value="まずは無料で相談してみたい">まずは無料で相談してみたい</option>
+                  <option value="その他">その他</option>
+                </select>
+              </div>
+              <div>
+                <label for="budget" class="block text-sm font-medium mb-2">ご予算</label>
+                <select id="budget" name="budget"
+                  class="w-full px-4 py-3 rounded-xl bg-light-alt border border-light-border text-text-main focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors text-sm">
+                  <option value="" disabled selected>ご予算を選択してください</option>
+                  <option value="1万円〜5万円">1万円〜5万円</option>
+                  <option value="5万円〜10万円">5万円〜10万円</option>
+                  <option value="10万円〜30万円">10万円〜30万円</option>
+                  <option value="30万円〜50万円">30万円〜50万円</option>
+                  <option value="50万円〜100万円">50万円〜100万円</option>
+                  <option value="100万円以上">100万円以上</option>
+                  <option value="未定・相談して決めたい">未定・相談して決めたい</option>
+                </select>
+              </div>
             </div>
             <div>
               <label for="message" class="block text-sm font-medium mb-2">メッセージ <span class="text-red-400">*</span></label>
