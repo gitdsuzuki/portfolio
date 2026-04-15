@@ -159,7 +159,7 @@ function initTyping() {
   const el = document.getElementById('typing-text');
   if (!el) return;
 
-  const words = ['Webアプリ開発', 'LP・サイト制作', '技術コンサルティング', 'UI/UXデザイン', 'API設計・開発'];
+  const words = ['Webアプリ設計開発', 'ITソリューション導入', 'ITインフラ運用保守代行', 'コーポレート/ECサイト制作', '技術コンサルティング'];
   let wordIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
