@@ -159,7 +159,12 @@ function initTyping() {
   const el = document.getElementById('typing-text');
   if (!el) return;
 
-  const words = ['Webアプリ設計開発', 'ITソリューション導入', 'ITインフラ運用保守代行', 'コーポレート/ECサイト制作', '技術コンサルティング'];
+  const words = [
+  '日々の業務を劇的にラクにするWebアプリ開発',
+  'サーバー管理はお任せ。安心の保守サポート',
+  'ビジネスを成長させるホームページ・EC制作',
+  '「何から始めればいいか分からない」からのご相談'
+  ];
   let wordIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
