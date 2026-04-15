@@ -443,6 +443,7 @@ function initSkillBars() {
       name:    form.elements['name'].value.trim(),
       email:   form.elements['email'].value.trim(),
       subject: form.elements['subject'].value.trim(),
+      budget:  form.elements['budget'].value.trim(),
       message: form.elements['message'].value.trim()
     };
 
