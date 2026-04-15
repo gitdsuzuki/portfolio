@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>店舗予約UI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* カスタムアニメーションとユーティリティ */
+    .fade-in {
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .zoom-in {
+      animation: zoomIn 0.4s ease-out forwards;
+    }
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    /* スクロールバー非表示（横スクロール用） */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900 pb-12">
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-10">
+    <div class="max-w-3xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+          <i data-lucide="scissors" class="w-5 h-5 text-white"></i>
+        </div>
+        <span class="font-bold text-xl tracking-wider">SALON LUZ</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="hidden sm:flex text-sm text-gray-500 items-center">
+          <i data-lucide="map-pin" class="w-4 h-4 mr-1"></i> 表参道駅 徒歩3分
+        </div>
+        <div class="h-4 w-px bg-gray-300 hidden sm:block"></div>
+        
+        <!-- 未ログイン時ヘッダー -->
+        <button id="header-login-btn" onclick="openModal()" class="flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800 transition-colors">
+          <i data-lucide="log-in" class="w-4 h-4 mr-1"></i> ログイン
+        </button>
+
+        <!-- ログイン時ヘッダー (初期非表示) -->
+        <div id="header-user-info" class="hidden flex items-center text-sm font-medium text-gray-700">
+          <i data-lucide="user" class="w-4 h-4 mr-1 text-indigo-600"></i>
+          <span class="hidden sm:inline">会員様</span>
+          <button onclick="handleLogout()" class="ml-3 text-xs text-gray-400 hover:text-gray-600 underline">
+            ログアウト
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 mt-8">
+    
+    <!-- Progress Bar -->
+    <div id="progress-container" class="mb-8">
+      <div class="flex justify-between items-start relative mb-2">
+        <!-- 修正: 線が丸の中心を正確に通るように位置と幅を調整 -->
+        <div class="absolute left-8 right-8 top-4 -z-10 transform -translate-y-1/2">
+          <div class="w-full h-1 bg-gray-200 rounded-full"></div>
+          <div id="progress-bar-fill" class="absolute left-0 top-0 h-1 bg-indigo-600 rounded-full transition-all duration-500 ease-in-out" style="width: 0%;"></div>
+        </div>
+        
+        <!-- Step 1 Indicator -->
+        <div class="flex flex-col items-center w-16">
+          <div id="ind-1" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-indigo-600 text-white shadow-md ring-4 ring-indigo-100">1</div>
+          <span id="ind-text-1" class="text-xs mt-2 font-medium text-indigo-600 whitespace-nowrap">メニュー</span>
+        </div>
+        <!-- Step 2 Indicator -->
+        <div class="flex flex-col items-center w-16">
+          <div id="ind-2" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-white text-gray-400 border-2 border-gray-200">2</div>
+          <span id="ind-text-2" class="text-xs mt-2 font-medium text-gray-400 whitespace-nowrap">日時</span>
+        </div>
+        <!-- Step 3 Indicator -->
+        <div class="flex flex-col items-center w-16">
+          <div id="ind-3" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-white text-gray-400 border-2 border-gray-200">3</div>
+          <span id="ind-text-3" class="text-xs mt-2 font-medium text-gray-400 whitespace-nowrap">情報入力</span>
+        </div>
+        <!-- Step 4 Indicator -->
+        <div class="flex flex-col items-center w-16">
+          <div id="ind-4" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-white text-gray-400 border-2 border-gray-200">4</div>
+          <span id="ind-text-4" class="text-xs mt-2 font-medium text-gray-400 whitespace-nowrap">確認</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 relative overflow-hidden">
+      
+      <!-- ================= Step 1: サービス選択 ================= -->
+      <div id="step-1" class="step-section fade-in">
+        <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+          <i data-lucide="sparkles" class="w-5 h-5 mr-2 text-indigo-600"></i>
+          ご希望のメニューを選択してください
+        </h2>
+        <div id="services-list" class="grid gap-4">
+          <!-- JSで動的に生成されます -->
+        </div>
+      </div>
+
+      <!-- ================= Step 2: 日時選択 ================= -->
+      <div id="step-2" class="step-section hidden fade-in">
+        <div>
+          <div class="flex justify-between items-end mb-4 flex-wrap gap-2">
+            <h2 class="text-xl font-bold text-gray-800 flex items-center">
+              <i data-lucide="calendar" class="w-5 h-5 mr-2 text-indigo-600"></i>
+              ご来店日を選択してください
+            </h2>
+            <div class="text-xs text-gray-500 flex space-x-3 pb-1">
+              <span class="flex items-center"><span class="text-green-500 font-bold mr-1">○</span>空きあり</span>
+              <span class="flex items-center"><span class="text-orange-500 font-bold mr-1">△</span>残りわずか</span>
+              <span class="flex items-center"><span class="text-red-500 font-bold mr-1">×</span>満席</span>
+            </div>
+          </div>
+          
+          <!-- カレンダーコンテナ -->
+          <div class="border border-gray-200 rounded-xl p-4 bg-white shadow-sm mb-6">
+            <div class="flex justify-between items-center mb-4">
+              <button onclick="prevMonth()" id="prev-month-btn" class="p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors">
+                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+              </button>
+              <div id="calendar-month-year" class="font-bold text-lg text-gray-800"></div>
+              <button onclick="nextMonth()" id="next-month-btn" class="p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors">
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+              </button>
+            </div>
+            <div class="grid grid-cols-7 gap-1 text-center text-xs sm:text-sm mb-2 font-medium text-gray-500">
+              <div class="text-red-500">日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div class="text-blue-500">土</div>
+            </div>
+            <div id="calendar-grid" class="grid grid-cols-7 gap-1 sm:gap-2">
+              <!-- JSで動的に生成されます -->
+            </div>
+          </div>
+        </div>
+
+        <div id="time-selection-container" class="hidden fade-in mt-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+            <i data-lucide="clock" class="w-5 h-5 mr-2 text-indigo-600"></i>
+            ご希望の時間
+          </h2>
+          <div id="times-list" class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+            <!-- JSで動的に生成されます -->
+          </div>
+        </div>
+
+        <div class="pt-8 flex justify-between">
+          <button onclick="handleBack()" class="px-6 py-2 rounded-lg text-gray-600 hover:bg-gray-100 flex items-center transition-colors">
+            <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> 戻る
+          </button>
+          <button id="btn-next-2" onclick="handleNext()" disabled class="px-8 py-2 rounded-lg font-bold transition-all shadow-sm bg-gray-200 text-gray-400 cursor-not-allowed">
+            次へ進む
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= Step 3: お客様情報入力 ================= -->
+      <div id="step-3" class="step-section hidden fade-in">
+        <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+          <i data-lucide="user" class="w-5 h-5 mr-2 text-indigo-600"></i>
+          お客様情報の入力
+        </h2>
+
+        <div id="step3-login-banner" class="bg-indigo-50 rounded-xl p-4 flex items-center justify-between mb-6 border border-indigo-100">
+          <div class="text-sm text-indigo-800">
+            <span class="font-bold">会員の方ですか？</span><br/>
+            ログインすると情報入力が省略できます。
+          </div>
+          <button onclick="openModal()" class="px-4 py-2 bg-white text-indigo-600 text-sm font-bold rounded-lg border border-indigo-200 shadow-sm hover:bg-indigo-50 transition-colors flex-shrink-0 ml-4">
+            ログイン
+          </button>
+        </div>
+        
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">お名前 <span class="text-red-500">*</span></label>
+            <input id="input-name" type="text" placeholder="山田 太郎" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition-all">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">電話番号 <span class="text-red-500">*</span></label>
+            <input id="input-phone" type="tel" placeholder="090-1234-5678" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition-all">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">メールアドレス (任意)</label>
+            <input id="input-email" type="email" placeholder="example@email.com" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition-all">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">ご要望・ご相談 (任意)</label>
+            <textarea id="input-notes" placeholder="担当者の希望や、特に気になっていることなどがあればご記入ください。" rows="3" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition-all resize-none"></textarea>
+          </div>
+        </div>
+
+        <div class="pt-8 flex justify-between">
+          <button onclick="handleBack()" class="px-6 py-2 rounded-lg text-gray-600 hover:bg-gray-100 flex items-center transition-colors">
+            <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> 戻る
+          </button>
+          <button id="btn-next-3" onclick="handleNext()" disabled class="px-8 py-2 rounded-lg font-bold transition-all shadow-sm bg-gray-200 text-gray-400 cursor-not-allowed">
+            確認画面へ
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= Step 4: 予約内容の確認 ================= -->
+      <div id="step-4" class="step-section hidden fade-in">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+          <i data-lucide="info" class="w-5 h-5 mr-2 text-indigo-600"></i>
+          ご予約内容の確認
+        </h2>
+        
+        <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 space-y-4">
+          <div class="flex justify-between pb-4 border-b border-gray-200">
+            <div class="text-sm text-gray-500">ご予約メニュー</div>
+            <div class="font-bold text-gray-800 text-right">
+              <span id="confirm-service-name"></span>
+              <div id="confirm-service-details" class="text-indigo-600 text-sm mt-1"></div>
+            </div>
+          </div>
+
+          <div class="flex justify-between pb-4 border-b border-gray-200">
+            <div class="text-sm text-gray-500">ご来店日時</div>
+            <div class="font-bold text-gray-800 text-right">
+              <span id="confirm-date"></span>
+              <div id="confirm-time" class="text-lg text-indigo-600 mt-1"></div>
+            </div>
+          </div>
+
+          <div class="flex justify-between pb-4 border-b border-gray-200">
+            <div class="text-sm text-gray-500">お客様情報</div>
+            <div class="font-medium text-gray-800 text-right">
+              <span id="confirm-name"></span> 様
+              <div id="confirm-phone" class="text-sm text-gray-600 mt-1"></div>
+              <div id="confirm-email" class="text-sm text-gray-600"></div>
+            </div>
+          </div>
+
+          <div id="confirm-notes-container" class="pt-2 hidden">
+            <div class="text-sm text-gray-500 mb-1">ご要望・ご相談</div>
+            <div id="confirm-notes" class="text-sm text-gray-800 bg-white p-3 rounded border"></div>
+          </div>
+        </div>
+
+        <div class="pt-8 flex justify-between">
+          <button onclick="handleBack()" class="px-6 py-2 rounded-lg text-gray-600 hover:bg-gray-100 flex items-center transition-colors">
+            <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> 戻る
+          </button>
+          <button onclick="handleNext()" class="px-8 py-3 rounded-lg font-bold bg-indigo-600 text-white hover:bg-indigo-700 transition-all shadow-md flex-1 ml-4 text-center">
+            予約を確定する
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= Step 5: 完了画面 ================= -->
+      <div id="step-5" class="step-section hidden zoom-in text-center py-10">
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-6">
+          <i data-lucide="check-circle-2" class="w-10 h-10 text-green-600"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">ご予約が完了しました</h2>
+        <p class="text-gray-600 mb-8 max-w-sm mx-auto">
+          ご予約ありがとうございます。<br/>
+          ご登録いただいた連絡先に確認のメッセージをお送りいたします。
+        </p>
+        
+        <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 mb-8 max-w-sm mx-auto text-left">
+          <div class="font-bold text-gray-800 mb-2">ご予約日時</div>
+          <div id="success-datetime" class="text-lg text-indigo-600 font-bold"></div>
+        </div>
+
+        <button onclick="resetApp()" class="px-8 py-3 rounded-lg font-bold border border-indigo-600 text-indigo-600 hover:bg-indigo-50 transition-all">
+          トップページへ戻る
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 hidden">
+    <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl relative zoom-in">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center flex items-center justify-center">
+        <i data-lucide="log-in" class="w-6 h-6 mr-2 text-indigo-600"></i>
+        ログイン
+      </h2>
+      <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">メールアドレス</label>
+          <input type="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white" placeholder="メールアドレスを入力">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">パスワード</label>
+          <input type="password" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition-all bg-gray-50 focus:bg-white" placeholder="パスワードを入力">
+        </div>
+        <div class="pt-2">
+          <button type="submit" class="w-full py-3 bg-indigo-600 text-white rounded-lg font-bold hover:bg-indigo-700 transition-colors shadow-md">
+            ログインする
+          </button>
+        </div>
+      </form>
+      <div class="mt-6 text-center text-sm text-gray-500">
+        <a href="#" class="text-indigo-600 hover:underline">パスワードをお忘れですか？</a>
+        <div class="mt-4 pt-4 border-t border-gray-100">
+          アカウントをお持ちでない方は<br/>
+          <button onclick="closeModal()" class="text-indigo-600 font-bold hover:underline mt-1">新規会員登録</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ====== データ定義 ======
+    const SERVICES = [
+      { id: 1, name: 'カット＆シャンプー', duration: '60分', price: '¥5,500', description: 'カウンセリングから丁寧に行うベーシックなコースです。', icon: 'scissors' },
+      { id: 2, name: 'カラー＆トリートメント', duration: '120分', price: '¥12,000', description: '髪に優しいオーガニックカラーと補修トリートメント。', icon: 'droplets' },
+      { id: 3, name: '極上ヘッドスパ', duration: '45分', price: '¥4,500', description: '頭皮の汚れを落とし、マッサージで血行を促進します。', icon: 'sparkles' },
+    ];
+
+    const BASE_TIME_SLOTS = [
+      '10:00', '10:30', '11:00', '11:30', 
+      '13:00', '13:30', '14:00', '14:30', 
+      '15:00', '16:00', '17:00', '18:00'
+    ];
+
+    // カレンダー用変数
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    let currentDisplayYear = today.getFullYear();
+    let currentDisplayMonth = today.getMonth(); // 0-11
+
+    // 日付と空き状況データの生成（今月から3ヶ月分）
+    const generateAvailabilityData = () => {
+      const data = {};
+      
+      // 開始は今月の1日
+      const startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+      // 終了は3ヶ月後(2ヶ月先)の月末
+      const endDate = new Date(today.getFullYear(), today.getMonth() + 3, 0);
+
+      for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+        const dateKey = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+        const dayOffset = Math.floor((d.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+        
+        // 過去日
+        if (dayOffset < 0) {
+          data[dateKey] = { date: new Date(d), dayStatus: 'past', timeSlots: [] };
+          continue;
+        }
+
+        // デモ用に空き状況を生成
+        const timeSlots = BASE_TIME_SLOTS.map((time, index) => {
+          let status = 'available'; // ○
+          
+          // 日付や時間に応じて○△×を散らすデモデータ
+          if (dayOffset === 1 && index < 3) status = 'full'; // 明日の午前中は×
+          if (dayOffset === 2) status = 'full'; // 明後日は全滅
+          if (dayOffset !== 2 && (dayOffset + index) % 5 === 0) status = 'few'; // △を適当に配置
+          if (dayOffset !== 2 && dayOffset !== 1 && (dayOffset + index) % 7 === 0) status = 'full'; // ×を適当に配置
+
+          return { time, status };
+        });
+
+        const availableCount = timeSlots.filter(t => t.status !== 'full').length;
+        let dayStatus = 'available'; // ○
+        if (availableCount === 0) dayStatus = 'full'; // ×
+        else if (availableCount <= 3) dayStatus = 'few'; // △
+
+        data[dateKey] = {
+          date: new Date(d),
+          dayStatus: dayStatus,
+          timeSlots: timeSlots
+        };
+      }
+      return data;
+    };
+    const availabilityData = generateAvailabilityData();
+
+    // ====== 状態管理 (State) ======
+    let state = {
+      step: 1,
+      isLoggedIn: false,
+      bookingData: {
+        service: null,
+        date: null,
+        time: null,
+        name: '',
+        phone: '',
+        email: '',
+        notes: ''
+      }
+    };
+
+    // ====== 初期化 ======
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons(); // 初期のアイコンを描画
+      renderServices();
+      renderCalendar();
+      renderTimes();
+      setupInputListeners();
+    });
+
+    // ====== UI レンダリング・更新関数 ======
+
+    // サービスのリストを描画
+    function renderServices() {
+      const list = document.getElementById('services-list');
+      list.innerHTML = SERVICES.map(service => `
+        <button onclick="selectService(${service.id})" class="flex items-start p-4 text-left border rounded-xl hover:border-indigo-600 hover:shadow-md transition-all bg-white group w-full">
+          <div class="bg-indigo-50 p-3 rounded-full text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors flex-shrink-0">
+            <i data-lucide="${service.icon}" class="w-6 h-6"></i>
+          </div>
+          <div class="ml-4 flex-1">
+            <div class="flex justify-between items-center mb-1">
+              <h3 class="font-bold text-gray-800">${service.name}</h3>
+              <span class="text-indigo-600 font-semibold">${service.price}</span>
+            </div>
+            <p class="text-sm text-gray-500 mb-2">${service.description}</p>
+            <div class="text-xs text-gray-400 flex items-center">
+              <i data-lucide="clock" class="w-3 h-3 mr-1"></i>
+              所要時間目安: ${service.duration}
+            </div>
+          </div>
+        </button>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    // 月カレンダーを描画
+    function renderCalendar() {
+      const year = currentDisplayYear;
+      const month = currentDisplayMonth;
+      
+      document.getElementById('calendar-month-year').innerText = `${year}年 ${month + 1}月`;
+      
+      // 前月・次月ボタンの制御（当月から3ヶ月先まで）
+      const prevBtn = document.getElementById('prev-month-btn');
+      const nextBtn = document.getElementById('next-month-btn');
+      
+      const currentMonthValue = year * 12 + month;
+      const todayMonthValue = today.getFullYear() * 12 + today.getMonth();
+      
+      prevBtn.disabled = currentMonthValue <= todayMonthValue;
+      prevBtn.className = prevBtn.disabled ? 'p-2 text-gray-300 cursor-not-allowed' : 'p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors';
+      
+      nextBtn.disabled = currentMonthValue >= todayMonthValue + 2; // 当月、+1ヶ月、+2ヶ月 の3ヶ月分
+      nextBtn.className = nextBtn.disabled ? 'p-2 text-gray-300 cursor-not-allowed' : 'p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors';
+
+      // カレンダーのグリッド生成
+      const firstDay = new Date(year, month, 1).getDay(); // 0(Sun) - 6(Sat)
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      
+      const grid = document.getElementById('calendar-grid');
+      let html = '';
+      
+      // 1日までの空白セル
+      for (let i = 0; i < firstDay; i++) {
+        html += `<div></div>`;
+      }
+      
+      // 日付セル
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dateKey = `${year}-${month + 1}-${d}`;
+        const dayData = availabilityData[dateKey];
+        
+        const isSelected = state.bookingData.date && 
+                           state.bookingData.date.getFullYear() === year && 
+                           state.bookingData.date.getMonth() === month && 
+                           state.bookingData.date.getDate() === d;
+                           
+        if (!dayData || dayData.dayStatus === 'past') {
+          // 過去日やデータがない日
+          html += `
+            <div class="flex flex-col items-center justify-center py-2 h-14 sm:h-16 opacity-40 bg-gray-50 rounded-lg">
+              <span class="text-sm font-medium text-gray-400">${d}</span>
+              <span class="text-xs text-gray-400 mt-0.5">-</span>
+            </div>
+          `;
+        } else {
+          const activeClass = isSelected ? 'bg-indigo-600 border-indigo-600 text-white shadow-md' : 'bg-white text-gray-700 hover:border-indigo-400 border-gray-200';
+          const textClass = isSelected ? 'text-white' : 'text-gray-900';
+          const disabledAttr = dayData.dayStatus === 'full' ? 'disabled' : '';
+          const opacityClass = dayData.dayStatus === 'full' ? 'opacity-50 cursor-not-allowed bg-gray-50' : 'cursor-pointer';
+          
+          let statusIcon = '○';
+          let statusColor = isSelected ? 'text-indigo-200' : 'text-green-500';
+          if (dayData.dayStatus === 'few') {
+            statusIcon = '△';
+            statusColor = isSelected ? 'text-orange-200' : 'text-orange-500';
+          } else if (dayData.dayStatus === 'full') {
+            statusIcon = '×';
+            statusColor = 'text-red-500';
+          }
+
+          html += `
+            <button onclick="selectDate('${dateKey}')" ${disabledAttr} class="flex flex-col items-center justify-center py-2 h-14 sm:h-16 rounded-lg transition-all border ${activeClass} ${opacityClass}">
+              <span class="text-sm font-bold ${textClass}">${d}</span>
+              <span class="text-xs font-bold mt-0.5 ${statusColor}">${statusIcon}</span>
+            </button>
+          `;
+        }
+      }
+      
+      grid.innerHTML = html;
+      lucide.createIcons();
+    }
+
+    // 月を切り替える操作
+    function prevMonth() {
+      currentDisplayMonth--;
+      if (currentDisplayMonth < 0) {
+        currentDisplayMonth = 11;
+        currentDisplayYear--;
+      }
+      renderCalendar();
+    }
+
+    function nextMonth() {
+      currentDisplayMonth++;
+      if (currentDisplayMonth > 11) {
+        currentDisplayMonth = 0;
+        currentDisplayYear++;
+      }
+      renderCalendar();
+    }
+
+    // 時間リストを描画
+    function renderTimes() {
+      const container = document.getElementById('time-selection-container');
+      const list = document.getElementById('times-list');
+      
+      if (!state.bookingData.date) {
+        container.classList.add('hidden');
+        return;
+      }
+      
+      const dateKey = `${state.bookingData.date.getFullYear()}-${state.bookingData.date.getMonth() + 1}-${state.bookingData.date.getDate()}`;
+      const selectedData = availabilityData[dateKey];
+      
+      container.classList.remove('hidden');
+      list.innerHTML = selectedData.timeSlots.map(slot => {
+        const isSelected = state.bookingData.time === slot.time;
+        const isFull = slot.status === 'full';
+        const disabledAttr = isFull ? 'disabled' : '';
+        
+        let activeClass = 'bg-white text-gray-700 hover:border-indigo-400';
+        if (isSelected) {
+          activeClass = 'bg-indigo-600 border-indigo-600 text-white shadow-md';
+        } else if (isFull) {
+          activeClass = 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed opacity-60';
+        }
+
+        let statusIcon = '○';
+        let statusColor = isSelected ? 'text-indigo-200' : 'text-green-500';
+        if (slot.status === 'few') {
+          statusIcon = '△';
+          statusColor = isSelected ? 'text-orange-200' : 'text-orange-500';
+        } else if (isFull) {
+          statusIcon = '×';
+          statusColor = 'text-red-400';
+        }
+
+        return `
+          <button onclick="selectTime('${slot.time}')" ${disabledAttr} class="py-2 rounded-lg border text-sm font-medium transition-all flex flex-col items-center ${activeClass}">
+            <span>${slot.time}</span>
+            <span class="text-xs mt-0.5 ${statusColor}">${statusIcon}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    // ステップUIの表示切り替え
+    function updateStepVisibility() {
+      // 全てのステップを非表示
+      document.querySelectorAll('.step-section').forEach((el, index) => {
+        if (index + 1 === state.step) {
+          el.classList.remove('hidden');
+          // アニメーションを再トリガーするためにクラスを付け直す
+          el.classList.remove('fade-in');
+          void el.offsetWidth; // reflow
+          el.classList.add('fade-in');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+
+      // プログレスバーの更新
+      const progressContainer = document.getElementById('progress-container');
+      if (state.step < 5) {
+        progressContainer.classList.remove('hidden');
+        document.getElementById('progress-bar-fill').style.width = `${(state.step - 1) * 33.33}%`;
+        
+        for(let i = 1; i <= 4; i++) {
+          const ind = document.getElementById(`ind-${i}`);
+          const text = document.getElementById(`ind-text-${i}`);
+          
+          if (state.step >= i) { // Active or Passed
+            ind.className = `step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-indigo-600 text-white shadow-md ${state.step === i ? 'ring-4 ring-indigo-100' : ''}`;
+            ind.innerHTML = state.step > i ? `<i data-lucide="check-circle-2" class="w-4 h-4"></i>` : i;
+            text.className = "text-xs mt-2 font-medium text-indigo-600";
+          } else { // Future
+            ind.className = "step-indicator w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 bg-white text-gray-400 border-2 border-gray-200";
+            ind.innerHTML = i;
+            text.className = "text-xs mt-2 font-medium text-gray-400";
+          }
+        }
+        lucide.createIcons();
+      } else {
+        progressContainer.classList.add('hidden');
+      }
+
+      // ステップ4の表示前準備
+      if (state.step === 4) populateConfirmation();
+      // ステップ5の表示前準備
+      if (state.step === 5) populateSuccess();
+    }
+
+    // ステップ4：確認画面のデータ埋め込み
+    function populateConfirmation() {
+      document.getElementById('confirm-service-name').innerText = state.bookingData.service?.name;
+      document.getElementById('confirm-service-details').innerText = `${state.bookingData.service?.price} (目安 ${state.bookingData.service?.duration})`;
+      
+      const dayNames = ['日', '月', '火', '水', '木', '金', '土'];
+      const d = state.bookingData.date;
+      const dateStr = `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日 (${dayNames[d.getDay()]})`;
+      
+      document.getElementById('confirm-date').innerText = dateStr;
+      document.getElementById('confirm-time').innerText = state.bookingData.time;
+      
+      document.getElementById('confirm-name').innerText = state.bookingData.name;
+      document.getElementById('confirm-phone').innerText = state.bookingData.phone;
+      document.getElementById('confirm-email').innerText = state.bookingData.email || '';
+      
+      const notesEl = document.getElementById('confirm-notes');
+      const notesContainer = document.getElementById('confirm-notes-container');
+      if (state.bookingData.notes) {
+        notesEl.innerText = state.bookingData.notes;
+        notesContainer.classList.remove('hidden');
+      } else {
+        notesContainer.classList.add('hidden');
+      }
+    }
+
+    // ステップ5：完了画面のデータ埋め込み
+    function populateSuccess() {
+      const dayNames = ['日', '月', '火', '水', '木', '金', '土'];
+      const d = state.bookingData.date;
+      const dateStr = `${d.getMonth()+1}月${d.getDate()}日 (${dayNames[d.getDay()]})`;
+      document.getElementById('success-datetime').innerText = `${dateStr} ${state.bookingData.time}`;
+    }
+
+    // ====== 入力・イベントハンドリング ======
+    
+    function setupInputListeners() {
+      const inputs = ['name', 'phone', 'email', 'notes'];
+      inputs.forEach(field => {
+        document.getElementById(`input-${field}`).addEventListener('input', (e) => {
+          state.bookingData[field] = e.target.value;
+          validateStep3();
+        });
+      });
+    }
+
+    function selectService(id) {
+      state.bookingData.service = SERVICES.find(s => s.id === id);
+      handleNext();
+    }
+
+    function selectDate(dateKey) {
+      state.bookingData.date = availabilityData[dateKey].date;
+      state.bookingData.time = null; // 日付が変わったら時間をリセット
+      renderCalendar();
+      renderTimes();
+      validateStep2();
+    }
+
+    function selectTime(time) {
+      state.bookingData.time = time;
+      renderTimes();
+      validateStep2();
+    }
+
+    // バリデーション
+    function validateStep2() {
+      const isValid = state.bookingData.date !== null && state.bookingData.time !== null;
+      const btn = document.getElementById('btn-next-2');
+      if (isValid) {
+        btn.disabled = false;
+        btn.className = "px-8 py-2 rounded-lg font-bold transition-all shadow-sm bg-indigo-600 text-white hover:bg-indigo-700 shadow-md";
+      } else {
+        btn.disabled = true;
+        btn.className = "px-8 py-2 rounded-lg font-bold transition-all shadow-sm bg-gray-200 text-gray-400 cursor-not-allowed";
+      }
+    }
+
+    function validateStep3() {
+      const isValid = state.bookingData.name.trim() !== '' && state.bookingData.phone.trim() !== '';
+      const btn = document.getElementById('btn-next-3');
+      if (isValid) {
+        btn.disabled = false;
+        btn.className = "px-8 py-2 rounded-lg font-bold transition-all shadow-sm bg-indigo-600 text-white hover:bg-indigo-700 shadow-md";
+      } else {
+        btn.disabled = true;
+        btn.className = "px-8 py-2 rounded-lg font-bold transition-all shadow-sm bg-gray-200 text-gray-400 cursor-not-allowed";
+      }
+    }
+
+    // ナビゲーション
+    function handleNext() {
+      state.step += 1;
+      updateStepVisibility();
+    }
+
+    function handleBack() {
+      state.step -= 1;
+      updateStepVisibility();
+    }
+
+    function resetApp() {
+      state.step = 1;
+      state.bookingData = { service: null, date: null, time: null, name: '', phone: '', email: '', notes: '' };
+      
+      // 入力フォームリセット
+      if(!state.isLoggedIn) {
+        document.getElementById('input-name').value = '';
+        document.getElementById('input-phone').value = '';
+        document.getElementById('input-email').value = '';
+      }
+      document.getElementById('input-notes').value = '';
+      
+      // カレンダー表示を当月に戻す
+      currentDisplayYear = today.getFullYear();
+      currentDisplayMonth = today.getMonth();
+
+      renderCalendar();
+      renderTimes();
+      validateStep2();
+      validateStep3();
+      updateStepVisibility();
+    }
+
+    // ====== ログイン処理 ======
+    function openModal() {
+      const modal = document.getElementById('login-modal');
+      modal.classList.remove('hidden');
+      // モーダル表示アニメーション用
+      modal.firstElementChild.classList.remove('zoom-in');
+      void modal.offsetWidth; 
+      modal.firstElementChild.classList.add('zoom-in');
+    }
+
+    function closeModal() {
+      document.getElementById('login-modal').classList.add('hidden');
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      state.isLoggedIn = true;
+      closeModal();
+      
+      // ヘッダー切り替え
+      document.getElementById('header-login-btn').classList.add('hidden');
+      document.getElementById('header-user-info').classList.remove('hidden');
+      document.getElementById('step3-login-banner').classList.add('hidden');
+
+      // ダミーデータの自動入力
+      state.bookingData.name = state.bookingData.name || 'サロン 会員';
+      state.bookingData.phone = state.bookingData.phone || '090-9999-8888';
+      state.bookingData.email = state.bookingData.email || 'member@example.com';
+
+      // フォームの値を更新
+      document.getElementById('input-name').value = state.bookingData.name;
+      document.getElementById('input-phone').value = state.bookingData.phone;
+      document.getElementById('input-email').value = state.bookingData.email;
+      
+      validateStep3();
+    }
+
+    function handleLogout() {
+      state.isLoggedIn = false;
+      
+      // ヘッダー切り替え
+      document.getElementById('header-login-btn').classList.remove('hidden');
+      document.getElementById('header-user-info').classList.add('hidden');
+      document.getElementById('step3-login-banner').classList.remove('hidden');
+
+      // データクリア
+      state.bookingData.name = '';
+      state.bookingData.phone = '';
+      state.bookingData.email = '';
+
+      document.getElementById('input-name').value = '';
+      document.getElementById('input-phone').value = '';
+      document.getElementById('input-email').value = '';
+      
+      validateStep3();
+    }
+  </script>
+</body>
+</html>

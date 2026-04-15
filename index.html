@@ -484,46 +484,18 @@
         <p class="text-text-sub max-w-2xl mx-auto">技術的な知見やTipsを発信しています</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        <!-- Blog Card 1 -->
-        <a href="https://zenn.dev/" target="_blank" rel="noopener noreferrer" class="scroll-animate group" data-animation="fade-up" data-delay="0">
-          <div class="h-full p-6 rounded-2xl bg-light-card border border-light-border hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 transition-all duration-500 hover:-translate-y-2">
-            <div class="flex items-center gap-2 mb-4">
-              <span class="text-xl">📝</span>
-              <span class="text-xs text-text-sub bg-light-border px-2 py-0.5 rounded-full">Zenn</span>
-            </div>
-            <h3 class="text-sm font-bold mb-2 group-hover:text-accent transition-colors">Next.js App Router で実現するモダンなWebアプリ設計パターン</h3>
-            <p class="text-text-sub text-xs leading-relaxed">App Routerのベストプラクティスと、実務で使えるServer Components活用術を解説...</p>
-            <p class="text-accent text-xs mt-4 group-hover:translate-x-1 transition-transform">Read more →</p>
-          </div>
-        </a>
-
-        <!-- Blog Card 2 -->
-        <a href="https://qiita.com/" target="_blank" rel="noopener noreferrer" class="scroll-animate group" data-animation="fade-up" data-delay="100">
-          <div class="h-full p-6 rounded-2xl bg-light-card border border-light-border hover:border-accent-light/50 hover:shadow-lg hover:shadow-accent/5 transition-all duration-500 hover:-translate-y-2">
-            <div class="flex items-center gap-2 mb-4">
-              <span class="text-xl">📝</span>
-              <span class="text-xs text-text-sub bg-light-border px-2 py-0.5 rounded-full">Qiita</span>
-            </div>
-            <h3 class="text-sm font-bold mb-2 group-hover:text-accent-light transition-colors">個人開発で使える CI/CD パイプライン構築ガイド</h3>
-            <p class="text-text-sub text-xs leading-relaxed">GitHub Actions を使った自動テスト・デプロイ環境を無料で構築する方法を紹介...</p>
-            <p class="text-accent-light text-xs mt-4 group-hover:translate-x-1 transition-transform">Read more →</p>
-          </div>
-        </a>
-
-        <!-- Blog Card 3 -->
-        <a href="https://zenn.dev/" target="_blank" rel="noopener noreferrer" class="scroll-animate group" data-animation="fade-up" data-delay="200">
-          <div class="h-full p-6 rounded-2xl bg-light-card border border-light-border hover:border-accent-cyan/50 hover:shadow-lg hover:shadow-accent/5 transition-all duration-500 hover:-translate-y-2">
-            <div class="flex items-center gap-2 mb-4">
-              <span class="text-xl">📝</span>
-              <span class="text-xs text-text-sub bg-light-border px-2 py-0.5 rounded-full">Zenn</span>
-            </div>
-            <h3 class="text-sm font-bold mb-2 group-hover:text-accent-cyan transition-colors">Tailwind CSS v4 の新機能と移行ガイド</h3>
-            <p class="text-text-sub text-xs leading-relaxed">v3からv4へのスムーズな移行方法と、新テーマシステムの活用方法を解説...</p>
-            <p class="text-accent-cyan text-xs mt-4 group-hover:translate-x-1 transition-transform">Read more →</p>
-          </div>
-        </a>
+      <!-- Blog: loading state -->
+      <div id="blog-loading" class="flex justify-center py-16">
+        <i class="fa-solid fa-spinner fa-spin text-3xl text-accent"></i>
       </div>
+
+      <!-- Blog: error state (hidden by default) -->
+      <div id="blog-error" class="hidden text-center py-16">
+        <p class="text-text-sub text-sm">記事の取得に失敗しました。<a href="https://qiita.com/suzuneko-works" target="_blank" rel="noopener noreferrer" class="text-accent underline">Qiitaで直接ご覧ください</a>。</p>
+      </div>
+
+      <!-- Blog: dynamic card grid (populated by JS) -->
+      <div id="blog-grid" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"></div>
     </div>
   </section>
 
@@ -587,6 +559,10 @@
                   <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-github"></i></span>
                   <span class="text-sm">GitHub</span>
                 </a>
+                <a href="https://qiita.com/suzuneko-works" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
+                  <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><span class="font-bold text-base">Q</span></span>
+                  <span class="text-sm">Qiita</span>
+                </a>
                 <a href="https://x.com/suzuneko_works" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
                   <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-x-twitter"></i></span>
                   <span class="text-sm">X (Twitter)</span>
@@ -595,13 +571,13 @@
                   <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-linkedin-in"></i></span>
                   <span class="text-sm">LinkedIn</span>
                 </a>
-                <a href="https://www.facebook.com/profile.php?id=61579926146894&locale=ja_JP" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
-                  <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-facebook-f"></i></span>
-                  <span class="text-sm">Facebook</span>
-                </a>
                 <a href="https://www.instagram.com/suzuneko_works" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
                   <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-instagram"></i></span>
                   <span class="text-sm">Instagram</span>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61579926146894&locale=ja_JP" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
+                  <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-facebook-f"></i></span>
+                  <span class="text-sm">Facebook</span>
                 </a>
               </div>
             </div>
@@ -632,10 +608,11 @@
         <!-- SNS Icons -->
         <div class="flex items-center gap-4">
           <a href="https://github.com/gitdsuzuki" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-github"></i></a>
+          <a href="https://qiita.com/suzuneko-works" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all" aria-label="Qiita"><span class="font-bold text-sm">Q</span></a>
           <a href="https://x.com/suzuneko_works" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-x-twitter"></i></a>
           <a href="https://www.linkedin.com/in/daichi-suzuki-0502a5212" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://www.facebook.com/profile.php?id=61579926146894&locale=ja_JP" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-facebook-f"></i></a>
           <a href="https://www.instagram.com/suzuneko_works" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61579926146894&locale=ja_JP" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
 
         <!-- Copyright -->

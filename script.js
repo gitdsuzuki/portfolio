@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initSmoothScroll();
   initSkillBars();
+  initQiitaBlog();
 });
 
 /* =============================== */
@@ -485,3 +486,126 @@ function initSkillBars() {
     }
   });
 })();
+
+/* =============================== */
+/*  11. QIITA BLOG                  */
+/* =============================== */
+function initQiitaBlog() {
+  const grid    = document.getElementById('blog-grid');
+  const loading = document.getElementById('blog-loading');
+  const error   = document.getElementById('blog-error');
+
+  if (!grid) return;
+
+  const QIITA_USER = 'suzuneko-works';
+  const PER_PAGE   = 6;
+  const API_URL    = `https://qiita.com/api/v2/users/${QIITA_USER}/items?per_page=${PER_PAGE}`;
+  const COLORS     = ['accent', 'accent-light', 'accent-cyan'];
+
+  fetch(API_URL)
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
+    .then(items => {
+      if (!Array.isArray(items) || items.length === 0) throw new Error('no items');
+
+      items.forEach((item, i) => {
+        // URL validation: only allow https://qiita.com/* links
+        let safeUrl;
+        try {
+          const parsed = new URL(item.url);
+          if (parsed.protocol !== 'https:' || parsed.hostname !== 'qiita.com') throw new Error('invalid host');
+          safeUrl = parsed.href;
+        } catch (urlErr) {
+          return; // skip items with suspicious URLs
+        }
+
+        const color = COLORS[i % COLORS.length];
+        const date  = new Date(item.created_at).toLocaleDateString('ja-JP', {
+          year: 'numeric', month: '2-digit', day: '2-digit'
+        });
+        const tags = (item.tags || []).slice(0, 3).map(t => t.name);
+
+        // Anchor wrapper
+        const a = document.createElement('a');
+        a.href              = safeUrl;
+        a.target            = '_blank';
+        a.rel               = 'noopener noreferrer';
+        a.className         = 'scroll-animate group';
+        a.dataset.animation = 'fade-up';
+        a.dataset.delay     = String((i % 3) * 100);
+
+        // Card container
+        const card = document.createElement('div');
+        card.className = `h-full p-6 rounded-2xl bg-light-card border border-light-border hover:border-${color}/50 hover:shadow-lg hover:shadow-accent/5 transition-all duration-500 hover:-translate-y-2`;
+
+        // Header: icon + platform badge
+        const header = document.createElement('div');
+        header.className = 'flex items-center gap-2 mb-4';
+        const icon = document.createElement('span');
+        icon.className   = 'text-xl';
+        icon.textContent = '📝';
+        const badge = document.createElement('span');
+        badge.className   = 'text-xs text-text-sub bg-light-border px-2 py-0.5 rounded-full';
+        badge.textContent = 'Qiita';
+        header.append(icon, badge);
+
+        // Title (textContent to prevent XSS)
+        const titleEl = document.createElement('h3');
+        titleEl.className   = `text-sm font-bold mb-2 group-hover:text-${color} transition-colors`;
+        titleEl.textContent = item.title;
+
+        // Meta: date + likes count
+        const meta = document.createElement('p');
+        meta.className = 'text-text-sub text-xs mb-3 flex items-center gap-3';
+        const dateSpan = document.createElement('span');
+        dateSpan.textContent = date;
+        const likesWrap = document.createElement('span');
+        likesWrap.className = 'flex items-center gap-1';
+        const heartIcon = document.createElement('i');
+        heartIcon.className = 'fa-solid fa-heart text-rose-400';
+        const likesCount = document.createTextNode(` ${item.likes_count || 0}`);
+        likesWrap.append(heartIcon, likesCount);
+        meta.append(dateSpan, likesWrap);
+
+        // Tags
+        const tagRow = document.createElement('div');
+        tagRow.className = 'flex flex-wrap gap-1 mb-4';
+        tags.forEach(tag => {
+          const span = document.createElement('span');
+          span.className   = 'text-xs bg-light-alt border border-light-border px-2 py-0.5 rounded-full text-text-sub';
+          span.textContent = tag;
+          tagRow.append(span);
+        });
+
+        // Read more arrow
+        const readMore = document.createElement('p');
+        readMore.className   = `text-${color} text-xs mt-4 group-hover:translate-x-1 transition-transform`;
+        readMore.textContent = 'Read more →';
+
+        card.append(header, titleEl, meta, tagRow, readMore);
+        a.append(card);
+        grid.append(a);
+      });
+
+      if (loading) loading.classList.add('hidden');
+
+      // Observe newly added cards for scroll animation
+      const newCards = grid.querySelectorAll('.scroll-animate');
+      const scrollObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const delay = parseInt(entry.target.dataset.delay) || 0;
+            setTimeout(() => entry.target.classList.add('visible'), delay);
+            scrollObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
+      newCards.forEach(el => scrollObs.observe(el));
+    })
+    .catch(() => {
+      if (loading) loading.classList.add('hidden');
+      if (error)   error.classList.remove('hidden');
+    });
+}
