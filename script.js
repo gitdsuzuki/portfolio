@@ -28,6 +28,12 @@ function initParticles() {
   const canvas = document.getElementById('particle-canvas');
   if (!canvas) return;
 
+  // prefers-reduced-motion の尊重
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    canvas.style.display = 'none';
+    return;
+  }
+
   const ctx = canvas.getContext('2d');
   let particles = [];
   let animationId;
@@ -46,14 +52,18 @@ function initParticles() {
     const rect = canvas.getBoundingClientRect();
     mouse.x = e.clientX - rect.left;
     mouse.y = e.clientY - rect.top;
-  });
+  }, { passive: true });
 
   canvas.parentElement.addEventListener('mouseleave', () => {
     mouse.x = null;
     mouse.y = null;
   });
 
-  const particleCount = Math.min(80, Math.floor(canvas.width * canvas.height / 15000));
+  // モバイルはパーティクル数を減らし、連結線を省略
+  const isMobile = window.innerWidth < 768;
+  const particleCount = isMobile
+    ? Math.min(30, Math.floor(canvas.width * canvas.height / 25000))
+    : Math.min(60, Math.floor(canvas.width * canvas.height / 18000));
 
   class Particle {
     constructor() {
@@ -67,11 +77,11 @@ function initParticles() {
       this.speedX = (Math.random() - 0.5) * 0.5;
       this.speedY = (Math.random() - 0.5) * 0.5;
       this.opacity = Math.random() * 0.4 + 0.1;
-      // Color: mix of accent and cyan (darker for light bg)
+      // Color: warm orange palette
       const colors = [
-        '99, 102, 241',   // accent
-        '139, 92, 246',   // accent-light
-        '14, 165, 233',   // cyan
+        '249, 115, 22',   // orange accent
+        '251, 146, 60',   // light orange
+        '14, 165, 233',   // cyan sub-accent
       ];
       this.color = colors[Math.floor(Math.random() * colors.length)];
     }
@@ -113,17 +123,23 @@ function initParticles() {
   }
 
   function connectParticles() {
+    // モバイルでは連結線をスキップ（O(n²) 処理の削減）
+    if (isMobile) return;
+
+    const CONNECT_DIST = 110;
+    const CONNECT_DIST_SQ = CONNECT_DIST * CONNECT_DIST;
+
+    ctx.lineWidth = 0.5;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        const distSq = dx * dx + dy * dy;
 
-        if (dist < 120) {
-          const opacity = (1 - dist / 120) * 0.1;
+        if (distSq < CONNECT_DIST_SQ) {
+          const opacity = (1 - Math.sqrt(distSq) / CONNECT_DIST) * 0.1;
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(99, 102, 241, ${opacity})`;
-          ctx.lineWidth = 0.5;
+          ctx.strokeStyle = `rgba(249, 115, 22, ${opacity})`;
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.stroke();
@@ -135,10 +151,10 @@ function initParticles() {
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    particles.forEach(p => {
-      p.update();
-      p.draw();
-    });
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+    }
 
     connectParticles();
     animationId = requestAnimationFrame(animate);
@@ -160,10 +176,10 @@ function initTyping() {
   if (!el) return;
 
   const words = [
-  '日々の業務を劇的にラクにするWebアプリ開発',
-  'サーバー管理はお任せ。安心の保守サポート',
-  'ビジネスを成長させるホームページ・EC制作',
-  '「何から始めればいいか分からない」からのご相談'
+  '日々の面倒な手作業を、ボタン一つで自動化',
+  '話題のAIを活用して、SNS発信や集客をラクに',
+  '名古屋密着！直接顔が見える安心のITサポート',
+  '「パソコンは苦手…」という方からのご相談、大歓迎です'
   ];
   let wordIndex = 0;
   let charIndex = 0;

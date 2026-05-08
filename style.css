@@ -9,8 +9,8 @@ html {
 }
 
 ::selection {
-  background: rgba(99, 102, 241, 0.2);
-  color: #1a1a2e;
+  background: rgba(249, 115, 22, 0.2);
+  color: #1c1410;
 }
 
 /* Hide scrollbar for aesthetic, keep functionality */
@@ -20,11 +20,11 @@ body {
 
 /* === NAVBAR === */
 .navbar-scrolled {
-  background: rgba(255, 255, 255, 0.85) !important;
+  background: rgba(255, 252, 249, 0.88) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.08);
-  border-bottom: 1px solid rgba(226, 229, 239, 0.8);
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(232, 221, 212, 0.8);
 }
 
 /* Hamburger Animation */
@@ -164,15 +164,15 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #f8f9fc inset;
-  -webkit-text-fill-color: #1a1a2e;
+  -webkit-box-shadow: 0 0 0px 1000px #fdf6ef inset;
+  -webkit-text-fill-color: #1c1410;
   transition: background-color 5000s ease-in-out 0s;
 }
 
 /* === GLOW EFFECTS === */
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); }
-  50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.3); }
+  0%, 100% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(249, 115, 22, 0.3); }
 }
 
 /* === RESPONSIVE === */
@@ -188,7 +188,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: #ffffff;
+  background: #fffcf9;
   z-index: 9999;
   opacity: 1;
   transition: opacity 0.5s ease-out;

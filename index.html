@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>鈴猫Works</title>
-  <meta name="description" content="鈴猫Worksは、Webアプリ開発・HP制作・導入後のサポートまで提供します。あなたのビジネスを、Webの力で次のステージへ" />
+  <title>鈴猫Works | 名古屋のAI・業務効率化サポート</title>
+  <meta name="description" content="鈴猫Worksは、名古屋の中小企業・個人事業主様向けに、AI活用と業務効率化のサポートを提供します。毎日の面倒な作業をITの力でラクにします。" />
   <link rel="icon" type="image/png" href="images/favicon.png" />
   
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TE36SJMS0G"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -16,56 +15,47 @@
     gtag('config', 'G-TE36SJMS0G');
   </script>
   
-  <!-- Tailwind CSS v4 CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <!-- Tailwind Theme Config -->
   <style type="text/tailwindcss">
     @theme {
-      --color-light-base: #ffffff;
-      --color-light-alt: #f8f9fc;
+      --color-light-base: #fffcf9;
+      --color-light-alt: #fdf6ef;
       --color-light-card: #ffffff;
-      --color-light-border: #e2e5ef;
-      --color-text-main: #1a1a2e;
-      --color-text-sub: #64748b;
-      --color-accent: #6366f1;
-      --color-accent-light: #8b5cf6;
+      --color-light-border: #e8ddd4;
+      --color-text-main: #1c1410;
+      --color-text-sub: #78716c;
+      --color-accent: #f97316;
+      --color-accent-light: #fb923c;
       --color-accent-cyan: #0ea5e9;
-      --font-sans: 'Inter', 'Noto Sans JP', sans-serif;
+      --font-sans: 'DM Sans', 'BIZ UDPGothic', sans-serif;
     }
   </style>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bg-light-base text-text-main font-sans antialiased">
 
-  <!-- ===================== NAVBAR ===================== -->
   <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
-      <!-- Logo -->
       <a href="#hero" class="flex items-center gap-2 group">
         <span class="text-xl lg:text-2xl font-bold bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent group-hover:from-accent-light group-hover:to-accent-cyan transition-all duration-300">鈴猫Works</span>
       </a>
 
-      <!-- Desktop Nav Links -->
       <ul class="hidden lg:flex items-center gap-8">
         <li><a href="#services" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">サービス</a></li>
-        <li><a href="#portfolio" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">実績</a></li>
+        <li><a href="#portfolio" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">実績・ツール</a></li>
         <li><a href="#profile" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">プロフィール</a></li>
         <li><a href="#blog" class="nav-link text-sm font-medium text-text-sub hover:text-accent transition-colors duration-200">ブログ</a></li>
-        <li><a href="#contact" class="px-5 py-2 rounded-full bg-gradient-to-r from-accent to-accent-light text-white text-sm font-semibold hover:shadow-lg hover:shadow-accent/25 transition-all duration-300 hover:-translate-y-0.5">お問い合わせ</a></li>
+        <li><a href="https://lin.ee/uUFkSvF" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full bg-[#06c755] text-white text-sm font-semibold hover:shadow-lg hover:shadow-[#06c755]/25 transition-all duration-300 hover:-translate-y-0.5"><i class="fa-brands fa-line mr-1.5"></i>無料LINE相談</a></li>
       </ul>
 
-      <!-- Mobile Hamburger -->
       <button id="mobile-menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2 group" aria-label="メニューを開く">
         <span class="hamburger-line w-6 h-0.5 bg-text-main transition-all duration-300 origin-center"></span>
         <span class="hamburger-line w-6 h-0.5 bg-text-main transition-all duration-300"></span>
@@ -73,35 +63,29 @@
       </button>
     </div>
 
-    <!-- Mobile Menu -->
     <div id="mobile-menu" class="lg:hidden hidden fixed inset-0 top-16 bg-light-base/95 backdrop-blur-xl z-40">
       <ul class="flex flex-col items-center justify-center gap-8 h-full text-lg">
         <li><a href="#services" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">サービス</a></li>
-        <li><a href="#portfolio" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">実績</a></li>
+        <li><a href="#portfolio" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">実績・ツール</a></li>
         <li><a href="#profile" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">プロフィール</a></li>
         <li><a href="#blog" class="mobile-nav-link text-text-sub hover:text-accent transition-colors">ブログ</a></li>
-        <li><a href="#contact" class="px-8 py-3 rounded-full bg-gradient-to-r from-accent to-accent-light text-white font-semibold">お問い合わせ</a></li>
+        <li><a href="https://lin.ee/uUFkSvF" target="_blank" rel="noopener noreferrer" class="px-8 py-3 rounded-full bg-[#06c755] text-white font-semibold"><i class="fa-brands fa-line mr-2"></i>無料LINE相談</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ===================== HERO ===================== -->
   <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <!-- Particle Canvas Background -->
     <canvas id="particle-canvas" class="absolute inset-0 w-full h-full"></canvas>
-
-    <!-- Gradient Overlays -->
     <div class="absolute inset-0 bg-gradient-to-b from-light-base/60 via-transparent to-light-base pointer-events-none"></div>
     <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-light-base to-transparent pointer-events-none"></div>
 
-    <!-- Hero Content -->
     <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-      <p class="text-accent text-sm lg:text-base font-medium tracking-widest uppercase mb-4 animate-fade-in-down">アプリ開発からWebの活用相談まで幅広くご支援</p>
+      <p class="text-accent text-sm lg:text-base font-medium tracking-widest mb-4 animate-fade-in-down">名古屋の中小企業・個人事業主様向け</p>
 
-      <h1 class="text-2xl sm:text-5xl lg:text-7xl font-extrabold leading-tight mb-6 animate-fade-in">
-        <span class="bg-gradient-to-r from-text-main via-text-main to-text-sub bg-clip-text text-transparent">あなたのビジネスを、</span>
+      <h1 class="text-2xl sm:text-4xl lg:text-6xl font-extrabold leading-tight mb-6 animate-fade-in">
+        <span class="bg-gradient-to-r from-text-main via-text-main to-text-sub bg-clip-text text-transparent">毎日の「めんどくさい」を、</span>
         <br />
-        <span class="bg-gradient-to-r from-accent via-accent-light to-accent-cyan bg-clip-text text-transparent sm:whitespace-nowrap">Webの力で次のステージへ</span>
+        <span class="bg-gradient-to-r from-accent via-accent-light to-accent-cyan bg-clip-text text-transparent sm:whitespace-nowrap">AIとITでサクッと解決！</span>
       </h1>
 
       <div class="text-lg lg:text-2xl text-text-sub mb-8 h-10 animate-fade-in-up">
@@ -110,21 +94,21 @@
       </div>
 
       <p class="text-text-sub text-sm lg:text-base max-w-2xl mx-auto mb-10 animate-fade-in-up animation-delay-200">
-        企画・設計から開発、運用まで一貫してサポート。<br class="hidden sm:block" />
-        お客様の「こうしたい」を丁寧にお聞きし、最適な仕組みづくりを提供いたします。
+        「手作業が多くて本業に集中できない」「AIを使ってみたいけど難しそう」<br class="hidden sm:block" />
+        そんなお悩みを、地元名古屋で直接お顔を合わせながら丁寧にサポートします。<br>
+        難しい専門用語は使いません。あなたの業務にぴったりの「小さな便利ツール」をご提案します。
       </p>
 
       <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
-        <a href="#contact" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-accent to-accent-light text-white font-semibold hover:shadow-xl hover:shadow-accent/30 transition-all duration-300 hover:-translate-y-1">
-          <i class="fa-solid fa-paper-plane mr-2"></i>お問い合わせ
+        <a href="https://lin.ee/uUFkSvF" target="_blank" rel="noopener noreferrer" class="px-8 py-3.5 rounded-full bg-[#06c755] text-white font-semibold hover:shadow-xl hover:shadow-[#06c755]/30 transition-all duration-300 hover:-translate-y-1">
+          <i class="fa-brands fa-line mr-2"></i>LINEで無料相談する
         </a>
         <a href="#portfolio" class="px-8 py-3.5 rounded-full border border-light-border text-text-main font-semibold hover:border-accent hover:text-accent transition-all duration-300 hover:-translate-y-1">
-          <i class="fa-solid fa-briefcase mr-2"></i>実績を見る
+          <i class="fa-solid fa-lightbulb mr-2"></i>できることを見る
         </a>
       </div>
     </div>
 
-    <!-- Scroll Down Indicator -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
       <a href="#services" class="text-text-sub hover:text-accent transition-colors">
         <i class="fa-solid fa-chevron-down text-xl"></i>
@@ -132,199 +116,242 @@
     </div>
   </section>
 
-  <!-- ===================== SERVICES ===================== -->
   <section id="services" class="py-24 lg:py-32 bg-light-alt">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <!-- Section Header -->
       <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
         <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Services</p>
-        <h2 class="text-3xl lg:text-5xl font-bold mb-4">お手伝いできること</h2>
-        <p class="text-text-sub max-w-2xl mx-auto">ITの力で、あなたのビジネスが抱える「面倒」や「課題」を解決します</p>
+        <h2 class="text-3xl lg:text-5xl font-bold mb-4">鈴猫Worksにお手伝いできること</h2>
+        <p class="text-text-sub max-w-2xl mx-auto">「パソコンはちょっと苦手…」という方でも安心。分かりやすい言葉でご提案します。</p>
       </div>
 
-      <!-- Service Cards -->
       <div class="grid md:grid-cols-3 gap-8">
-        <!-- Card 1: Webアプリ開発 -->
         <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="0">
           <div class="h-full p-8 rounded-2xl bg-light-card border border-light-border hover:border-accent/50 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
             <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent to-accent-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <i class="fa-solid fa-code text-white text-xl"></i>
+              <i class="fa-solid fa-robot text-white text-xl"></i>
             </div>
-            <h3 class="text-xl font-bold mb-3 group-hover:text-accent transition-colors">業務効率化・Webシステム開発</h3>
-            <p class="text-text-sub text-sm leading-relaxed mb-4">毎日の面倒な手作業やアナログな管理をシステムで自動化し、本業に集中できる環境を作ります。予約管理や顧客データ管理など、あなたの業務にぴったりの使いやすいシステムをゼロから構築します。</p>
-            <ul class="space-y-2 text-xs text-text-sub">
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>スマホでもPCでもサクサク動く画面</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>LINEなど既存ツールとの連携機能</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>安全なデータ管理とクラウド環境構築</li>
-            </ul>
+            <h3 class="text-xl font-bold mb-3 group-hover:text-accent transition-colors">話題のAIで、業務をラクに</h3>
+            <p class="text-text-sub text-sm leading-relaxed mb-4">「AIを使ってみたいけど、何をどうすればいいか分からない」という方へ。日々のメール作成、資料づくり、SNSの発信など、あなたの代わりにAIがサクッと片付けてくれる仕組みを作ります。</p>
           </div>
         </div>
 
-        <!-- Card 2: LP・サイト制作 -->
         <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="100">
           <div class="h-full p-8 rounded-2xl bg-light-card border border-light-border hover:border-accent/50 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
             <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-light to-accent-cyan flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <i class="fa-solid fa-palette text-white text-xl"></i>
+              <i class="fa-solid fa-file-excel text-white text-xl"></i>
             </div>
-            <h3 class="text-xl font-bold mb-3 group-hover:text-accent-light transition-colors">集客に繋がるHP・LP制作</h3>
-            <p class="text-text-sub text-sm leading-relaxed mb-4">会社の名刺代わりとなるホームページや、商品・サービスの魅力を最大限に伝える専用ページ（LP）を制作します。ただ綺麗なだけでなく、「見やすく、お問い合わせに繋がりやすい」デザインをご提案します。</p>
-            <ul class="space-y-2 text-xs text-text-sub">
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>スマホで見やすいデザイン（レスポンシブ）</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>検索で見つかりやすくなる対策（SEO）</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>お客様の目を惹きつける動きのある演出</li>
-            </ul>
+            <h3 class="text-xl font-bold mb-3 group-hover:text-accent-light transition-colors">脱・手書き＆Excel！自動化ツール</h3>
+            <p class="text-text-sub text-sm leading-relaxed mb-4">「毎日同じ情報をコピペしている」「現場から戻って紙の日報を打ち直している」そんな面倒な作業を、スマホからボタン一つで終わらせる便利な専用ツールを低価格でご用意します。</p>
           </div>
         </div>
 
-        <!-- Card 3: 導入後の運用・保守サポート -->
         <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="200">
           <div class="h-full p-8 rounded-2xl bg-light-card border border-light-border hover:border-accent/50 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
             <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-accent-cyan to-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <i class="fa-solid fa-lightbulb text-white text-xl"></i>
+              <i class="fa-solid fa-handshake text-white text-xl"></i>
             </div>
-            <h3 class="text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">導入後の運用・保守サポート</h3>
-            <p class="text-text-sub text-sm leading-relaxed mb-4">「作って終わり」ではありません。システムやサイトを安全に使い続けるためのサーバー管理、セキュリティ対策、トラブル対応まで、専門知識が必要な裏方の作業をすべて丸投げでお任せいただけます。</p>
-            <ul class="space-y-2 text-xs text-text-sub">
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>面倒なサーバー管理・メンテナンス代行</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>安心のセキュリティ対策とアップデート</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent-cyan"></i>困った時のヘルプデスク・機能追加のご相談</li>
-            </ul>
+            <h3 class="text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">名古屋密着の、顔が見えるサポート</h3>
+            <p class="text-text-sub text-sm leading-relaxed mb-4">ネット上の顔が見えない相手に頼むのは不安ですよね。名古屋周辺であれば、直接お店や事務所にお伺いしてお話をお聞きします。導入後の「ちょっとここ教えて！」というご相談も大歓迎です。</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== PORTFOLIO ===================== -->
   <section id="portfolio" class="py-24 lg:py-32 bg-light-base">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <!-- Section Header -->
       <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
-        <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Portfolio</p>
-        <h2 class="text-3xl lg:text-5xl font-bold mb-4">実績・ポートフォリオ</h2>
-        <p class="text-text-sub max-w-2xl mx-auto">これまでに手がけたプロジェクトの一部をご紹介します</p>
+        <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Portfolio & Tools</p>
+        <h2 class="text-3xl lg:text-5xl font-bold mb-4">ご提供できるツール・実績</h2>
+        <p class="text-text-sub max-w-2xl mx-auto">「こんなの欲しかった！」と思っていただける、使いやすいツールの実例です</p>
       </div>
 
-      <!-- Stats Counter -->
-      <!-- hidden -->
-      <div class="hidden grid grid-cols-3 gap-6 max-w-3xl mx-auto mb-16 scroll-animate" data-animation="fade-up">
-        <div class="text-center p-6 rounded-2xl bg-light-alt border border-light-border">
-          <p class="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent">
-            <span class="counter" data-target="50">0</span><span class="text-accent">+</span>
-          </p>
-          <p class="text-text-sub text-xs mt-1">制作実績</p>
-        </div>
-        <div class="text-center p-6 rounded-2xl bg-light-alt border border-light-border">
-          <p class="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-accent-light to-accent-cyan bg-clip-text text-transparent">
-            <span class="counter" data-target="98">0</span><span class="text-accent-light">%</span>
-          </p>
-          <p class="text-text-sub text-xs mt-1">顧客満足度</p>
-        </div>
-        <div class="text-center p-6 rounded-2xl bg-light-alt border border-light-border">
-          <p class="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-accent-cyan to-accent bg-clip-text text-transparent">
-            <span class="counter" data-target="30">0</span><span class="text-accent-cyan">+</span>
-          </p>
-          <p class="text-text-sub text-xs mt-1">リピート案件</p>
-        </div>
-      </div>
-
-      <!-- Project Cards -->
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Project 1 -->
-        <!-- hidden -->
-        <div class="hidden tilt-card scroll-animate" data-animation="fade-left" data-delay="0">
-          <div class="rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
-            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent/10 to-accent-light/10 flex items-center justify-center overflow-hidden">
-              <div class="text-6xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500">🛒</div>
-              <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
-            </div>
-            <div class="p-6">
-              <h3 class="text-lg font-bold mb-2 group-hover:text-accent transition-colors">ECサイト フルリニューアル</h3>
-              <p class="text-text-sub text-sm mb-4">大手アパレルブランドのECサイトをNext.js + Stripeで全面リニューアル。ページ速度を60%改善し、CVRを25%向上。</p>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">Next.js</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">TypeScript</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">Stripe</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">PostgreSQL</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <!-- hidden -->
-        <div class="hidden tilt-card scroll-animate" data-animation="fade-right" data-delay="100">
-          <div class="rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-light/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
-            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent-light/10 to-accent-cyan/10 flex items-center justify-center overflow-hidden">
-              <div class="text-6xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500">📊</div>
-              <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
-            </div>
-            <div class="p-6">
-              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-light transition-colors">SaaS ダッシュボード開発</h3>
-              <p class="text-text-sub text-sm mb-4">リアルタイムデータ可視化ダッシュボードをReact + D3.jsで構築。WebSocket によるライブアップデート機能を実装。</p>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/10 text-accent-light border border-accent-light/20">React</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/10 text-accent-light border border-accent-light/20">D3.js</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/10 text-accent-light border border-accent-light/20">Node.js</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/10 text-accent-light border border-accent-light/20">WebSocket</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="tilt-card scroll-animate" data-animation="fade-left" data-delay="200">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="0">
           <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-cyan/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
             <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent-cyan/10 to-accent/10 flex items-center justify-center overflow-hidden">
-              <div class="text-6xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500">🏥</div>
+              <!-- 予約システム：スマホ+カレンダーUI -->
+              <svg viewBox="0 0 220 160" class="w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" xmlns="http://www.w3.org/2000/svg">
+                <!-- スマホ本体 -->
+                <rect x="70" y="10" width="80" height="140" rx="12" fill="white" stroke="#0ea5e9" stroke-width="2"/>
+                <rect x="74" y="22" width="72" height="116" rx="6" fill="#f0f9ff"/>
+                <!-- ヘッダー -->
+                <rect x="74" y="22" width="72" height="20" rx="6" fill="#0ea5e9"/>
+                <text x="110" y="36" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif" font-weight="bold">ご予約</text>
+                <!-- カレンダーグリッド -->
+                <text x="82" y="56" font-size="6" fill="#64748b" font-family="sans-serif">月</text>
+                <text x="92" y="56" font-size="6" fill="#64748b" font-family="sans-serif">火</text>
+                <text x="102" y="56" font-size="6" fill="#64748b" font-family="sans-serif">水</text>
+                <text x="112" y="56" font-size="6" fill="#64748b" font-family="sans-serif">木</text>
+                <text x="122" y="56" font-size="6" fill="#64748b" font-family="sans-serif">金</text>
+                <text x="132" y="56" font-size="6" fill="#e74c3c" font-family="sans-serif">土</text>
+                <!-- 日付セル -->
+                <rect x="80" y="60" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="85" y="68" text-anchor="middle" font-size="6" fill="#0369a1">1</text>
+                <rect x="92" y="60" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="97" y="68" text-anchor="middle" font-size="6" fill="#0369a1">2</text>
+                <rect x="104" y="60" width="10" height="10" rx="2" fill="#0ea5e9"/><text x="109" y="68" text-anchor="middle" font-size="6" fill="white" font-weight="bold">3</text>
+                <rect x="116" y="60" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="121" y="68" text-anchor="middle" font-size="6" fill="#0369a1">4</text>
+                <rect x="128" y="60" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="133" y="68" text-anchor="middle" font-size="6" fill="#0369a1">5</text>
+                <rect x="80" y="73" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="85" y="81" text-anchor="middle" font-size="6" fill="#0369a1">8</text>
+                <rect x="92" y="73" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="97" y="81" text-anchor="middle" font-size="6" fill="#0369a1">9</text>
+                <rect x="104" y="73" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="109" y="81" text-anchor="middle" font-size="6" fill="#0369a1">10</text>
+                <rect x="116" y="73" width="10" height="10" rx="2" fill="#fef3c7"/><text x="121" y="81" text-anchor="middle" font-size="6" fill="#92400e">11</text>
+                <rect x="128" y="73" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="133" y="81" text-anchor="middle" font-size="6" fill="#0369a1">12</text>
+                <!-- 時間スロット -->
+                <rect x="80" y="92" width="58" height="10" rx="3" fill="#bae6fd"/>
+                <text x="109" y="100" text-anchor="middle" font-size="6" fill="#0369a1">10:00 ✓ 空き</text>
+                <rect x="80" y="105" width="58" height="10" rx="3" fill="#0ea5e9"/>
+                <text x="109" y="113" text-anchor="middle" font-size="6" fill="white" font-weight="bold">14:00 予約する</text>
+                <rect x="80" y="118" width="58" height="10" rx="3" fill="#f1f5f9"/>
+                <text x="109" y="126" text-anchor="middle" font-size="6" fill="#94a3b8">18:00 × 満席</text>
+                <!-- ホームバー -->
+                <rect x="100" y="145" width="20" height="3" rx="1.5" fill="#94a3b8"/>
+                <!-- 装飾：24h バッジ -->
+                <circle cx="168" cy="30" r="18" fill="#0ea5e9" opacity="0.9"/>
+                <text x="168" y="27" text-anchor="middle" font-size="8" fill="white" font-weight="bold">24h</text>
+                <text x="168" y="37" text-anchor="middle" font-size="6" fill="white">予約OK</text>
+              </svg>
               <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
             </div>
-            <div class="p-6">
-              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-cyan transition-colors">サロン向け Web予約管理システム</h3>
-              <p class="text-text-sub text-sm mb-4">お客様がスマホからいつでも予約できる専用サイトです。お店側で予約枠を簡単に管理できる機能や、前日の自動リマインド機能を備えています。ITに詳しくない方でも使いやすい設計を心がけ、稼働後の手厚いサポートも行っています。</p>
-              <div class="flex flex-wrap gap-2 mb-5">
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">Flask</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">PostgreSQL</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">Google Cloud</span>
-              </div>
-              <a href="https://reservation-app.suzuneko-works.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/30 hover:bg-accent-cyan hover:text-white transition-all duration-300">
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-cyan transition-colors">サロン・飲食店向け Web予約システム</h3>
+              <p class="text-text-sub text-sm mb-4 flex-1">お客様がスマホから24時間いつでも予約できる専用サイトです。「接客中に予約の電話が鳴って手を止めてしまう…」というお悩みを解決します。大手予約サイトの高額な手数料を減らしたい店舗様にも好評です。</p>
+              <a href="https://reservation-app.suzuneko-works.com/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/30 hover:bg-accent-cyan hover:text-white transition-all duration-300 w-fit">
                 <i class="fa-solid fa-play text-[10px]"></i>デモサイトを触ってみる
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 4 -->
-        <!-- hidden -->
-        <div class="hidden tilt-card scroll-animate" data-animation="fade-right" data-delay="300">
-          <div class="rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group">
+        <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="100">
+          <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
             <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent/10 to-accent-light/10 flex items-center justify-center overflow-hidden">
-              <div class="text-6xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500">🏢</div>
+              <!-- SNS自動化：AIが投稿下書きを生成するイメージ -->
+              <svg viewBox="0 0 220 160" class="w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" xmlns="http://www.w3.org/2000/svg">
+                <!-- AIエンジン（左） -->
+                <rect x="8" y="50" width="70" height="60" rx="10" fill="white" stroke="#8b5cf6" stroke-width="1.5"/>
+                <rect x="8" y="50" width="70" height="18" rx="10" fill="#8b5cf6"/>
+                <rect x="8" y="58" width="70" height="10" rx="0" fill="#8b5cf6"/>
+                <text x="43" y="63" text-anchor="middle" font-size="7" fill="white" font-weight="bold">🤖 AI生成</text>
+                <rect x="16" y="76" width="54" height="6" rx="3" fill="#ede9fe"/>
+                <rect x="16" y="85" width="42" height="6" rx="3" fill="#ede9fe"/>
+                <rect x="16" y="94" width="48" height="6" rx="3" fill="#ede9fe"/>
+                <!-- 矢印 -->
+                <path d="M78 75 L100 75 L96 70 M100 75 L96 80" stroke="#6366f1" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <path d="M78 85 L100 85 L96 80 M100 85 L96 90" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+                <!-- 投稿カード（右） -->
+                <rect x="102" y="22" width="84" height="52" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+                <circle cx="114" cy="35" r="6" fill="#1da1f2"/>
+                <text x="114" y="38" text-anchor="middle" font-size="7" fill="white" font-weight="bold">X</text>
+                <rect x="124" y="30" width="52" height="5" rx="2" fill="#f1f5f9"/>
+                <rect x="124" y="38" width="38" height="5" rx="2" fill="#f1f5f9"/>
+                <rect x="110" y="48" width="68" height="5" rx="2" fill="#e2e8f0"/>
+                <rect x="110" y="56" width="56" height="5" rx="2" fill="#e2e8f0"/>
+                <rect x="165" y="64" width="20" height="7" rx="3.5" fill="#6366f1"/>
+                <text x="175" y="70" text-anchor="middle" font-size="5.5" fill="white">投稿</text>
+                <!-- 投稿カード2枚目（少しずらして重ねる） -->
+                <rect x="106" y="82" width="84" height="52" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+                <circle cx="118" cy="95" r="6" fill="#1da1f2"/>
+                <text x="118" y="98" text-anchor="middle" font-size="7" fill="white" font-weight="bold">X</text>
+                <rect x="128" y="90" width="52" height="5" rx="2" fill="#f1f5f9"/>
+                <rect x="128" y="98" width="44" height="5" rx="2" fill="#f1f5f9"/>
+                <rect x="114" y="108" width="68" height="5" rx="2" fill="#e2e8f0"/>
+                <rect x="114" y="116" width="50" height="5" rx="2" fill="#e2e8f0"/>
+                <rect x="169" y="124" width="20" height="7" rx="3.5" fill="#6366f1"/>
+                <text x="179" y="130" text-anchor="middle" font-size="5.5" fill="white">投稿</text>
+                <!-- スパークル装飾 -->
+                <text x="90" y="30" font-size="10">✨</text>
+                <text x="94" y="145" font-size="8">✨</text>
+              </svg>
               <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
             </div>
-            <div class="p-6">
-              <h3 class="text-lg font-bold mb-2 group-hover:text-accent transition-colors">コーポレートサイト制作</h3>
-              <p class="text-text-sub text-sm mb-4">IT企業のコーポレートサイトをAstro + Tailwind CSSで制作。Lighthouse スコア全項目95以上を達成。</p>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">Astro</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">Tailwind CSS</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">microCMS</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20">Cloudflare</span>
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="text-lg font-bold mb-2 group-hover:text-accent transition-colors">X（旧Twitter）運用 半自動化システム</h3>
+              <p class="text-text-sub text-sm mb-4 flex-1">お店の宣伝をしたいけれど、SNSに書くネタが思いつかない方に。AIがあなたの業界のトレンドや過去の活動メモを読み込み、魅力的な投稿文の「下書き」を自動で大量に作成してくれます。あとは選んで「投稿」を押すだけです！</p>
+              <div class="mt-auto flex items-center gap-2 text-xs text-accent font-semibold">
+                <i class="fa-solid fa-check-circle"></i> 自社運用にて実証・稼働中
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Coming Soon -->
-        <div class="tilt-card scroll-animate" data-animation="fade-right" data-delay="300">
-          <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-dashed border-light-border hover:border-accent/30 transition-all duration-500 group flex flex-col">
-            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center overflow-hidden">
-              <div class="text-6xl opacity-30">🚀</div>
+        <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="200">
+          <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-light/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
+            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent-light/10 to-accent-cyan/10 flex items-center justify-center overflow-hidden">
+              <!-- 経理自動化：レシート→AI→Excel -->
+              <svg viewBox="0 0 220 160" class="w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" xmlns="http://www.w3.org/2000/svg">
+                <!-- レシート（左） -->
+                <rect x="12" y="20" width="52" height="120" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+                <!-- レシートのギザギザ下端 -->
+                <polygon points="12,140 18,134 24,140 30,134 36,140 42,134 48,140 54,134 60,140 64,140 64,144 12,144" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+                <text x="38" y="34" text-anchor="middle" font-size="6" fill="#475569" font-weight="bold">領収書</text>
+                <line x1="18" y1="38" x2="58" y2="38" stroke="#e2e8f0" stroke-width="1"/>
+                <rect x="18" y="43" width="28" height="4" rx="2" fill="#f1f5f9"/>
+                <rect x="48" y="43" width="14" height="4" rx="2" fill="#fecaca"/>
+                <rect x="18" y="51" width="22" height="4" rx="2" fill="#f1f5f9"/>
+                <rect x="48" y="51" width="14" height="4" rx="2" fill="#f1f5f9"/>
+                <rect x="18" y="59" width="26" height="4" rx="2" fill="#f1f5f9"/>
+                <rect x="48" y="59" width="14" height="4" rx="2" fill="#f1f5f9"/>
+                <line x1="18" y1="68" x2="58" y2="68" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,2"/>
+                <text x="38" y="78" text-anchor="middle" font-size="5.5" fill="#64748b">合計</text>
+                <rect x="30" y="82" width="28" height="6" rx="2" fill="#fef9c3"/>
+                <text x="44" y="87" text-anchor="middle" font-size="5.5" fill="#854d0e" font-weight="bold">¥4,800</text>
+                <!-- スマホカメラアイコン -->
+                <rect x="18" y="96" width="40" height="28" rx="4" fill="#f8fafc" stroke="#8b5cf6" stroke-width="1"/>
+                <circle cx="38" cy="110" r="8" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+                <circle cx="38" cy="110" r="4" fill="#ede9fe"/>
+                <text x="38" y="132" text-anchor="middle" font-size="5" fill="#8b5cf6">📷 撮影</text>
+                <!-- 矢印+AI -->
+                <path d="M66 80 Q88 80 88 80 L84 75 M88 80 L84 85" stroke="#8b5cf6" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <circle cx="100" cy="80" r="14" fill="#8b5cf6" opacity="0.15"/>
+                <circle cx="100" cy="80" r="14" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+                <text x="100" y="77" text-anchor="middle" font-size="7">🤖</text>
+                <text x="100" y="87" text-anchor="middle" font-size="5" fill="#6d28d9">AI</text>
+                <path d="M114 80 L130 80 L126 75 M130 80 L126 85" stroke="#8b5cf6" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <!-- Excelシート（右） -->
+                <rect x="132" y="22" width="76" height="116" rx="6" fill="white" stroke="#16a34a" stroke-width="1.5"/>
+                <rect x="132" y="22" width="76" height="16" rx="6" fill="#16a34a"/>
+                <rect x="132" y="28" width="76" height="10" rx="0" fill="#16a34a"/>
+                <text x="170" y="34" text-anchor="middle" font-size="7" fill="white" font-weight="bold">📊 自動集計</text>
+                <!-- ヘッダー行 -->
+                <rect x="136" y="42" width="30" height="8" rx="1" fill="#dcfce7"/>
+                <rect x="168" y="42" width="20" height="8" rx="1" fill="#dcfce7"/>
+                <rect x="190" y="42" width="14" height="8" rx="1" fill="#dcfce7"/>
+                <text x="151" y="49" text-anchor="middle" font-size="5" fill="#15803d" font-weight="bold">品目</text>
+                <text x="178" y="49" text-anchor="middle" font-size="5" fill="#15803d" font-weight="bold">分類</text>
+                <text x="197" y="49" text-anchor="middle" font-size="5" fill="#15803d" font-weight="bold">金額</text>
+                <!-- データ行 -->
+                <rect x="136" y="53" width="30" height="7" rx="1" fill="#f0fdf4"/>
+                <rect x="168" y="53" width="20" height="7" rx="1" fill="#f0fdf4"/>
+                <rect x="190" y="53" width="14" height="7" rx="1" fill="#f0fdf4"/>
+                <text x="151" y="59" text-anchor="middle" font-size="4.5" fill="#374151">交通費</text>
+                <text x="178" y="59" text-anchor="middle" font-size="4.5" fill="#374151">経費</text>
+                <text x="197" y="59" text-anchor="middle" font-size="4.5" fill="#374151">¥320</text>
+                <rect x="136" y="62" width="30" height="7" rx="1" fill="#f9fafb"/>
+                <rect x="168" y="62" width="20" height="7" rx="1" fill="#f9fafb"/>
+                <rect x="190" y="62" width="14" height="7" rx="1" fill="#f9fafb"/>
+                <text x="151" y="68" text-anchor="middle" font-size="4.5" fill="#374151">文具代</text>
+                <text x="178" y="68" text-anchor="middle" font-size="4.5" fill="#374151">消耗品</text>
+                <text x="197" y="68" text-anchor="middle" font-size="4.5" fill="#374151">¥880</text>
+                <rect x="136" y="71" width="30" height="7" rx="1" fill="#f0fdf4"/>
+                <rect x="168" y="71" width="20" height="7" rx="1" fill="#f0fdf4"/>
+                <rect x="190" y="71" width="14" height="7" rx="1" fill="#f0fdf4"/>
+                <text x="151" y="77" text-anchor="middle" font-size="4.5" fill="#374151">会議費</text>
+                <text x="178" y="77" text-anchor="middle" font-size="4.5" fill="#374151">接待</text>
+                <text x="197" y="77" text-anchor="middle" font-size="4.5" fill="#374151">¥4,800</text>
+                <!-- 合計行 -->
+                <line x1="136" y1="85" x2="204" y2="85" stroke="#16a34a" stroke-width="1"/>
+                <text x="165" y="95" text-anchor="middle" font-size="5.5" fill="#15803d" font-weight="bold">合計</text>
+                <rect x="182" y="88" width="22" height="10" rx="2" fill="#dcfce7"/>
+                <text x="193" y="96" text-anchor="middle" font-size="5.5" fill="#15803d" font-weight="bold">¥6,000</text>
+              </svg>
               <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
             </div>
-            <div class="p-6 text-center flex-1 flex flex-col items-center justify-center">
-              <h3 class="text-lg font-bold mb-2 text-text-sub">準備中</h3>
-              <p class="text-text-sub text-sm">新しいプロジェクトを準備しています。<br>Coming Soon...</p>
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-light transition-colors">AIによる 確定申告・経理の自動化サポート</h3>
+              <p class="text-text-sub text-sm mb-4 flex-1">個人事業主様の最大の悩みである、毎月の領収書の整理や確定申告の準備。AIにスマホで撮ったレシートを読み込ませて、自動でExcelに仕分け・集計させるなど、面倒な事務作業を劇的に減らす仕組みをご提供します。</p>
+              <div class="mt-auto flex items-center gap-2 text-xs text-text-sub font-semibold">
+                <i class="fa-solid fa-flask"></i> 現在プロトタイプ検証・ご相談受付中
+              </div>
             </div>
           </div>
         </div>
@@ -332,7 +359,6 @@
     </div>
   </section>
 
-  <!-- ===================== PROFILE ===================== -->
   <section id="profile" class="py-24 lg:py-32 bg-light-alt">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
@@ -341,149 +367,94 @@
       </div>
 
       <div class="max-w-4xl mx-auto scroll-animate" data-animation="fade-up">
-        <div class="flex flex-col md:flex-row items-center gap-10 p-8 lg:p-12 rounded-3xl bg-white border border-light-border">
-          <!-- Avatar -->
+        <div class="flex flex-col md:flex-row items-center gap-10 p-8 lg:p-12 rounded-3xl bg-white border border-light-border shadow-sm">
           <div class="flex-shrink-0">
-            <div class="w-40 h-40 rounded-full bg-gradient-to-br from-accent via-accent-light to-accent-cyan p-1">
-              <div class="w-full h-full rounded-full bg-light-base overflow-hidden">
-                <img src="images/favicon.png" alt="鈴猫Works" class="w-full h-full object-cover" />
+            <div class="w-40 h-40 rounded-3xl bg-gradient-to-br from-accent via-accent-light to-accent-cyan p-1">
+              <div class="w-full h-full rounded-3xl bg-light-base overflow-hidden">
+                <img src="images/favicon.png" alt="鈴猫Works" class="w-full h-full object-contain" />
               </div>
             </div>
           </div>
 
-          <!-- Profile Info -->
           <div class="text-center md:text-left">
             <h3 class="text-2xl font-bold mb-1">鈴猫Works</h3>
-            <p class="text-accent text-sm font-medium mb-4">面倒な業務を自動化するシステム開発の専門家</p>
+            <p class="text-accent text-sm font-bold mb-4">名古屋のAI・業務効率化の専門家</p>
             <p class="text-text-sub text-sm leading-relaxed mb-6">
-              IT業界で10年以上培った確かな技術力で、
-              お客様のビジネス課題を解決するシステムをゼロから構築します。
-              企画から開発、その後の保守運用まで窓口一つで丸ごとお任せいただけるのが強みです。
-              ただ言われたものを作るのではなくプロの目線から「もっと業務がラクになる仕組み」をご提案し、長期的な信頼関係を築けるパートナーを目指しています。
+              はじめまして！名古屋市を拠点に活動している「鈴猫Works」です。<br>
+              「毎日のパソコン作業に追われている」「AIを使ってみたいけど、何から始めればいいか分からない」といった、地元の中小企業様や個人事業主様の悩みを、手軽なITツールで解決しています。<br><br>
+              私は難しい専門用語は使いません。お客様の「ここが面倒くさい！」という生の声に寄り添い、直接お顔を合わせて、二人三脚でサポートさせていただきます。「ちょっとこれをラクにしたいんだけど…」といった雑談ベースのご相談から、大歓迎です！
             </p>
             <div class="flex flex-wrap gap-3 justify-center md:justify-start">
-              <span class="px-4 py-2 text-xs rounded-full bg-accent/10 text-accent border border-accent/20"><i class="fa-solid fa-map-marker-alt mr-1"></i>愛知</span>
-              <span class="px-4 py-2 text-xs rounded-full bg-accent/10 text-accent border border-accent/20"><i class="fa-solid fa-laptop-code mr-1"></i>システム開発</span>
-              <span class="px-4 py-2 text-xs rounded-full bg-accent/10 text-accent border border-accent/20"><i class="fa-solid fa-clock mr-1"></i>柔軟な稼働</span>
+              <span class="px-4 py-2 text-xs rounded-full bg-accent/10 text-accent border border-accent/20 font-semibold"><i class="fa-solid fa-map-marker-alt mr-1"></i>名古屋市・愛知県</span>
+              <span class="px-4 py-2 text-xs rounded-full bg-accent/10 text-accent border border-accent/20 font-semibold"><i class="fa-solid fa-robot mr-1"></i>AI活用支援</span>
+              <span class="px-4 py-2 text-xs rounded-full bg-accent/10 text-accent border border-accent/20 font-semibold"><i class="fa-solid fa-handshake mr-1"></i>親身なサポート</span>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- 使用可能技術・ツール -->
-      <div class="max-w-4xl mx-auto mt-12 scroll-animate" data-animation="fade-up">
-        <div class="rounded-2xl border border-light-border bg-light-card p-8">
-          <h3 class="text-lg font-bold text-text-main mb-2 flex items-center gap-2">
-            <i class="fa-solid fa-wrench text-accent"></i>
-            使用可能な技術・ツール
-          </h3>
-          <p class="text-xs text-text-sub mb-6">以下の技術スタックに対応可能です</p>
-          <div class="grid sm:grid-cols-3 gap-6">
-            <div>
-              <h4 class="text-sm font-bold text-text-main mb-3 flex items-center gap-2">
-                <span class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center"><i class="fa-solid fa-display text-accent text-xs"></i></span>
-                Frontend
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/5 text-text-sub border border-light-border">HTML</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/5 text-text-sub border border-light-border">CSS</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/5 text-text-sub border border-light-border">Tailwind CSS</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/5 text-text-sub border border-light-border">Bootstrap</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/5 text-text-sub border border-light-border">Javascript</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/5 text-text-sub border border-light-border">Typescript</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/5 text-text-sub border border-light-border">React</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent/5 text-text-sub border border-light-border">Next.js</span>
-
-              </div>
-            </div>
-            <div>
-              <h4 class="text-sm font-bold text-text-main mb-3 flex items-center gap-2">
-                <span class="w-8 h-8 rounded-lg bg-accent-light/10 flex items-center justify-center"><i class="fa-solid fa-server text-accent-light text-xs"></i></span>
-                Backend
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/5 text-text-sub border border-light-border">Flask</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/5 text-text-sub border border-light-border">FastAPI</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/5 text-text-sub border border-light-border">Django</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/5 text-text-sub border border-light-border">PostgreSQL</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/5 text-text-sub border border-light-border">MongoDB</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/5 text-text-sub border border-light-border">Supabase</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/5 text-text-sub border border-light-border">HTMX</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-light/5 text-text-sub border border-light-border">REST API</span>
-              </div>
-            </div>
-            <div>
-              <h4 class="text-sm font-bold text-text-main mb-3 flex items-center gap-2">
-                <span class="w-8 h-8 rounded-lg bg-accent-cyan/10 flex items-center justify-center"><i class="fa-solid fa-cloud text-accent-cyan text-xs"></i></span>
-                Infra &amp; Others
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/5 text-text-sub border border-light-border">AIアプリ</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/5 text-text-sub border border-light-border">AWS</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/5 text-text-sub border border-light-border">Azure</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/5 text-text-sub border border-light-border">GCP</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/5 text-text-sub border border-light-border">Docker</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/5 text-text-sub border border-light-border">Kubernetes</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/5 text-text-sub border border-light-border">Windows</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/5 text-text-sub border border-light-border">Linux</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/5 text-text-sub border border-light-border">ネットワーク</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/5 text-text-sub border border-light-border">サーバー</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/5 text-text-sub border border-light-border">Terraform</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-accent-cyan/5 text-text-sub border border-light-border">Ansible</span>
-
-              </div>
+      
+      <div class="max-w-4xl mx-auto mt-8 scroll-animate" data-animation="fade-up">
+        <details class="group bg-light-card border border-light-border rounded-xl">
+          <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-5 text-sm text-text-sub hover:text-accent transition-colors">
+            <span><i class="fa-solid fa-code mr-2"></i>（同業者様・開発者様向け）使用可能な技術スタックを見る</span>
+            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <div class="text-text-sub text-xs mt-3 p-5 pt-0 border-t border-light-border">
+            <p class="mb-4">Web制作会社様からのバックエンド開発やAIシステム連携のご依頼も承っております。</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 rounded-full bg-gray-100 border border-gray-200">Python (Flask / FastAPI)</span>
+                <span class="px-3 py-1 rounded-full bg-gray-100 border border-gray-200">HTMX + Alpine.js</span>
+                <span class="px-3 py-1 rounded-full bg-gray-100 border border-gray-200">Tailwind CSS</span>
+                <span class="px-3 py-1 rounded-full bg-gray-100 border border-gray-200">PostgreSQL</span>
+                <span class="px-3 py-1 rounded-full bg-gray-100 border border-gray-200">Google Cloud / AWS</span>
+                <span class="px-3 py-1 rounded-full bg-gray-100 border border-gray-200">Gemini API / AI統合</span>
+                <span class="px-3 py-1 rounded-full bg-gray-100 border border-gray-200">GAS (Google Apps Script)</span>
             </div>
           </div>
-        </div>
+        </details>
       </div>
+
     </div>
   </section>
+
   <section id="blog" class="py-24 lg:py-32 bg-light-base">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
         <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Blog</p>
         <h2 class="text-3xl lg:text-5xl font-bold mb-4">ブログ・活動記録</h2>
-        <p class="text-text-sub max-w-2xl mx-auto">ITを活用した業務効率化のヒントや、日々の開発の記録を発信しています。</p>
+        <p class="text-text-sub max-w-2xl mx-auto">AIを活用した業務効率化のヒントや、日々の活動の記録を発信しています。</p>
       </div>
-
-      <!-- Blog: loading state -->
       <div id="blog-loading" class="flex justify-center py-16">
         <i class="fa-solid fa-spinner fa-spin text-3xl text-accent"></i>
       </div>
-
-      <!-- Blog: error state (hidden by default) -->
       <div id="blog-error" class="hidden text-center py-16">
         <p class="text-text-sub text-sm">記事の取得に失敗しました。<a href="https://qiita.com/suzuneko-works" target="_blank" rel="noopener noreferrer" class="text-accent underline">Qiitaで直接ご覧ください</a>。</p>
       </div>
-
-      <!-- Blog: dynamic card grid (populated by JS) -->
       <div id="blog-grid" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"></div>
     </div>
   </section>
 
-  <!-- ===================== CONTACT ===================== -->
   <section id="contact" class="py-24 lg:py-32 bg-light-alt">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-16 scroll-animate" data-animation="fade-up">
         <p class="text-accent text-sm font-semibold tracking-widest uppercase mb-3">Contact</p>
-        <h2 class="text-3xl lg:text-5xl font-bold mb-4">お問い合わせ</h2>
-        <p class="text-text-sub max-w-2xl mx-auto">お気軽にご相談ください。通常1営業日以内にご返信いたします。</p>
+        <h2 class="text-3xl lg:text-5xl font-bold mb-4">無料相談・お問い合わせ</h2>
+        <p class="text-text-sub max-w-2xl mx-auto">「こんなことできる？」「今の作業をもっと楽にしたい」など、まずはお気軽におしゃべり感覚でご相談ください。</p>
       </div>
 
       <div class="max-w-5xl mx-auto grid md:grid-cols-7 gap-10">
-        <!-- Contact Form -->
         <div class="md:col-span-5 scroll-animate" data-animation="fade-left">
-          <div class="p-6 lg:p-8 rounded-2xl bg-white border border-light-border">
+          <div class="p-6 lg:p-8 rounded-2xl bg-white border border-light-border shadow-sm">
             <form id="contact-form" novalidate class="space-y-5">
             <div class="grid sm:grid-cols-2 gap-5">
               <div>
-                <label for="name" class="block text-sm font-medium mb-2">お名前 <span class="text-red-400">*</span></label>
+                <label for="name" class="block text-sm font-bold mb-2">お名前 / 会社名 <span class="text-red-400">*</span></label>
                 <input type="text" id="name" name="name" required
                   class="w-full px-4 py-3 rounded-xl bg-white border border-light-border text-text-main placeholder-text-sub/50 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors text-sm"
-                  placeholder="山田 太郎" />
+                  placeholder="山田 太郎 / 〇〇株式会社" />
               </div>
               <div>
-                <label for="email" class="block text-sm font-medium mb-2">メールアドレス <span class="text-red-400">*</span></label>
+                <label for="email" class="block text-sm font-bold mb-2">メールアドレス <span class="text-red-400">*</span></label>
                 <input type="email" id="email" name="email" required
                   class="w-full px-4 py-3 rounded-xl bg-white border border-light-border text-text-main placeholder-text-sub/50 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors text-sm"
                   placeholder="you@example.com" />
@@ -491,82 +462,68 @@
             </div>
             <div class="grid sm:grid-cols-2 gap-5">
               <div>
-                <label for="subject" class="block text-sm font-medium mb-2">件名</label>
+                <label for="subject" class="block text-sm font-bold mb-2">ご相談内容</label>
                 <select id="subject" name="subject"
                   class="w-full px-4 py-3 rounded-xl bg-white border border-light-border text-text-main focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors text-sm">
-                  <option value="" disabled selected>ご相談内容を選択してください</option>
-                  <option value="業務効率化・システム開発について">業務効率化・システム開発について</option>
-                  <option value="ホームページ・LP制作について">ホームページ・LP制作について</option>
-                  <option value="保守・運用サポートについて">保守・運用サポートについて</option>
+                  <option value="" disabled selected>選択してください</option>
                   <option value="まずは無料で相談してみたい">まずは無料で相談してみたい</option>
+                  <option value="面倒な作業を自動化・効率化したい">面倒な作業を自動化・効率化したい</option>
+                  <option value="AIの活用について知りたい">AIの活用について知りたい</option>
+                  <option value="予約サイトやツールの作成について">予約サイトやツールの作成について</option>
                   <option value="その他">その他</option>
                 </select>
               </div>
               <div>
-                <label for="budget" class="block text-sm font-medium mb-2">ご予算</label>
+                <label for="budget" class="block text-sm font-bold mb-2">ご予算（決まっていれば）</label>
                 <select id="budget" name="budget"
                   class="w-full px-4 py-3 rounded-xl bg-white border border-light-border text-text-main focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors text-sm">
-                  <option value="" disabled selected>ご予算を選択してください</option>
-                  <option value="1万円〜5万円">1万円〜5万円</option>
+                  <option value="" disabled selected>選択してください</option>
+                  <option value="未定・まずは相談したい">未定・まずは相談したい</option>
+                  <option value="5万円以内で小さく始めたい">5万円以内で小さく始めたい</option>
                   <option value="5万円〜10万円">5万円〜10万円</option>
                   <option value="10万円〜30万円">10万円〜30万円</option>
-                  <option value="30万円〜50万円">30万円〜50万円</option>
-                  <option value="50万円〜100万円">50万円〜100万円</option>
-                  <option value="100万円以上">100万円以上</option>
-                  <option value="未定・相談して決めたい">未定・相談して決めたい</option>
+                  <option value="30万円以上">30万円以上</option>
                 </select>
               </div>
             </div>
             <div>
-              <label for="message" class="block text-sm font-medium mb-2">メッセージ <span class="text-red-400">*</span></label>
+              <label for="message" class="block text-sm font-bold mb-2">メッセージ <span class="text-red-400">*</span></label>
               <textarea id="message" name="message" rows="5" required
                 class="w-full px-4 py-3 rounded-xl bg-white border border-light-border text-text-main placeholder-text-sub/50 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors resize-none text-sm"
-                placeholder="スマホから予約できるシステムを作りたいのですが、何から始めればよいか分かりません。まずは一度お打ち合わせをお願いできないでしょうか。"></textarea>
+                placeholder="毎日の日報をパソコンに入力するのが面倒で困っています。何か良い方法はないでしょうか？ まずは一度お打ち合わせをお願いします。"></textarea>
             </div>
-            <!-- 送信結果メッセージ -->
             <div id="form-status" class="hidden"></div>
             <button type="submit" id="form-submit-btn"
-              class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-accent to-accent-light text-white font-semibold hover:shadow-xl hover:shadow-accent/30 transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0">
+              class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-accent to-accent-light text-white font-bold hover:shadow-xl hover:shadow-accent/30 transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0">
               <i class="fa-solid fa-paper-plane mr-2"></i>送信する
             </button>
             </form>
           </div>
         </div>
 
-        <!-- Contact Info & SNS -->
         <div class="md:col-span-2 scroll-animate" data-animation="fade-right">
           <div class="space-y-6">
-            <div class="p-6 rounded-2xl bg-white border border-light-border">
+            <div class="p-6 rounded-2xl bg-white border border-light-border shadow-sm">
               <h3 class="font-bold mb-4 flex items-center gap-2">
-                <i class="fa-solid fa-share-nodes text-accent"></i>SNS
+                <i class="fa-solid fa-share-nodes text-accent"></i>SNSで日々の発信中！
               </h3>
               <div class="space-y-3">
-                <a href="https://github.com/gitdsuzuki" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
-                  <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-github"></i></span>
-                  <span class="text-sm">GitHub</span>
+                <a href="https://lin.ee/uUFkSvF" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-[#06c755] transition-colors group">
+                  <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-[#06c755]/10 transition-colors"><i class="fa-brands fa-line text-[#06c755]"></i></span>
+                  <div>
+                    <span class="text-sm font-medium block">LINE公式アカウント</span>
+                    <span class="text-xs text-text-sub">気軽にトークで相談</span>
+                  </div>
                 </a>
-                <a href="https://qiita.com/suzuneko-works" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
-                  <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><span class="font-bold text-base">Q</span></span>
-                  <span class="text-sm">Qiita</span>
-                </a>
-                <a href="https://x.com/suzuneko_works" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
+                <a href="https://x.com/suzuneko_works" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-accent transition-colors group">
                   <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-x-twitter"></i></span>
-                  <span class="text-sm">X (Twitter)</span>
+                  <span class="text-sm font-medium">X (Twitter)</span>
                 </a>
-
-                <a href="https://www.instagram.com/suzuneko_works" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-text-main transition-colors group">
-                  <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><i class="fa-brands fa-instagram"></i></span>
-                  <span class="text-sm">Instagram</span>
+                <a href="https://qiita.com/suzuneko-works" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-sub hover:text-accent transition-colors group">
+                  <span class="w-10 h-10 rounded-lg bg-light-border flex items-center justify-center group-hover:bg-accent/10 transition-colors"><span class="font-bold text-base">Q</span></span>
+                  <span class="text-sm font-medium">Qiita (技術ブログ)</span>
                 </a>
               </div>
-            </div>
-
-            <div class="hidden p-6 rounded-2xl bg-light-alt border border-light-border">
-              <h3 class="font-bold mb-2 flex items-center gap-2">
-                <i class="fa-solid fa-clock text-accent"></i>対応時間
-              </h3>
-              <p class="text-text-sub text-sm">平日 9:00 - 18:00</p>
-              <p class="text-text-sub text-xs mt-1">※ お急ぎの場合はご相談ください</p>
             </div>
           </div>
         </div>
@@ -574,37 +531,27 @@
     </div>
   </section>
 
-  <!-- ===================== FOOTER ===================== -->
   <footer class="py-10 bg-light-alt border-t border-light-border">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <!-- Logo -->
         <div class="flex items-center gap-2">
           <span class="text-lg font-bold bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent">鈴猫Works</span>
         </div>
-
-        <!-- SNS Icons -->
-        <div class="flex items-center gap-4">
-          <a href="https://github.com/gitdsuzuki" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-github"></i></a>
+        <div class="flex items-center gap-3">
+          <a href="https://lin.ee/uUFkSvF" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-[#06c755] hover:bg-[#06c755]/10 transition-all" aria-label="LINE公式アカウント"><i class="fa-brands fa-line"></i></a>
+          <a href="https://x.com/suzuneko_works" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
           <a href="https://qiita.com/suzuneko-works" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all" aria-label="Qiita"><span class="font-bold text-sm">Q</span></a>
-          <a href="https://x.com/suzuneko_works" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://www.instagram.com/suzuneko_works" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-light-border flex items-center justify-center text-text-sub hover:text-accent hover:bg-accent/10 transition-all"><i class="fa-brands fa-instagram"></i></a>
         </div>
-
-        <!-- Copyright -->
         <p class="text-text-sub text-xs">&copy; 2026 鈴猫Works. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Back to Top -->
   <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-accent/80 text-white flex items-center justify-center opacity-0 translate-y-4 pointer-events-none transition-all duration-300 hover:bg-accent hover:shadow-lg hover:shadow-accent/30 z-50" aria-label="トップへ戻る">
     <i class="fa-solid fa-arrow-up"></i>
   </button>
 
-  <!-- reCAPTCHA v3 -->
   <script src="https://www.google.com/recaptcha/api.js?render=6LdiObcsAAAAAOc2ZND68FfgRgDd2CHNwrod0RjC"></script>
   <script src="script.js"></script>
-
 </body>
 </html>
