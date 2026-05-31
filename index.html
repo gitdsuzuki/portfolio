@@ -203,66 +203,80 @@
 
         <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="200">
           <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-light/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
-            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-emerald-400/10 to-accent-light/10 flex items-center justify-center overflow-hidden">
+            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-[#D97757]/12 via-accent/5 to-emerald-400/10 flex items-center justify-center overflow-hidden">
               <svg viewBox="0 0 220 160" class="saturate-[.5] w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" xmlns="http://www.w3.org/2000/svg">
-                              <!-- ナレッジベース（中央上） -->
-                              <rect x="78" y="6" width="64" height="44" rx="6" fill="white" stroke="#10b981" stroke-width="1.5"/>
-                              <rect x="78" y="6" width="64" height="14" rx="6" fill="#10b981"/>
-                              <rect x="78" y="14" width="64" height="6" fill="#10b981"/>
-                              <text x="110" y="16" text-anchor="middle" font-size="6.5" fill="white" font-weight="bold">📚 ナレッジベース</text>
-                              <rect x="84" y="25" width="52" height="3" rx="1.5" fill="#d1fae5"/>
-                              <rect x="84" y="31" width="42" height="3" rx="1.5" fill="#d1fae5"/>
-                              <rect x="84" y="37" width="48" height="3" rx="1.5" fill="#d1fae5"/>
-                              <rect x="84" y="43" width="38" height="3" rx="1.5" fill="#d1fae5"/>
-                              <!-- ナレッジ ↔ AIエージェント の接続線 -->
-                              <path d="M88 52 L46 68" stroke="#10b981" stroke-width="1" fill="none" stroke-dasharray="2,2" opacity="0.6"/>
-                              <path d="M110 52 L110 68" stroke="#10b981" stroke-width="1" fill="none" stroke-dasharray="2,2" opacity="0.6"/>
-                              <path d="M132 52 L174 68" stroke="#10b981" stroke-width="1" fill="none" stroke-dasharray="2,2" opacity="0.6"/>
+                              <!-- ナレッジベース（左上・脇役） -->
+                              <rect x="8" y="8" width="56" height="34" rx="5" fill="white" stroke="#10b981" stroke-width="1.5"/>
+                              <rect x="8" y="8" width="56" height="11" rx="5" fill="#10b981"/>
+                              <rect x="8" y="13.5" width="56" height="5.5" fill="#10b981"/>
+                              <text x="36" y="16.5" text-anchor="middle" font-size="6" fill="white" font-weight="bold">📚 ナレッジ</text>
+                              <rect x="13" y="24" width="46" height="2.5" rx="1.25" fill="#d1fae5"/>
+                              <rect x="13" y="29" width="36" height="2.5" rx="1.25" fill="#d1fae5"/>
+                              <rect x="13" y="34" width="42" height="2.5" rx="1.25" fill="#d1fae5"/>
+                              <!-- ナレッジ → Claude Code -->
+                              <path d="M64 28 L80 30" stroke="#10b981" stroke-width="1" fill="none" stroke-dasharray="2,2" opacity="0.6"/>
+                              <!-- Claude Code エンジン（中央上・主役） -->
+                              <rect x="80" y="8" width="100" height="42" rx="8" fill="#1f2937" stroke="#D97757" stroke-width="2"/>
+                              <circle cx="90" cy="19" r="2" fill="#ef4444"/>
+                              <circle cx="97" cy="19" r="2" fill="#f59e0b"/>
+                              <circle cx="104" cy="19" r="2" fill="#22c55e"/>
+                              <text x="142" y="21.5" text-anchor="middle" font-size="7.5" fill="#D97757" font-weight="bold">Claude Code</text>
+                              <text x="88" y="40" font-size="11" fill="#D97757" font-weight="bold" font-family="monospace">&gt;_</text>
+                              <rect x="104" y="29" width="64" height="3" rx="1.5" fill="#D97757" opacity="0.55"/>
+                              <rect x="104" y="36" width="50" height="3" rx="1.5" fill="#9ca3af"/>
+                              <rect x="104" y="43" width="58" height="3" rx="1.5" fill="#4b5563"/>
+                              <text x="170" y="16" font-size="9">✨</text>
+                              <!-- Claude Code → AIエージェント の指示線 -->
+                              <path d="M104 50 L40 66" stroke="#D97757" stroke-width="1.2" fill="none" stroke-dasharray="2,2" opacity="0.75"/>
+                              <path d="M126 50 L110 66" stroke="#D97757" stroke-width="1.2" fill="none" stroke-dasharray="2,2" opacity="0.75"/>
+                              <path d="M150 50 L178 66" stroke="#D97757" stroke-width="1.2" fill="none" stroke-dasharray="2,2" opacity="0.75"/>
                               <!-- AIエージェント：秘書 -->
-                              <rect x="14" y="68" width="54" height="36" rx="6" fill="white" stroke="#f97316" stroke-width="1.5"/>
-                              <circle cx="24" cy="80" r="5.5" fill="#f97316"/>
-                              <text x="24" y="83" text-anchor="middle" font-size="7" fill="white">🤖</text>
-                              <text x="32" y="79" font-size="6.5" fill="#9a3412" font-weight="bold">秘書</text>
-                              <rect x="32" y="82" width="30" height="2.5" rx="1" fill="#fed7aa"/>
-                              <rect x="18" y="90" width="46" height="10" rx="3" fill="#fff7ed"/>
-                              <text x="41" y="97" text-anchor="middle" font-size="5" fill="#9a3412">予定を整理します</text>
+                              <rect x="11" y="66" width="56" height="36" rx="6" fill="white" stroke="#f97316" stroke-width="1.5"/>
+                              <circle cx="22" cy="78" r="5.5" fill="#f97316"/>
+                              <text x="22" y="81" text-anchor="middle" font-size="7" fill="white">🤖</text>
+                              <text x="31" y="77" font-size="6.5" fill="#9a3412" font-weight="bold">秘書</text>
+                              <rect x="31" y="80" width="30" height="2.5" rx="1" fill="#fed7aa"/>
+                              <rect x="16" y="88" width="46" height="10" rx="3" fill="#fff7ed"/>
+                              <text x="39" y="95" text-anchor="middle" font-size="5" fill="#9a3412">予定を整理します</text>
                               <!-- AIエージェント：営業 -->
-                              <rect x="82" y="68" width="56" height="36" rx="6" fill="white" stroke="#0ea5e9" stroke-width="1.5"/>
-                              <circle cx="92" cy="80" r="5.5" fill="#0ea5e9"/>
-                              <text x="92" y="83" text-anchor="middle" font-size="7" fill="white">🤝</text>
-                              <text x="100" y="79" font-size="6.5" fill="#075985" font-weight="bold">営業</text>
-                              <rect x="100" y="82" width="32" height="2.5" rx="1" fill="#bae6fd"/>
-                              <rect x="86" y="90" width="48" height="10" rx="3" fill="#f0f9ff"/>
-                              <text x="110" y="97" text-anchor="middle" font-size="5" fill="#075985">商談メモ作りました</text>
+                              <rect x="82" y="66" width="56" height="36" rx="6" fill="white" stroke="#0ea5e9" stroke-width="1.5"/>
+                              <circle cx="92" cy="78" r="5.5" fill="#0ea5e9"/>
+                              <text x="92" y="81" text-anchor="middle" font-size="7" fill="white">🤝</text>
+                              <text x="100" y="77" font-size="6.5" fill="#075985" font-weight="bold">営業</text>
+                              <rect x="100" y="80" width="32" height="2.5" rx="1" fill="#bae6fd"/>
+                              <rect x="86" y="88" width="48" height="10" rx="3" fill="#f0f9ff"/>
+                              <text x="110" y="95" text-anchor="middle" font-size="5" fill="#075985">商談メモ作りました</text>
                               <!-- AIエージェント：開発 -->
-                              <rect x="152" y="68" width="54" height="36" rx="6" fill="white" stroke="#8b5cf6" stroke-width="1.5"/>
-                              <circle cx="162" cy="80" r="5.5" fill="#8b5cf6"/>
-                              <text x="162" y="83" text-anchor="middle" font-size="7" fill="white">💻</text>
-                              <text x="170" y="79" font-size="6.5" fill="#5b21b6" font-weight="bold">開発</text>
-                              <rect x="170" y="82" width="30" height="2.5" rx="1" fill="#ddd6fe"/>
-                              <rect x="156" y="90" width="46" height="10" rx="3" fill="#faf5ff"/>
-                              <text x="179" y="97" text-anchor="middle" font-size="5" fill="#5b21b6">コード書きました</text>
-                              <!-- 経営者 → AIチーム の矢印 -->
-                              <path d="M76 128 Q40 118 40 105" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
-                              <path d="M110 126 L110 105" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
-                              <path d="M144 128 Q180 118 180 105" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+                              <rect x="153" y="66" width="56" height="36" rx="6" fill="white" stroke="#8b5cf6" stroke-width="1.5"/>
+                              <circle cx="164" cy="78" r="5.5" fill="#8b5cf6"/>
+                              <text x="164" y="81" text-anchor="middle" font-size="7" fill="white">💻</text>
+                              <text x="172" y="77" font-size="6.5" fill="#5b21b6" font-weight="bold">開発</text>
+                              <rect x="172" y="80" width="30" height="2.5" rx="1" fill="#ddd6fe"/>
+                              <rect x="157" y="88" width="48" height="10" rx="3" fill="#faf5ff"/>
+                              <text x="181" y="95" text-anchor="middle" font-size="5" fill="#5b21b6">コード書きました</text>
+                              <!-- AIチーム → 経営者 の納品矢印 -->
+                              <path d="M39 102 Q60 120 92 130" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+                              <path d="M110 102 L110 130" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+                              <path d="M181 102 Q160 120 128 130" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
                               <!-- 経営者（下段） -->
-                              <rect x="62" y="128" width="96" height="26" rx="6" fill="white" stroke="#475569" stroke-width="1.5"/>
-                              <circle cx="76" cy="141" r="7" fill="#475569"/>
-                              <text x="76" y="144" text-anchor="middle" font-size="7" fill="white">👤</text>
-                              <text x="88" y="138" font-size="6.5" fill="#1e293b" font-weight="bold">経営者</text>
-                              <text x="88" y="148" font-size="5.5" fill="#64748b">「来週の予定教えて」</text>
-                              <!-- スパークル装飾 -->
-                              <text x="8" y="22" font-size="10">✨</text>
-                              <text x="198" y="22" font-size="10">✨</text>
+                              <rect x="62" y="130" width="96" height="24" rx="6" fill="white" stroke="#475569" stroke-width="1.5"/>
+                              <circle cx="76" cy="142" r="6.5" fill="#475569"/>
+                              <text x="76" y="145" text-anchor="middle" font-size="7" fill="white">👤</text>
+                              <text x="88" y="140" font-size="6.5" fill="#1e293b" font-weight="bold">経営者</text>
+                              <text x="88" y="150" font-size="5.5" fill="#64748b">「来週の予定教えて」</text>
                             </svg>
               <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
             </div>
             <div class="p-6 flex-1 flex flex-col">
-              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-light transition-colors">AIによる 社内ナレッジ＆仮想チーム 構築サポート</h3>
-              <p class="text-text-sub text-sm mb-4 flex-1">「人を雇うほどではないけれど、社内の仕事を詳しい誰かに任せたい」をAIで実現します。NotebookLMをハブにした自動蓄積型のナレッジベースと、「秘書」「営業」「開発」など役割を持ったAIチームを組み合わせ、日々の会話や意思決定が勝手に資産化される“もう一つの社内”を構築。鈴猫Works自身がこの仕組みで運営している、実証済みのノウハウでご提案します。</p>
-              <div class="mt-auto flex items-center gap-2 text-xs text-text-sub font-semibold">
-                <i class="fa-solid fa-flask"></i> 現在ベータ運用・ご相談受付中
+              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-light transition-colors">Claude Code で動かす 社内ナレッジ＆AI仮想チーム</h3>
+              <p class="text-text-sub text-sm mb-4 flex-1">「人を雇うほどではないけれど、社内の仕事を詳しい誰かに任せたい」を、いま世界の開発現場が注目するAI <strong class="text-[#D97757] font-semibold">Claude Code</strong> で実現します。NotebookLMをハブにした自動蓄積型ナレッジベースと、<strong class="text-[#D97757] font-semibold">Claude Code を“頭脳”</strong>にした「秘書」「営業」「開発」などの役割を持つAI仮想チームを連携。チャットで指示するだけで、調べ物・資料づくり・コード生成までを実際に実行し、日々の会話や意思決定が勝手に資産化される“もう一つの社内”を構築します。鈴猫Works自身がこの Claude Code 基盤で運営している、実証済みのノウハウでご提案します。</p>
+              <div class="mt-auto flex flex-col gap-2">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-[#D97757]/10 text-[#D97757] border border-[#D97757]/30 w-fit">
+                  <i class="fa-solid fa-terminal text-[9px]"></i>Powered by Claude Code
+                </span>
+                <div class="flex items-center gap-2 text-xs text-text-sub font-semibold">
+                  <i class="fa-solid fa-flask"></i> 現在ベータ運用・ご相談受付中
+                </div>
               </div>
             </div>
           </div>
