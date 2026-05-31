@@ -167,226 +167,14 @@
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="0">
-          <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-cyan/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
-            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent-cyan/10 to-accent/10 flex items-center justify-center overflow-hidden">
-              <!-- 予約システム：スマホ+カレンダーUI -->
-              <svg viewBox="0 0 220 160" class="w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" xmlns="http://www.w3.org/2000/svg">
-                <!-- スマホ本体 -->
-                <rect x="70" y="10" width="80" height="140" rx="12" fill="white" stroke="#0ea5e9" stroke-width="2"/>
-                <rect x="74" y="22" width="72" height="116" rx="6" fill="#f0f9ff"/>
-                <!-- ヘッダー -->
-                <rect x="74" y="22" width="72" height="20" rx="6" fill="#0ea5e9"/>
-                <text x="110" y="36" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif" font-weight="bold">ご予約</text>
-                <!-- カレンダーグリッド -->
-                <text x="82" y="56" font-size="6" fill="#64748b" font-family="sans-serif">月</text>
-                <text x="92" y="56" font-size="6" fill="#64748b" font-family="sans-serif">火</text>
-                <text x="102" y="56" font-size="6" fill="#64748b" font-family="sans-serif">水</text>
-                <text x="112" y="56" font-size="6" fill="#64748b" font-family="sans-serif">木</text>
-                <text x="122" y="56" font-size="6" fill="#64748b" font-family="sans-serif">金</text>
-                <text x="132" y="56" font-size="6" fill="#e74c3c" font-family="sans-serif">土</text>
-                <!-- 日付セル -->
-                <rect x="80" y="60" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="85" y="68" text-anchor="middle" font-size="6" fill="#0369a1">1</text>
-                <rect x="92" y="60" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="97" y="68" text-anchor="middle" font-size="6" fill="#0369a1">2</text>
-                <rect x="104" y="60" width="10" height="10" rx="2" fill="#0ea5e9"/><text x="109" y="68" text-anchor="middle" font-size="6" fill="white" font-weight="bold">3</text>
-                <rect x="116" y="60" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="121" y="68" text-anchor="middle" font-size="6" fill="#0369a1">4</text>
-                <rect x="128" y="60" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="133" y="68" text-anchor="middle" font-size="6" fill="#0369a1">5</text>
-                <rect x="80" y="73" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="85" y="81" text-anchor="middle" font-size="6" fill="#0369a1">8</text>
-                <rect x="92" y="73" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="97" y="81" text-anchor="middle" font-size="6" fill="#0369a1">9</text>
-                <rect x="104" y="73" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="109" y="81" text-anchor="middle" font-size="6" fill="#0369a1">10</text>
-                <rect x="116" y="73" width="10" height="10" rx="2" fill="#fef3c7"/><text x="121" y="81" text-anchor="middle" font-size="6" fill="#92400e">11</text>
-                <rect x="128" y="73" width="10" height="10" rx="2" fill="#e0f2fe"/><text x="133" y="81" text-anchor="middle" font-size="6" fill="#0369a1">12</text>
-                <!-- 時間スロット -->
-                <rect x="80" y="92" width="58" height="10" rx="3" fill="#bae6fd"/>
-                <text x="109" y="100" text-anchor="middle" font-size="6" fill="#0369a1">10:00 ✓ 空き</text>
-                <rect x="80" y="105" width="58" height="10" rx="3" fill="#0ea5e9"/>
-                <text x="109" y="113" text-anchor="middle" font-size="6" fill="white" font-weight="bold">14:00 予約する</text>
-                <rect x="80" y="118" width="58" height="10" rx="3" fill="#f1f5f9"/>
-                <text x="109" y="126" text-anchor="middle" font-size="6" fill="#94a3b8">18:00 × 満席</text>
-                <!-- ホームバー -->
-                <rect x="100" y="145" width="20" height="3" rx="1.5" fill="#94a3b8"/>
-                <!-- 装飾：24h バッジ -->
-                <circle cx="168" cy="30" r="18" fill="#0ea5e9" opacity="0.9"/>
-                <text x="168" y="27" text-anchor="middle" font-size="8" fill="white" font-weight="bold">24h</text>
-                <text x="168" y="37" text-anchor="middle" font-size="6" fill="white">予約OK</text>
-              </svg>
-              <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col">
-              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-cyan transition-colors">サロン・飲食店向け Web予約システム</h3>
-              <p class="text-text-sub text-sm mb-4 flex-1">お客様がスマホから24時間いつでも予約できる専用サイトです。「接客中に予約の電話が鳴って手を止めてしまう…」というお悩みを解決します。大手予約サイトの高額な手数料を減らしたい店舗様にも好評です。</p>
-              <a href="https://reservation-app.suzuneko-works.com/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/30 hover:bg-accent-cyan hover:text-white transition-all duration-300 w-fit">
-                <i class="fa-solid fa-play text-[10px]"></i>デモサイトを触ってみる
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="100">
-          <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
-            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent/10 to-accent-light/10 flex items-center justify-center overflow-hidden">
-              <!-- SNS自動化：AIが投稿下書きを生成するイメージ -->
-              <svg viewBox="0 0 220 160" class="w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" xmlns="http://www.w3.org/2000/svg">
-                <!-- AIエンジン（左） -->
-                <rect x="8" y="50" width="70" height="60" rx="10" fill="white" stroke="#8b5cf6" stroke-width="1.5"/>
-                <rect x="8" y="50" width="70" height="18" rx="10" fill="#8b5cf6"/>
-                <rect x="8" y="58" width="70" height="10" rx="0" fill="#8b5cf6"/>
-                <text x="43" y="63" text-anchor="middle" font-size="7" fill="white" font-weight="bold">🤖 AI生成</text>
-                <rect x="16" y="76" width="54" height="6" rx="3" fill="#ede9fe"/>
-                <rect x="16" y="85" width="42" height="6" rx="3" fill="#ede9fe"/>
-                <rect x="16" y="94" width="48" height="6" rx="3" fill="#ede9fe"/>
-                <!-- 矢印 -->
-                <path d="M78 75 L100 75 L96 70 M100 75 L96 80" stroke="#6366f1" stroke-width="2" fill="none" stroke-linecap="round"/>
-                <path d="M78 85 L100 85 L96 80 M100 85 L96 90" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.5"/>
-                <!-- 投稿カード（右） -->
-                <rect x="102" y="22" width="84" height="52" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
-                <circle cx="114" cy="35" r="6" fill="#1da1f2"/>
-                <text x="114" y="38" text-anchor="middle" font-size="7" fill="white" font-weight="bold">X</text>
-                <rect x="124" y="30" width="52" height="5" rx="2" fill="#f1f5f9"/>
-                <rect x="124" y="38" width="38" height="5" rx="2" fill="#f1f5f9"/>
-                <rect x="110" y="48" width="68" height="5" rx="2" fill="#e2e8f0"/>
-                <rect x="110" y="56" width="56" height="5" rx="2" fill="#e2e8f0"/>
-                <rect x="165" y="64" width="20" height="7" rx="3.5" fill="#6366f1"/>
-                <text x="175" y="70" text-anchor="middle" font-size="5.5" fill="white">投稿</text>
-                <!-- 投稿カード2枚目（少しずらして重ねる） -->
-                <rect x="106" y="82" width="84" height="52" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
-                <circle cx="118" cy="95" r="6" fill="#1da1f2"/>
-                <text x="118" y="98" text-anchor="middle" font-size="7" fill="white" font-weight="bold">X</text>
-                <rect x="128" y="90" width="52" height="5" rx="2" fill="#f1f5f9"/>
-                <rect x="128" y="98" width="44" height="5" rx="2" fill="#f1f5f9"/>
-                <rect x="114" y="108" width="68" height="5" rx="2" fill="#e2e8f0"/>
-                <rect x="114" y="116" width="50" height="5" rx="2" fill="#e2e8f0"/>
-                <rect x="169" y="124" width="20" height="7" rx="3.5" fill="#6366f1"/>
-                <text x="179" y="130" text-anchor="middle" font-size="5.5" fill="white">投稿</text>
-                <!-- スパークル装飾 -->
-                <text x="90" y="30" font-size="10">✨</text>
-                <text x="94" y="145" font-size="8">✨</text>
-              </svg>
-              <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col">
-              <h3 class="text-lg font-bold mb-2 group-hover:text-accent transition-colors">X（旧Twitter）運用 全自動化システム</h3>
-              <p class="text-text-sub text-sm mb-4 flex-1">お店の宣伝をしたいけれど、SNSに書くネタが思いつかない方に。AIが業界トレンドや過去の活動メモを読み込み、投稿文の生成から配信まで全自動でこなします。「自分で内容を確認してから投稿したい」場合は半自動モードへの切り替えも可能。自社運用で実証済みのシステムを、ゲストモードでそのまま体験いただけます。</p>
-              <a href="https://x-auto-system.suzuneko-works.com/" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-accent/10 text-accent border border-accent/30 hover:bg-accent hover:text-white transition-all duration-300 w-fit">
-                <i class="fa-solid fa-play text-[10px]"></i>デモサイトを触ってみる
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="200">
-          <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-light/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
-            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-emerald-400/10 to-accent-light/10 flex items-center justify-center overflow-hidden">
-              <!-- 社内ナレッジ×AIチーム：ナレッジベースを中心に役割別エージェントが循環 -->
-              <svg viewBox="0 0 220 160" class="w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" xmlns="http://www.w3.org/2000/svg">
-                <!-- ナレッジベース（中央上） -->
-                <rect x="78" y="6" width="64" height="44" rx="6" fill="white" stroke="#10b981" stroke-width="1.5"/>
-                <rect x="78" y="6" width="64" height="14" rx="6" fill="#10b981"/>
-                <rect x="78" y="14" width="64" height="6" fill="#10b981"/>
-                <text x="110" y="16" text-anchor="middle" font-size="6.5" fill="white" font-weight="bold">📚 ナレッジベース</text>
-                <rect x="84" y="25" width="52" height="3" rx="1.5" fill="#d1fae5"/>
-                <rect x="84" y="31" width="42" height="3" rx="1.5" fill="#d1fae5"/>
-                <rect x="84" y="37" width="48" height="3" rx="1.5" fill="#d1fae5"/>
-                <rect x="84" y="43" width="38" height="3" rx="1.5" fill="#d1fae5"/>
-                <!-- ナレッジ ↔ AIエージェント の接続線 -->
-                <path d="M88 52 L46 68" stroke="#10b981" stroke-width="1" fill="none" stroke-dasharray="2,2" opacity="0.6"/>
-                <path d="M110 52 L110 68" stroke="#10b981" stroke-width="1" fill="none" stroke-dasharray="2,2" opacity="0.6"/>
-                <path d="M132 52 L174 68" stroke="#10b981" stroke-width="1" fill="none" stroke-dasharray="2,2" opacity="0.6"/>
-                <!-- AIエージェント：秘書 -->
-                <rect x="14" y="68" width="54" height="36" rx="6" fill="white" stroke="#f97316" stroke-width="1.5"/>
-                <circle cx="24" cy="80" r="5.5" fill="#f97316"/>
-                <text x="24" y="83" text-anchor="middle" font-size="7" fill="white">🤖</text>
-                <text x="32" y="79" font-size="6.5" fill="#9a3412" font-weight="bold">秘書</text>
-                <rect x="32" y="82" width="30" height="2.5" rx="1" fill="#fed7aa"/>
-                <rect x="18" y="90" width="46" height="10" rx="3" fill="#fff7ed"/>
-                <text x="41" y="97" text-anchor="middle" font-size="5" fill="#9a3412">予定を整理します</text>
-                <!-- AIエージェント：営業 -->
-                <rect x="82" y="68" width="56" height="36" rx="6" fill="white" stroke="#0ea5e9" stroke-width="1.5"/>
-                <circle cx="92" cy="80" r="5.5" fill="#0ea5e9"/>
-                <text x="92" y="83" text-anchor="middle" font-size="7" fill="white">🤝</text>
-                <text x="100" y="79" font-size="6.5" fill="#075985" font-weight="bold">営業</text>
-                <rect x="100" y="82" width="32" height="2.5" rx="1" fill="#bae6fd"/>
-                <rect x="86" y="90" width="48" height="10" rx="3" fill="#f0f9ff"/>
-                <text x="110" y="97" text-anchor="middle" font-size="5" fill="#075985">商談メモ作りました</text>
-                <!-- AIエージェント：開発 -->
-                <rect x="152" y="68" width="54" height="36" rx="6" fill="white" stroke="#8b5cf6" stroke-width="1.5"/>
-                <circle cx="162" cy="80" r="5.5" fill="#8b5cf6"/>
-                <text x="162" y="83" text-anchor="middle" font-size="7" fill="white">💻</text>
-                <text x="170" y="79" font-size="6.5" fill="#5b21b6" font-weight="bold">開発</text>
-                <rect x="170" y="82" width="30" height="2.5" rx="1" fill="#ddd6fe"/>
-                <rect x="156" y="90" width="46" height="10" rx="3" fill="#faf5ff"/>
-                <text x="179" y="97" text-anchor="middle" font-size="5" fill="#5b21b6">コード書きました</text>
-                <!-- 経営者 → AIチーム の矢印 -->
-                <path d="M76 128 Q40 118 40 105" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
-                <path d="M110 126 L110 105" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
-                <path d="M144 128 Q180 118 180 105" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
-                <!-- 経営者（下段） -->
-                <rect x="62" y="128" width="96" height="26" rx="6" fill="white" stroke="#475569" stroke-width="1.5"/>
-                <circle cx="76" cy="141" r="7" fill="#475569"/>
-                <text x="76" y="144" text-anchor="middle" font-size="7" fill="white">👤</text>
-                <text x="88" y="138" font-size="6.5" fill="#1e293b" font-weight="bold">経営者</text>
-                <text x="88" y="148" font-size="5.5" fill="#64748b">「来週の予定教えて」</text>
-                <!-- スパークル装飾 -->
-                <text x="8" y="22" font-size="10">✨</text>
-                <text x="198" y="22" font-size="10">✨</text>
-              </svg>
-              <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col">
-              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-light transition-colors">AIによる 社内ナレッジ＆仮想チーム 構築サポート</h3>
-              <p class="text-text-sub text-sm mb-4 flex-1">「人を雇うほどではないけれど、社内の仕事を詳しい誰かに任せたい」をAIで実現します。NotebookLMをハブにした自動蓄積型ナレッジベースと、「秘書」「営業」「開発」など役割を持ったAIチームを組み合わせ、業務会話や意思決定が勝手にナレッジ化される「もう一つの社内」を構築。鈴猫Works自身がこの仕組みで日々運営されている、実証済みのノウハウでご提案します。</p>
-              <div class="mt-auto flex items-center gap-2 text-xs text-text-sub font-semibold">
-                <i class="fa-solid fa-flask"></i> 現在ベータ運用・ご相談受付中
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- PBI-015: 新規カード #4 - 製造業向け AI見積もりアシスタント（2026-05-29 公開・実績化: ミツモ mitsumo.suzuneko-works.com） -->
         <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="0" data-cs-status="ready">
           <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
-            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent/10 to-accent-light/10 flex items-center justify-center overflow-hidden">
-              <!-- SVG: 既存2枚目カード (X自動化) の SVG をそのまま流用（プレースホルダ、別PBIで差替予定） -->
-              <svg viewBox="0 0 220 160" class="w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" xmlns="http://www.w3.org/2000/svg">
-                <!-- AIエンジン（左） -->
-                <rect x="8" y="50" width="70" height="60" rx="10" fill="white" stroke="#8b5cf6" stroke-width="1.5"/>
-                <rect x="8" y="50" width="70" height="18" rx="10" fill="#8b5cf6"/>
-                <rect x="8" y="58" width="70" height="10" rx="0" fill="#8b5cf6"/>
-                <text x="43" y="63" text-anchor="middle" font-size="7" fill="white" font-weight="bold">🤖 AI生成</text>
-                <rect x="16" y="76" width="54" height="6" rx="3" fill="#ede9fe"/>
-                <rect x="16" y="85" width="42" height="6" rx="3" fill="#ede9fe"/>
-                <rect x="16" y="94" width="48" height="6" rx="3" fill="#ede9fe"/>
-                <!-- 矢印 -->
-                <path d="M78 75 L100 75 L96 70 M100 75 L96 80" stroke="#6366f1" stroke-width="2" fill="none" stroke-linecap="round"/>
-                <path d="M78 85 L100 85 L96 80 M100 85 L96 90" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.5"/>
-                <!-- 投稿カード（右） -->
-                <rect x="102" y="22" width="84" height="52" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
-                <circle cx="114" cy="35" r="6" fill="#1da1f2"/>
-                <text x="114" y="38" text-anchor="middle" font-size="7" fill="white" font-weight="bold">X</text>
-                <rect x="124" y="30" width="52" height="5" rx="2" fill="#f1f5f9"/>
-                <rect x="124" y="38" width="38" height="5" rx="2" fill="#f1f5f9"/>
-                <rect x="110" y="48" width="68" height="5" rx="2" fill="#e2e8f0"/>
-                <rect x="110" y="56" width="56" height="5" rx="2" fill="#e2e8f0"/>
-                <rect x="165" y="64" width="20" height="7" rx="3.5" fill="#6366f1"/>
-                <text x="175" y="70" text-anchor="middle" font-size="5.5" fill="white">投稿</text>
-                <!-- 投稿カード2枚目（少しずらして重ねる） -->
-                <rect x="106" y="82" width="84" height="52" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
-                <circle cx="118" cy="95" r="6" fill="#1da1f2"/>
-                <text x="118" y="98" text-anchor="middle" font-size="7" fill="white" font-weight="bold">X</text>
-                <rect x="128" y="90" width="52" height="5" rx="2" fill="#f1f5f9"/>
-                <rect x="128" y="98" width="44" height="5" rx="2" fill="#f1f5f9"/>
-                <rect x="114" y="108" width="68" height="5" rx="2" fill="#e2e8f0"/>
-                <rect x="114" y="116" width="50" height="5" rx="2" fill="#e2e8f0"/>
-                <rect x="169" y="124" width="20" height="7" rx="3.5" fill="#6366f1"/>
-                <text x="179" y="130" text-anchor="middle" font-size="5.5" fill="white">投稿</text>
-                <!-- スパークル装飾 -->
-                <text x="90" y="30" font-size="10">✨</text>
-                <text x="94" y="145" font-size="8">✨</text>
-              </svg>
-              <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
+            <div class="relative h-48 lg:h-56 overflow-hidden bg-light-border/30">
+              <img src="images/portfolio/mitsumo.webp" alt="製造業向けAI見積もりアシスタント「ミツモ」のサービス画面" loading="lazy" decoding="async" width="840" height="500" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
             </div>
             <div class="p-6 flex-1 flex flex-col">
               <h3 class="text-lg font-bold mb-2 group-hover:text-accent transition-colors">製造業向け AI見積もりアシスタント「ミツモ」</h3>
-              <p class="text-text-sub text-sm mb-4 flex-1">「お見積もりください」のメールが溜まる前に。業種と加工条件を入力し、過去の見積もりExcelをアップロードすると、ベテランの感覚に近い内訳付きの下書きをAIが用意します。金額は画面で手直しでき、PDF・Excelで出力。最後は人の目で確認して送れる、半自動の仕組みです。ログイン不要のゲストモードで、見積もり作成の流れをそのままお試しいただけます。</p>
+              <p class="text-text-sub text-sm mb-4 flex-1">「お見積もりください」のメール対応に追われていませんか。業種と加工条件を入れ、過去の見積もりExcelを読み込ませると、ベテランの勘に近い“内訳付きの下書き”をAIが数十秒で用意。金額は画面で微調整でき、PDF・Excelで出力できます。最後は人の目で確認して送る半自動方式なので、精度とスピードを両立。ログイン不要のゲストモードで作成の流れをそのままお試しいただけます。</p>
               <a href="https://mitsumo.suzuneko-works.com/" target="_blank" rel="noopener noreferrer"
                  aria-label="AI見積もりアシスタント ミツモ をゲストモードで体験（別タブで開く）"
                  class="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-accent/10 text-accent border border-accent/30 hover:bg-accent hover:text-white transition-all duration-300 w-fit">
@@ -395,37 +183,116 @@
             </div>
           </div>
         </div>
-        <!-- 新規カード #5 - 中小企業向け コーポレートサイト構築（2026-05-29 計画差替: 旧 助成金AI → コーポレートサイト） -->
+
         <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="100" data-cs-status="ready">
-          <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-cyan/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
-            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent-cyan/10 to-accent/10 flex items-center justify-center overflow-hidden">
-              <svg viewBox="0 0 220 160" class="w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" xmlns="http://www.w3.org/2000/svg">
-                <!-- ブラウザウィンドウ -->
-                <rect x="30" y="28" width="160" height="104" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
-                <rect x="30" y="28" width="160" height="18" rx="10" fill="#f1f5f9"/>
-                <rect x="30" y="38" width="160" height="8" fill="#f1f5f9"/>
-                <circle cx="42" cy="37" r="3" fill="#fb923c"/>
-                <circle cx="52" cy="37" r="3" fill="#0ea5e9"/>
-                <circle cx="62" cy="37" r="3" fill="#e2e8f0"/>
-                <rect x="78" y="33" width="104" height="8" rx="4" fill="#e8ddd4"/>
-                <!-- ヒーロー帯 -->
-                <rect x="40" y="54" width="140" height="30" rx="6" fill="#f97316" opacity="0.9"/>
-                <rect x="50" y="62" width="70" height="6" rx="3" fill="white"/>
-                <rect x="50" y="72" width="48" height="5" rx="2.5" fill="white" opacity="0.8"/>
-                <rect x="146" y="64" width="26" height="10" rx="5" fill="white"/>
-                <!-- カード3枚 -->
-                <rect x="40" y="92" width="40" height="32" rx="5" fill="#ede9fe"/>
-                <rect x="90" y="92" width="40" height="32" rx="5" fill="#e0f2fe"/>
-                <rect x="140" y="92" width="40" height="32" rx="5" fill="#ffedd5"/>
-                <!-- スパークル -->
-                <text x="186" y="24" font-size="11">✨</text>
-              </svg>
+          <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
+            <div class="relative h-48 lg:h-56 overflow-hidden bg-light-border/30">
+              <img src="images/portfolio/x-auto.webp" alt="X（旧Twitter）運用 全自動化システムの管理ダッシュボード" loading="lazy" decoding="async" width="840" height="500" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="text-lg font-bold mb-2 group-hover:text-accent transition-colors">X（旧Twitter）運用 全自動化システム</h3>
+              <p class="text-text-sub text-sm mb-4 flex-1">「宣伝したいのに投稿ネタが浮かばない」を解決します。AIが業界トレンドや活動メモを読み込み、投稿文の作成・画像生成・予約配信までを丸ごと自動化。内容を自分で確認してから出したい場合は半自動モードにも切り替えられます。鈴猫Works自身のX運用がこの仕組みで動いており、その管理画面をゲストモードでそのままご覧いただけます。</p>
+              <a href="https://x-auto.suzuneko-works.com/" target="_blank" rel="noopener noreferrer"
+                 aria-label="X運用 全自動化システムの管理画面をゲストモードで見る（別タブで開く）"
+                 class="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-accent/10 text-accent border border-accent/30 hover:bg-accent hover:text-white transition-all duration-300 w-fit">
+                <i class="fa-solid fa-play text-[10px]"></i>ゲストモードで見る
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="200">
+          <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-light/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
+            <div class="relative h-48 lg:h-56 bg-gradient-to-br from-emerald-400/10 to-accent-light/10 flex items-center justify-center overflow-hidden">
+              <svg viewBox="0 0 220 160" class="saturate-[.5] w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" xmlns="http://www.w3.org/2000/svg">
+                              <!-- ナレッジベース（中央上） -->
+                              <rect x="78" y="6" width="64" height="44" rx="6" fill="white" stroke="#10b981" stroke-width="1.5"/>
+                              <rect x="78" y="6" width="64" height="14" rx="6" fill="#10b981"/>
+                              <rect x="78" y="14" width="64" height="6" fill="#10b981"/>
+                              <text x="110" y="16" text-anchor="middle" font-size="6.5" fill="white" font-weight="bold">📚 ナレッジベース</text>
+                              <rect x="84" y="25" width="52" height="3" rx="1.5" fill="#d1fae5"/>
+                              <rect x="84" y="31" width="42" height="3" rx="1.5" fill="#d1fae5"/>
+                              <rect x="84" y="37" width="48" height="3" rx="1.5" fill="#d1fae5"/>
+                              <rect x="84" y="43" width="38" height="3" rx="1.5" fill="#d1fae5"/>
+                              <!-- ナレッジ ↔ AIエージェント の接続線 -->
+                              <path d="M88 52 L46 68" stroke="#10b981" stroke-width="1" fill="none" stroke-dasharray="2,2" opacity="0.6"/>
+                              <path d="M110 52 L110 68" stroke="#10b981" stroke-width="1" fill="none" stroke-dasharray="2,2" opacity="0.6"/>
+                              <path d="M132 52 L174 68" stroke="#10b981" stroke-width="1" fill="none" stroke-dasharray="2,2" opacity="0.6"/>
+                              <!-- AIエージェント：秘書 -->
+                              <rect x="14" y="68" width="54" height="36" rx="6" fill="white" stroke="#f97316" stroke-width="1.5"/>
+                              <circle cx="24" cy="80" r="5.5" fill="#f97316"/>
+                              <text x="24" y="83" text-anchor="middle" font-size="7" fill="white">🤖</text>
+                              <text x="32" y="79" font-size="6.5" fill="#9a3412" font-weight="bold">秘書</text>
+                              <rect x="32" y="82" width="30" height="2.5" rx="1" fill="#fed7aa"/>
+                              <rect x="18" y="90" width="46" height="10" rx="3" fill="#fff7ed"/>
+                              <text x="41" y="97" text-anchor="middle" font-size="5" fill="#9a3412">予定を整理します</text>
+                              <!-- AIエージェント：営業 -->
+                              <rect x="82" y="68" width="56" height="36" rx="6" fill="white" stroke="#0ea5e9" stroke-width="1.5"/>
+                              <circle cx="92" cy="80" r="5.5" fill="#0ea5e9"/>
+                              <text x="92" y="83" text-anchor="middle" font-size="7" fill="white">🤝</text>
+                              <text x="100" y="79" font-size="6.5" fill="#075985" font-weight="bold">営業</text>
+                              <rect x="100" y="82" width="32" height="2.5" rx="1" fill="#bae6fd"/>
+                              <rect x="86" y="90" width="48" height="10" rx="3" fill="#f0f9ff"/>
+                              <text x="110" y="97" text-anchor="middle" font-size="5" fill="#075985">商談メモ作りました</text>
+                              <!-- AIエージェント：開発 -->
+                              <rect x="152" y="68" width="54" height="36" rx="6" fill="white" stroke="#8b5cf6" stroke-width="1.5"/>
+                              <circle cx="162" cy="80" r="5.5" fill="#8b5cf6"/>
+                              <text x="162" y="83" text-anchor="middle" font-size="7" fill="white">💻</text>
+                              <text x="170" y="79" font-size="6.5" fill="#5b21b6" font-weight="bold">開発</text>
+                              <rect x="170" y="82" width="30" height="2.5" rx="1" fill="#ddd6fe"/>
+                              <rect x="156" y="90" width="46" height="10" rx="3" fill="#faf5ff"/>
+                              <text x="179" y="97" text-anchor="middle" font-size="5" fill="#5b21b6">コード書きました</text>
+                              <!-- 経営者 → AIチーム の矢印 -->
+                              <path d="M76 128 Q40 118 40 105" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+                              <path d="M110 126 L110 105" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+                              <path d="M144 128 Q180 118 180 105" stroke="#6366f1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+                              <!-- 経営者（下段） -->
+                              <rect x="62" y="128" width="96" height="26" rx="6" fill="white" stroke="#475569" stroke-width="1.5"/>
+                              <circle cx="76" cy="141" r="7" fill="#475569"/>
+                              <text x="76" y="144" text-anchor="middle" font-size="7" fill="white">👤</text>
+                              <text x="88" y="138" font-size="6.5" fill="#1e293b" font-weight="bold">経営者</text>
+                              <text x="88" y="148" font-size="5.5" fill="#64748b">「来週の予定教えて」</text>
+                              <!-- スパークル装飾 -->
+                              <text x="8" y="22" font-size="10">✨</text>
+                              <text x="198" y="22" font-size="10">✨</text>
+                            </svg>
               <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
             </div>
             <div class="p-6 flex-1 flex flex-col">
+              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-light transition-colors">AIによる 社内ナレッジ＆仮想チーム 構築サポート</h3>
+              <p class="text-text-sub text-sm mb-4 flex-1">「人を雇うほどではないけれど、社内の仕事を詳しい誰かに任せたい」をAIで実現します。NotebookLMをハブにした自動蓄積型のナレッジベースと、「秘書」「営業」「開発」など役割を持ったAIチームを組み合わせ、日々の会話や意思決定が勝手に資産化される“もう一つの社内”を構築。鈴猫Works自身がこの仕組みで運営している、実証済みのノウハウでご提案します。</p>
+              <div class="mt-auto flex items-center gap-2 text-xs text-text-sub font-semibold">
+                <i class="fa-solid fa-flask"></i> 現在ベータ運用・ご相談受付中
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="0" data-cs-status="ready">
+          <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-cyan/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
+            <div class="relative h-48 lg:h-56 overflow-hidden bg-light-border/30">
+              <img src="images/portfolio/reservation.webp" alt="サロン・飲食店向け Web予約サイトのデモ（ヘアサロン）" loading="lazy" decoding="async" width="840" height="500" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="text-lg font-bold mb-2 group-hover:text-accent-cyan transition-colors">店舗向け Web予約サイト（サロン・飲食店）</h3>
+              <p class="text-text-sub text-sm mb-4 flex-1">お店の世界観を伝えるホームページと、24時間いつでも使えるネット予約をひとつに。お客様はスマホからメニュー選択→日時→予約まで数タップで完了でき、「接客中に予約の電話が鳴って手が止まる」ストレスを減らします。大手予約サイトの高い手数料を抑えたい店舗様にも好評です。名古屋のヘアサロンを想定したデモサイトを公開中です。</p>
+              <a href="https://reservation.suzuneko-works.com/" target="_blank" rel="noopener noreferrer"
+                 aria-label="店舗向けWeb予約サイトのデモを別タブで開く"
+                 class="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/30 hover:bg-accent-cyan hover:text-white transition-all duration-300 w-fit">
+                <i class="fa-solid fa-play text-[10px]"></i>デモサイトを見る
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="100" data-cs-status="ready">
+          <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-cyan/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
+            <div class="relative h-48 lg:h-56 overflow-hidden bg-light-border/30">
+              <img src="images/portfolio/corporate.webp" alt="中小企業向けコーポレートサイト構築のデモ（製造業）" loading="lazy" decoding="async" width="840" height="500" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
               <h3 class="text-lg font-bold mb-2 group-hover:text-accent-cyan transition-colors">中小企業向け コーポレートサイト構築</h3>
-              <p class="text-text-sub text-sm mb-4 flex-1">「ホームページが古い／そもそも無い」を解決します。スマホでも見やすく、表示が速く、問い合わせにつながる“今どき”のコーポレートサイトを制作。公開後の更新や文章づくりまで、難しい専門用語なしで伴走します。</p>
-              <!-- CTA: ready 用（公開中） -->
+              <p class="text-text-sub text-sm mb-4 flex-1">「ホームページが古い／そもそも無い」を解決します。スマホでも見やすく、表示が速く、問い合わせにつながる“今どき”のコーポレートサイトを制作。公開後の更新や文章づくりまで、難しい専門用語なしで伴走します。製造業を想定したデモサイトを公開中です。</p>
               <a href="https://corporate.suzuneko-works.com/" target="_blank" rel="noopener noreferrer"
                  aria-label="コーポレートサイト構築のデモサイトを別タブで開く"
                  class="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/30 hover:bg-accent-cyan hover:text-white transition-all duration-300 w-fit">
@@ -434,48 +301,46 @@
             </div>
           </div>
         </div>
-        <!-- 新規カード #6 - 不動産事業者向け 価格比較アプリ（2026-05-29 計画差替: 旧 採用ページ生成 → 不動産価格比較） -->
+
         <div class="tilt-card scroll-animate" data-animation="fade-up" data-delay="200" data-cs-status="coming-soon">
           <div class="h-full rounded-2xl overflow-hidden bg-light-card border border-light-border hover:border-accent-light/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 group flex flex-col">
             <div class="relative h-48 lg:h-56 bg-gradient-to-br from-accent/10 to-accent-light/10 flex items-center justify-center overflow-hidden">
-              <svg viewBox="0 0 220 160" class="w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" xmlns="http://www.w3.org/2000/svg">
-                <!-- 建物3棟（高さ違い＝比較） -->
-                <rect x="34" y="78" width="40" height="54" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
-                <rect x="90" y="58" width="40" height="74" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
-                <rect x="146" y="92" width="40" height="40" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
-                <!-- 窓 -->
-                <rect x="40" y="86" width="8" height="8" rx="1.5" fill="#e0f2fe"/>
-                <rect x="52" y="86" width="8" height="8" rx="1.5" fill="#e0f2fe"/>
-                <rect x="40" y="100" width="8" height="8" rx="1.5" fill="#e0f2fe"/>
-                <rect x="52" y="100" width="8" height="8" rx="1.5" fill="#e0f2fe"/>
-                <rect x="96" y="66" width="8" height="8" rx="1.5" fill="#ede9fe"/>
-                <rect x="108" y="66" width="8" height="8" rx="1.5" fill="#ede9fe"/>
-                <rect x="96" y="80" width="8" height="8" rx="1.5" fill="#ede9fe"/>
-                <rect x="108" y="80" width="8" height="8" rx="1.5" fill="#ede9fe"/>
-                <rect x="152" y="100" width="8" height="8" rx="1.5" fill="#ffedd5"/>
-                <rect x="164" y="100" width="8" height="8" rx="1.5" fill="#ffedd5"/>
-                <!-- 価格タグ -->
-                <rect x="30" y="60" width="40" height="16" rx="8" fill="#0ea5e9"/>
-                <text x="50" y="71" text-anchor="middle" font-size="8" fill="white" font-weight="bold">¥3,200</text>
-                <rect x="86" y="40" width="40" height="16" rx="8" fill="#f97316"/>
-                <text x="106" y="51" text-anchor="middle" font-size="8" fill="white" font-weight="bold">¥4,800</text>
-                <rect x="142" y="74" width="40" height="16" rx="8" fill="#64748b"/>
-                <text x="162" y="85" text-anchor="middle" font-size="8" fill="white" font-weight="bold">¥2,600</text>
-                <!-- 比較の虫眼鏡 -->
-                <circle cx="188" cy="120" r="11" fill="none" stroke="#f97316" stroke-width="2.5"/>
-                <line x1="196" y1="128" x2="204" y2="136" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
-                <text x="22" y="30" font-size="11">✨</text>
-              </svg>
+              <svg viewBox="0 0 220 160" class="saturate-[.5] w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" xmlns="http://www.w3.org/2000/svg">
+                              <!-- 建物3棟（高さ違い＝比較） -->
+                              <rect x="34" y="78" width="40" height="54" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+                              <rect x="90" y="58" width="40" height="74" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+                              <rect x="146" y="92" width="40" height="40" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+                              <!-- 窓 -->
+                              <rect x="40" y="86" width="8" height="8" rx="1.5" fill="#e0f2fe"/>
+                              <rect x="52" y="86" width="8" height="8" rx="1.5" fill="#e0f2fe"/>
+                              <rect x="40" y="100" width="8" height="8" rx="1.5" fill="#e0f2fe"/>
+                              <rect x="52" y="100" width="8" height="8" rx="1.5" fill="#e0f2fe"/>
+                              <rect x="96" y="66" width="8" height="8" rx="1.5" fill="#ede9fe"/>
+                              <rect x="108" y="66" width="8" height="8" rx="1.5" fill="#ede9fe"/>
+                              <rect x="96" y="80" width="8" height="8" rx="1.5" fill="#ede9fe"/>
+                              <rect x="108" y="80" width="8" height="8" rx="1.5" fill="#ede9fe"/>
+                              <rect x="152" y="100" width="8" height="8" rx="1.5" fill="#ffedd5"/>
+                              <rect x="164" y="100" width="8" height="8" rx="1.5" fill="#ffedd5"/>
+                              <!-- 価格タグ -->
+                              <rect x="30" y="60" width="40" height="16" rx="8" fill="#0ea5e9"/>
+                              <text x="50" y="71" text-anchor="middle" font-size="8" fill="white" font-weight="bold">¥3,200</text>
+                              <rect x="86" y="40" width="40" height="16" rx="8" fill="#f97316"/>
+                              <text x="106" y="51" text-anchor="middle" font-size="8" fill="white" font-weight="bold">¥4,800</text>
+                              <rect x="142" y="74" width="40" height="16" rx="8" fill="#64748b"/>
+                              <text x="162" y="85" text-anchor="middle" font-size="8" fill="white" font-weight="bold">¥2,600</text>
+                              <!-- 比較の虫眼鏡 -->
+                              <circle cx="188" cy="120" r="11" fill="none" stroke="#f97316" stroke-width="2.5"/>
+                              <line x1="196" y1="128" x2="204" y2="136" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+                              <text x="22" y="30" font-size="11">✨</text>
+                            </svg>
               <div class="absolute inset-0 bg-gradient-to-t from-light-card to-transparent"></div>
-              <!-- Coming Soon バッジ -->
               <span class="absolute top-3 right-3 inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold bg-light-base/90 backdrop-blur-sm text-text-sub border border-light-border">
                 <i class="fa-solid fa-clock text-[10px] mr-1"></i>Coming Soon
               </span>
             </div>
             <div class="p-6 flex-1 flex flex-col">
               <h3 class="text-lg font-bold mb-2 group-hover:text-accent-light transition-colors">不動産事業者向け 価格比較アプリ</h3>
-              <p class="text-text-sub text-sm mb-4 flex-1">仲介会社・工務店様向け。エリアと条件から周辺の売買・賃貸事例を集約し、査定や仕入れ価格の“相場感”をすばやく把握できます。お客様への価格提示や交渉の根拠づくりを後押し。最終判断はプロの目で行えます。</p>
-              <!-- CTA: coming-soon 用（現在 active） -->
+              <p class="text-text-sub text-sm mb-4 flex-1">仲介会社・工務店様向け。エリアと条件から周辺の売買・賃貸事例を集約し、査定や仕入れ価格の“相場感”をすばやく把握できます。お客様への価格提示や交渉の根拠づくりを後押し。最終判断はプロの目で——を前提にした補助ツールです。</p>
               <span class="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-light-border/50 text-text-sub border border-light-border w-fit cursor-not-allowed" aria-disabled="true">
                 <i class="fa-solid fa-clock text-[10px]"></i>準備中（近日公開）
               </span>
