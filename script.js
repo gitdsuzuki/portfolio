@@ -1,633 +1,193 @@
-/* =============================== */
-/*  鈴猫Works - Main JavaScript     */
-/* =============================== */
+(() => {
+  "use strict";
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Mark body as loaded (remove loading overlay)
-  requestAnimationFrame(() => {
-    document.body.classList.add('loaded');
-  });
+  const header = document.getElementById("site-header");
+  const menuButton = document.getElementById("menu-toggle");
+  const navigation = document.getElementById("site-nav");
+  const year = document.getElementById("current-year");
 
-  initParticles();
-  initTyping();
-  initScrollAnimations();
-  initNavbar();
-  initTiltCards();
-  initCountUp();
-  initMobileMenu();
-  initBackToTop();
-  initSmoothScroll();
-  initSkillBars();
-  initQiitaBlog();
-});
+  if (year) {
+    year.textContent = String(new Date().getFullYear());
+  }
 
-/* =============================== */
-/*  1. PARTICLE BACKGROUND          */
-/* =============================== */
-function initParticles() {
-  const canvas = document.getElementById('particle-canvas');
-  if (!canvas) return;
+  if (header) {
+    const updateHeader = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > 12);
+    };
 
-  // prefers-reduced-motion の尊重
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    canvas.style.display = 'none';
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+  }
+
+  if (menuButton && navigation) {
+    const isMenuOpen = () => menuButton.getAttribute("aria-expanded") === "true";
+    const menuLinks = Array.from(navigation.querySelectorAll("a"));
+
+    const closeMenu = (restoreFocus = false) => {
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "メニューを開く");
+      navigation.classList.remove("is-open");
+      document.body.classList.remove("menu-open");
+
+      if (restoreFocus) {
+        menuButton.focus();
+      }
+    };
+
+    const openMenu = () => {
+      menuButton.setAttribute("aria-expanded", "true");
+      menuButton.setAttribute("aria-label", "メニューを閉じる");
+      navigation.classList.add("is-open");
+      document.body.classList.add("menu-open");
+
+      if (menuLinks[0]) {
+        menuLinks[0].focus();
+      }
+    };
+
+    menuButton.addEventListener("click", () => {
+      if (isMenuOpen()) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    menuLinks.forEach((link) => {
+      link.addEventListener("click", () => closeMenu());
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && isMenuOpen()) {
+        closeMenu(true);
+        return;
+      }
+
+      if (event.key === "Tab" && isMenuOpen()) {
+        const focusableItems = [menuButton, ...menuLinks];
+        const firstItem = focusableItems[0];
+        const lastItem = focusableItems[focusableItems.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstItem) {
+          event.preventDefault();
+          lastItem.focus();
+        } else if (!event.shiftKey && document.activeElement === lastItem) {
+          event.preventDefault();
+          firstItem.focus();
+        }
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 780) {
+        closeMenu();
+      }
+    });
+  }
+
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("form-status");
+  const submitButton = document.getElementById("form-submit-btn");
+
+  if (!form || !status || !submitButton) {
     return;
   }
 
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  let animationId;
-  let mouse = { x: null, y: null };
+  const endpoint = "https://script.google.com/macros/s/AKfycbzXtSUlLGOPS_rRAF9vD6ffvBR4D7z-tPLMZfiXEC0WAQtOQPis73Pvq4lG-VyP14mj/exec";
+  const recaptchaSiteKey = "6LdiObcsAAAAAOc2ZND68FfgRgDd2CHNwrod0RjC";
+  const defaultButtonText = submitButton.textContent;
 
-  function resize() {
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
+  const showStatus = (type, message) => {
+    status.className = `form-status is-visible is-${type}`;
+    status.textContent = message;
+  };
 
-  resize();
-  window.addEventListener('resize', resize);
+  const clearStatus = () => {
+    status.className = "form-status";
+    status.textContent = "";
+  };
 
-  // Track mouse for interactive particles
-  canvas.parentElement.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-  }, { passive: true });
+  const getRecaptchaToken = () => new Promise((resolve, reject) => {
+    const deadline = Date.now() + 8000;
 
-  canvas.parentElement.addEventListener('mouseleave', () => {
-    mouse.x = null;
-    mouse.y = null;
-  });
-
-  // モバイルはパーティクル数を減らし、連結線を省略
-  const isMobile = window.innerWidth < 768;
-  const particleCount = isMobile
-    ? Math.min(30, Math.floor(canvas.width * canvas.height / 25000))
-    : Math.min(60, Math.floor(canvas.width * canvas.height / 18000));
-
-  class Particle {
-    constructor() {
-      this.reset();
-    }
-
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 2 + 0.5;
-      this.speedX = (Math.random() - 0.5) * 0.5;
-      this.speedY = (Math.random() - 0.5) * 0.5;
-      this.opacity = Math.random() * 0.4 + 0.1;
-      // Color: warm orange palette
-      const colors = [
-        '249, 115, 22',   // orange accent
-        '251, 146, 60',   // light orange
-        '14, 165, 233',   // cyan sub-accent
-      ];
-      this.color = colors[Math.floor(Math.random() * colors.length)];
-    }
-
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-
-      // Mouse interaction
-      if (mouse.x !== null && mouse.y !== null) {
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) {
-          const force = (150 - dist) / 150;
-          this.x -= (dx / dist) * force * 0.5;
-          this.y -= (dy / dist) * force * 0.5;
-        }
+    const waitUntilReady = () => {
+      if (window.grecaptcha && typeof window.grecaptcha.ready === "function") {
+        window.grecaptcha.ready(() => {
+          window.grecaptcha
+            .execute(recaptchaSiteKey, { action: "contact" })
+            .then(resolve)
+            .catch(reject);
+        });
+        return;
       }
 
-      // Wrap around edges
-      if (this.x < 0) this.x = canvas.width;
-      if (this.x > canvas.width) this.x = 0;
-      if (this.y < 0) this.y = canvas.height;
-      if (this.y > canvas.height) this.y = 0;
-    }
-
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
-      ctx.fill();
-    }
-  }
-
-  // Create particles
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
-  }
-
-  function connectParticles() {
-    // モバイルでは連結線をスキップ（O(n²) 処理の削減）
-    if (isMobile) return;
-
-    const CONNECT_DIST = 110;
-    const CONNECT_DIST_SQ = CONNECT_DIST * CONNECT_DIST;
-
-    ctx.lineWidth = 0.5;
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const distSq = dx * dx + dy * dy;
-
-        if (distSq < CONNECT_DIST_SQ) {
-          const opacity = (1 - Math.sqrt(distSq) / CONNECT_DIST) * 0.1;
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(249, 115, 22, ${opacity})`;
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
-        }
+      if (Date.now() >= deadline) {
+        reject(new Error("reCAPTCHA is unavailable"));
+        return;
       }
-    }
-  }
 
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+      window.setTimeout(waitUntilReady, 100);
+    };
 
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
-    }
-
-    connectParticles();
-    animationId = requestAnimationFrame(animate);
-  }
-
-  animate();
-
-  // Cleanup on page unload
-  window.addEventListener('beforeunload', () => {
-    cancelAnimationFrame(animationId);
-  });
-}
-
-/* =============================== */
-/*  2. TYPING ANIMATION             */
-/* =============================== */
-function initTyping() {
-  const el = document.getElementById('typing-text');
-  if (!el) return;
-
-  const words = [
-  '日々の面倒な手作業を、ボタン一つで自動化',
-  '話題のAIを活用して、SNS発信や集客をラクに',
-  '名古屋密着！直接顔が見える安心のITサポート',
-  '「パソコンは苦手…」という方からのご相談、大歓迎です'
-  ];
-  let wordIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  let timeout;
-
-  function type() {
-    const currentWord = words[wordIndex];
-
-    if (isDeleting) {
-      el.textContent = currentWord.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      el.textContent = currentWord.substring(0, charIndex + 1);
-      charIndex++;
-    }
-
-    let speed = isDeleting ? 50 : 100;
-
-    if (!isDeleting && charIndex === currentWord.length) {
-      speed = 2000; // Pause at end
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      wordIndex = (wordIndex + 1) % words.length;
-      speed = 500; // Pause before next word
-    }
-
-    timeout = setTimeout(type, speed);
-  }
-
-  // Start after hero animation
-  setTimeout(type, 1000);
-}
-
-/* =============================== */
-/*  3. SCROLL ANIMATIONS            */
-/* =============================== */
-function initScrollAnimations() {
-  const elements = document.querySelectorAll('.scroll-animate');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = parseInt(entry.target.dataset.delay) || 0;
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, delay);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0,
-    rootMargin: '0px 0px 0px 0px'
+    waitUntilReady();
   });
 
-  elements.forEach(el => observer.observe(el));
-}
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    clearStatus();
 
-/* =============================== */
-/*  4. NAVBAR SCROLL                */
-/* =============================== */
-function initNavbar() {
-  const navbar = document.getElementById('navbar');
-  if (!navbar) return;
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('navbar-scrolled');
-    } else {
-      navbar.classList.remove('navbar-scrolled');
-    }
-  }, { passive: true });
-}
-
-/* =============================== */
-/*  5. 3D TILT CARD EFFECT          */
-/* =============================== */
-function initTiltCards() {
-  const cards = document.querySelectorAll('.tilt-card');
-
-  cards.forEach(card => {
-    const inner = card.querySelector(':scope > div');
-    if (!inner) return;
-
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = ((y - centerY) / centerY) * -8;
-      const rotateY = ((x - centerX) / centerX) * 8;
-
-      inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      inner.style.transform = 'rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-    });
-  });
-}
-
-/* =============================== */
-/*  6. COUNT UP ANIMATION           */
-/* =============================== */
-function initCountUp() {
-  const counters = document.querySelectorAll('.counter');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const counter = entry.target;
-        const target = parseInt(counter.dataset.target);
-        animateCounter(counter, target);
-        observer.unobserve(counter);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(c => observer.observe(c));
-}
-
-function animateCounter(el, target) {
-  const duration = 2000;
-  const start = performance.now();
-
-  function update(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-
-    // Ease out cubic
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const current = Math.floor(eased * target);
-
-    el.textContent = current;
-
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    } else {
-      el.textContent = target;
-    }
-  }
-
-  requestAnimationFrame(update);
-}
-
-/* =============================== */
-/*  7. MOBILE MENU                  */
-/* =============================== */
-function initMobileMenu() {
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  if (!btn || !menu) return;
-
-  btn.addEventListener('click', () => {
-    const isOpen = !menu.classList.contains('hidden');
-
-    if (isOpen) {
-      menu.classList.add('hidden');
-      btn.classList.remove('hamburger-active');
-      document.body.style.overflow = '';
-    } else {
-      menu.classList.remove('hidden');
-      btn.classList.add('hamburger-active');
-      document.body.style.overflow = 'hidden';
-    }
-  });
-
-  // Close menu on link click
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menu.classList.add('hidden');
-      btn.classList.remove('hamburger-active');
-      document.body.style.overflow = '';
-    });
-  });
-}
-
-/* =============================== */
-/*  8. BACK TO TOP                  */
-/* =============================== */
-function initBackToTop() {
-  const btn = document.getElementById('back-to-top');
-  if (!btn) return;
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) {
-      btn.classList.add('visible');
-    } else {
-      btn.classList.remove('visible');
-    }
-  }, { passive: true });
-
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-}
-
-/* =============================== */
-/*  9. SMOOTH SCROLL                */
-/* =============================== */
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', (e) => {
-      const targetId = anchor.getAttribute('href');
-      if (targetId === '#') return;
-
-      const target = document.querySelector(targetId);
-      if (!target) return;
-
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-}
-
-/* =============================== */
-/*  10. SKILL BARS                  */
-/* =============================== */
-function initSkillBars() {
-  const bars = document.querySelectorAll('.skill-bar');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const bar = entry.target;
-        const width = bar.dataset.width;
-        // Stagger the animation slightly based on parent position
-        const parent = bar.closest('.skill-item');
-        const siblings = Array.from(parent.parentElement.children);
-        const index = siblings.indexOf(parent);
-
-        setTimeout(() => {
-          bar.style.width = width + '%';
-          bar.classList.add('animate');
-        }, index * 150);
-
-        observer.unobserve(bar);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  bars.forEach(b => observer.observe(b));
-}
-
-/* =============================== */
-/*  CONTACT FORM HANDLER            */
-/* =============================== */
-(function () {
-  var GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzXtSUlLGOPS_rRAF9vD6ffvBR4D7z-tPLMZfiXEC0WAQtOQPis73Pvq4lG-VyP14mj/exec';
-  var RECAPTCHA_SITE_KEY = '6LdiObcsAAAAAOc2ZND68FfgRgDd2CHNwrod0RjC';
-
-  var form      = document.getElementById('contact-form');
-  var statusEl  = document.getElementById('form-status');
-  var submitBtn = document.getElementById('form-submit-btn');
-
-  if (!form) return;
-
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    // HTML5 バリデーション
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
 
-    // 送信中 UI
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>送信中...';
-    statusEl.className = 'hidden';
-    statusEl.textContent = '';
-
-    var payload = {
-      name:    form.elements['name'].value.trim(),
-      email:   form.elements['email'].value.trim(),
-      subject: form.elements['subject'].value.trim(),
-      budget:  form.elements['budget'].value.trim(),
-      message: form.elements['message'].value.trim()
+    const payload = {
+      name: form.elements.name.value.trim(),
+      email: form.elements.email.value.trim(),
+      subject: form.elements.subject.value.trim(),
+      budget: form.elements.budget.value.trim(),
+      message: form.elements.message.value.trim()
     };
 
-    // クライアント側バリデーション
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(payload.email)) {
-      statusEl.className = 'p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm';
-      statusEl.textContent = 'メールアドレスの形式が正しくありません。';
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>送信する';
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(payload.email)) {
+      showStatus("error", "メールアドレスの形式をご確認ください。");
       return;
     }
-    if (payload.name.length > 100 || payload.subject.length > 200 || payload.message.length > 5000) {
-      statusEl.className = 'p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm';
-      statusEl.textContent = '入力内容が長すぎます。お名前100文字・件名200文字・メッセージ5000文字以内でご入力ください。';
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>送信する';
+
+    if (!payload.name || !payload.subject || !payload.message) {
+      showStatus("error", "必須項目をご入力ください。");
       return;
     }
+
+    submitButton.disabled = true;
+    submitButton.textContent = "送信しています…";
 
     try {
-      // reCAPTCHA v3 トークンを取得してペイロードに含める
-      payload.recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact' });
+      payload.recaptchaToken = await getRecaptchaToken();
 
-      var res = await fetch(GAS_ENDPOINT, {
-        method:   'POST',
-        redirect: 'follow',
-        body:     JSON.stringify(payload)
+      const response = await fetch(endpoint, {
+        method: "POST",
+        redirect: "follow",
+        body: JSON.stringify(payload)
       });
 
-      var json = await res.json();
-
-      if (json.status === 'ok') {
-        statusEl.className = 'p-4 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm';
-        statusEl.innerHTML = 'お問い合わせを受け付けました。<br>ご入力いただいたメールアドレス宛に確認メールをお送りしましたのでご確認ください。<br>通常1営業日以内にご返信いたします。<br><span class="text-xs text-green-600 mt-1 block">※ メールが届かない場合は、メールアドレスが正しいかご確認のうえ、迷惑メールフォルダもご確認ください。</span>';
-        form.reset();
-      } else {
-        throw new Error(json.message || '送信エラー');
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
       }
-    } catch (err) {
-      statusEl.className = 'p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm';
-      statusEl.textContent = '送信に失敗しました。しばらく経ってから再度お試しください。';
+
+      const result = await response.json();
+      if (result.status !== "ok") {
+        throw new Error(result.message || "Submission failed");
+      }
+
+      form.reset();
+      showStatus("success", "お問い合わせを受け付けました。内容を確認のうえ、ご入力のメールアドレスへご連絡します。");
+    } catch (error) {
+      showStatus("error", "送信できませんでした。時間をおいて再度お試しいただくか、suzuki@suzuneko-works.com へ直接ご連絡ください。");
     } finally {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>送信する';
+      submitButton.disabled = false;
+      submitButton.textContent = defaultButtonText;
     }
   });
 })();
-
-/* =============================== */
-/*  11. QIITA BLOG                  */
-/* =============================== */
-function initQiitaBlog() {
-  const grid    = document.getElementById('blog-grid');
-  const loading = document.getElementById('blog-loading');
-  const error   = document.getElementById('blog-error');
-
-  if (!grid) return;
-
-  const QIITA_USER = 'suzuneko-works';
-  const PER_PAGE   = 6;
-  const API_URL    = `https://qiita.com/api/v2/users/${QIITA_USER}/items?per_page=${PER_PAGE}`;
-  const COLORS     = ['accent', 'accent-light', 'accent-cyan'];
-
-  fetch(API_URL)
-    .then(res => {
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return res.json();
-    })
-    .then(items => {
-      if (!Array.isArray(items) || items.length === 0) throw new Error('no items');
-
-      items.forEach((item, i) => {
-        // URL validation: only allow https://qiita.com/* links
-        let safeUrl;
-        try {
-          const parsed = new URL(item.url);
-          if (parsed.protocol !== 'https:' || parsed.hostname !== 'qiita.com') throw new Error('invalid host');
-          safeUrl = parsed.href;
-        } catch (urlErr) {
-          return; // skip items with suspicious URLs
-        }
-
-        const color = COLORS[i % COLORS.length];
-        const date  = new Date(item.created_at).toLocaleDateString('ja-JP', {
-          year: 'numeric', month: '2-digit', day: '2-digit'
-        });
-        const tags = (item.tags || []).slice(0, 3).map(t => t.name);
-
-        // Anchor wrapper
-        const a = document.createElement('a');
-        a.href              = safeUrl;
-        a.target            = '_blank';
-        a.rel               = 'noopener noreferrer';
-        a.className         = 'scroll-animate group';
-        a.dataset.animation = 'fade-up';
-        a.dataset.delay     = String((i % 3) * 100);
-
-        // Card container
-        const card = document.createElement('div');
-        card.className = `h-full p-6 rounded-2xl bg-light-card border border-light-border hover:border-${color}/50 hover:shadow-lg hover:shadow-accent/5 transition-all duration-500 hover:-translate-y-2`;
-
-        // Header: icon + platform badge
-        const header = document.createElement('div');
-        header.className = 'flex items-center gap-2 mb-4';
-        const icon = document.createElement('span');
-        icon.className   = 'text-xl';
-        icon.textContent = '📝';
-        const badge = document.createElement('span');
-        badge.className   = 'text-xs text-text-sub bg-light-border px-2 py-0.5 rounded-full';
-        badge.textContent = 'Qiita';
-        header.append(icon, badge);
-
-        // Title (textContent to prevent XSS)
-        const titleEl = document.createElement('h3');
-        titleEl.className   = `text-sm font-bold mb-2 group-hover:text-${color} transition-colors`;
-        titleEl.textContent = item.title;
-
-        // Meta: date + likes count
-        const meta = document.createElement('p');
-        meta.className = 'text-text-sub text-xs mb-3 flex items-center gap-3';
-        const dateSpan = document.createElement('span');
-        dateSpan.textContent = date;
-        const likesWrap = document.createElement('span');
-        likesWrap.className = 'flex items-center gap-1';
-        const heartIcon = document.createElement('i');
-        heartIcon.className = 'fa-solid fa-heart text-rose-400';
-        const likesCount = document.createTextNode(` ${item.likes_count || 0}`);
-        likesWrap.append(heartIcon, likesCount);
-        meta.append(dateSpan, likesWrap);
-
-        // Tags
-        const tagRow = document.createElement('div');
-        tagRow.className = 'flex flex-wrap gap-1 mb-4';
-        tags.forEach(tag => {
-          const span = document.createElement('span');
-          span.className   = 'text-xs bg-light-alt border border-light-border px-2 py-0.5 rounded-full text-text-sub';
-          span.textContent = tag;
-          tagRow.append(span);
-        });
-
-        // Read more arrow
-        const readMore = document.createElement('p');
-        readMore.className   = `text-${color} text-xs mt-4 group-hover:translate-x-1 transition-transform`;
-        readMore.textContent = 'Read more →';
-
-        card.append(header, titleEl, meta, tagRow, readMore);
-        a.append(card);
-        grid.append(a);
-      });
-
-      if (loading) loading.classList.add('hidden');
-
-      // Observe newly added cards for scroll animation
-      const newCards = grid.querySelectorAll('.scroll-animate');
-      const scrollObs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay) || 0;
-            setTimeout(() => entry.target.classList.add('visible'), delay);
-            scrollObs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
-      newCards.forEach(el => scrollObs.observe(el));
-    })
-    .catch(() => {
-      if (loading) loading.classList.add('hidden');
-      if (error)   error.classList.remove('hidden');
-    });
-}
