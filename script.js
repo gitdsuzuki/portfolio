@@ -85,6 +85,27 @@
     });
   }
 
+  const trackEvent = (eventName, parameters = {}) => {
+    if (typeof window.gtag === "function") {
+      try {
+        window.gtag("event", eventName, parameters);
+      } catch (_) {
+        // Analytics must never interrupt navigation or an accepted inquiry.
+      }
+    }
+  };
+
+  document.querySelectorAll("a[data-track]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const eventName = link.dataset.track;
+      if (eventName === "resource_download") {
+        trackEvent(eventName, { resource_name: link.dataset.resource });
+      } else if (eventName === "training_consultation_click") {
+        trackEvent(eventName, { page_type: document.querySelector("form[data-kind='training']") ? "training" : "learning" });
+      }
+    });
+  });
+
   const form = document.getElementById("contact-form");
   const status = document.getElementById("form-status");
   const submitButton = document.getElementById("form-submit-btn");
@@ -108,25 +129,34 @@
   };
 
   const getRecaptchaToken = () => new Promise((resolve, reject) => {
-    const deadline = Date.now() + 8000;
+    let finished = false;
+    let pollTimer;
+    const finish = (error, token) => {
+      if (finished) return;
+      finished = true;
+      window.clearTimeout(timeout);
+      window.clearTimeout(pollTimer);
+      if (error) reject(error);
+      else resolve(token);
+    };
+    const timeout = window.setTimeout(() => finish(new Error("reCAPTCHA timed out")), 8000);
 
     const waitUntilReady = () => {
+      if (finished) return;
       if (window.grecaptcha && typeof window.grecaptcha.ready === "function") {
-        window.grecaptcha.ready(() => {
-          window.grecaptcha
-            .execute(recaptchaSiteKey, { action: "contact" })
-            .then(resolve)
-            .catch(reject);
-        });
+        try {
+          window.grecaptcha.ready(() => {
+            if (finished) return;
+            Promise.resolve().then(() => window.grecaptcha.execute(recaptchaSiteKey, { action: "contact" }))
+              .then((token) => token ? finish(null, token) : finish(new Error("Empty reCAPTCHA token")))
+              .catch((error) => finish(error));
+          });
+        } catch (error) {
+          finish(error);
+        }
         return;
       }
-
-      if (Date.now() >= deadline) {
-        reject(new Error("reCAPTCHA is unavailable"));
-        return;
-      }
-
-      window.setTimeout(waitUntilReady, 100);
+      pollTimer = window.setTimeout(waitUntilReady, 100);
     };
 
     waitUntilReady();
@@ -134,6 +164,7 @@
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (submitButton.disabled) return;
     clearStatus();
 
     if (!form.checkValidity()) {
@@ -141,12 +172,13 @@
       return;
     }
 
+    const value = (fieldName) => form.elements.namedItem(fieldName)?.value.trim() || "";
     const payload = {
-      name: form.elements.name.value.trim(),
-      email: form.elements.email.value.trim(),
-      subject: form.elements.subject.value.trim(),
-      budget: form.elements.budget.value.trim(),
-      message: form.elements.message.value.trim()
+      name: value("name"),
+      email: value("email"),
+      subject: value("subject"),
+      budget: value("budget"),
+      message: value("message")
     };
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -158,6 +190,26 @@
     if (!payload.name || !payload.subject || !payload.message) {
       showStatus("error", "必須項目をご入力ください。");
       return;
+    }
+
+    const isTraining = form.dataset.kind === "training";
+    if (isTraining) {
+      if (["company", "audience", "participants", "timing"].some((field) => !value(field))) {
+        showStatus("error", "会社名・受講対象・人数・希望時期をご入力ください。未定の場合は「未定」とご記入いただけます。");
+        return;
+      }
+      payload.subject = `法人研修相談：${payload.subject}`;
+      // Keep the existing Apps Script contract; include all training fields in message.
+      payload.message = [
+        `会社名：${value("company")}`,
+        `受講対象：${value("audience")}`,
+        `人数：${value("participants")}`,
+        `希望時期：${value("timing")}`,
+        `最初に知ったきっかけ：${value("discovery") || "未回答"}`,
+        `相談の決め手：${value("decision") || "未回答"}`,
+        "受付ページ：法人研修",
+        "", "【困っていること・相談内容】", payload.message
+      ].join("\n");
     }
 
     submitButton.disabled = true;
@@ -183,6 +235,7 @@
 
       form.reset();
       showStatus("success", "お問い合わせを受け付けました。内容を確認のうえ、ご入力のメールアドレスへご連絡します。");
+      if (isTraining) trackEvent("training_inquiry_submitted", { page_type: "training" });
     } catch (error) {
       showStatus("error", "送信できませんでした。時間をおいて再度お試しいただくか、suzuki@suzuneko-works.com へ直接ご連絡ください。");
     } finally {
